@@ -76,13 +76,20 @@ namespace SleepMonitor.Services
                         _inStream = _btSocket.InputStream;
                         using (var str = new StreamReader(_inStream))
                         {
-                            var line = str.ReadLine();
+
+                        var line = str.ReadLine();
                         if(line.EndsWith(";"))
                         {
                             var parts= line.Split(",");
                             await _firebaseClient
                                 .Child("Accelerometer data")
-                                    .PostAsync(new AccelerometerDataModel() { BodyPosition=Convert.ToInt32(parts[0])});
+                                    .PostAsync(new AccelerometerDataModel() {
+                                        BodyPosition =Convert.ToInt32(parts[0]),
+                                        XAxis = Convert.ToDouble(parts[1]),
+                                        YAxis = Convert.ToDouble(parts[2]),
+                                        ZAxis=Convert.ToDouble(parts[3])
+
+                                    });
 
                             continue;
                         }

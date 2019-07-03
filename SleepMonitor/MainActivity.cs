@@ -46,8 +46,9 @@ namespace SleepMonitor
         public async void tgConnect_HandleCheckedChange(object sender, CompoundButton.CheckedChangeEventArgs e)
         {
             if (e.IsChecked)
-            {   
-               await accelerometerData.GetAccelerometerData();
+            {
+                await Task.Delay(1000);
+                await accelerometerData.GetAccelerometerData();
           
                 
             }
