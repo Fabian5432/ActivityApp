@@ -30,5 +30,7 @@ namespace SleepMonitor.Models
 
         public string LastName { get; set; }
 
+        public List<AccelerometerDataModel> AccelerometerData {get; set;}
+
     }
 }

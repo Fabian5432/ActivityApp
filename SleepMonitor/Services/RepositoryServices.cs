@@ -8,6 +8,8 @@ using System;
 using System.IO;
 using Firebase.Database.Query;
 using Java.Lang;
+using Java.Util;
+using Random = System.Random;
 
 namespace SleepMonitor.Services
 {
@@ -43,19 +45,19 @@ namespace SleepMonitor.Services
                    }).ToList();
         }
 
-        public async Task<List<AccelerometerDataModel>> GetAllAccelerometerData()
-        {
-            return (await _firebaseClient
-                   .Child("Accelerometer")
-                   .OnceAsync<AccelerometerDataModel>()).Select(accelerometer => new AccelerometerDataModel
-                   {
-                       BodyPosition = accelerometer.Object.BodyPosition,
-                       BodyMovement = accelerometer.Object.BodyMovement,
-                       XAxis = accelerometer.Object.XAxis,
-                       YAxis = accelerometer.Object.YAxis,
-                       ZAxis = accelerometer.Object.ZAxis
-                   }).ToList();
-        }
+        //public async Task<List<AccelerometerDataModel>> GetAllAccelerometerData()
+        //{
+        //    //return (await _firebaseClient
+        //    //       .Child("Accelerometer")
+        //    //       .OnceAsync<AccelerometerDataModel>()).Select(accelerometer => new AccelerometerDataModel
+        //    //       {
+        //    //           BodyPosition = accelerometer.Object.BodyPosition,
+        //    //           BodyMovement = accelerometer.Object.BodyMovement,
+        //    //           XAxis = accelerometer.Object.XAxis,
+        //    //           YAxis = accelerometer.Object.YAxis,
+        //    //           ZAxis = accelerometer.Object.ZAxis
+        //    //       }).ToList();
+        //}
 
         public async Task AddPersonData(string firstname, string lastname)
         {
@@ -66,32 +68,52 @@ namespace SleepMonitor.Services
 
         public async Task AddAccelerometerData()
         {
-            var documents = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+
+            var documents = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
             var filename = Path.Combine(documents, "SleepMonitorData.txt");
-            var text = File.ReadAllText(filename);
-            var line = text.Split(',');
-        
+
             await _firebaseClient
-                                 .Child("Accelerometer data")
-                                 .PostAsync(new AccelerometerDataModel()
-                                 {
-                                     BodyPosition = Integer.ParseInt(line[0]),
-                                     BodyMovement = Integer.ParseInt(line[1]),
-                                     XAxis = Integer.ParseInt(line[2]),
-                                     YAxis = Integer.ParseInt(line[3]),
-                                     ZAxis = Integer.ParseInt(line[4])
-                                 });
+             .Child("Accelerometer data")
+             .PostAsync(ReadDataFromFile(filename));
+                //new AccelerometerDataModel() {
+                //     BodyMovement = random(0, 1),
+                //     BodyPosition = random(0,5),
+                //     XAxis = System.Math.Round(GetRandomAxis(0.00, 1.00), 2),
+                //     YAxis = System.Math.Round(GetRandomAxis(0.00, 1.00), 2),
+                //     ZAxis = System.Math.Round(GetRandomAxis(0.00, 1.00), 2)
+
+                // });
+
         }
 
-        public async Task StoreDataToFile()
+        public List<AccelerometerDataModel> ReadDataFromFile(string path)
         {
-            var lines = string.Format("{0},{1},{2},{3},{4}", data.XAxis, data.YAxis, data.ZAxis, data.BodyPosition, data.BodyMovement);
-            var documents = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-            var filename = Path.Combine(documents, "SleepMonitorData.txt");
-            File.WriteAllText(filename,lines);
-        }
-       
+            AccelerometerData = new List<AccelerometerDataModel>();
 
+            using (var f = new StreamReader(path))
+            {
+                string line = string.Empty;
+                while ((line = f.ReadLine()) != null)
+                {
+                    var parts = line.Split(",");
+                    AccelerometerData.Add(new AccelerometerDataModel() {XAxis=Convert.ToDouble(parts[0]),});
+                }
+
+                f.Close();
+            }
+            return AccelerometerData;
+        }
+
+        public int random(int min, int max)
+        {
+            Random r= new Random();
+            return r.Next(min,max);
+        }
+        public double GetRandomAxis(double minimum, double maximum)
+        {
+            Random r = new Random();
+            return r.NextDouble() * (maximum - minimum) + minimum;
+        }
         #endregion
 
     }

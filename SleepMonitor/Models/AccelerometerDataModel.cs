@@ -16,14 +16,19 @@ namespace SleepMonitor.Models
     public class AccelerometerDataModel
     {
      
-        public int XAxis { get; set; }
+        public double XAxis { get; set; }
 
-        public int YAxis { get; set; }
+        public double YAxis { get; set; }
 
-        public int ZAxis { get; set; }
+        public double ZAxis { get; set; }
 
         public int BodyPosition { get; set; }
 
         public int BodyMovement { get; set; }
+
+        public AccelerometerDataModel()
+        {
+
+        }
     }
 }

@@ -1,15 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<LinearLayout
 	xmlns:android="http://schemas.android.com/apk/res/android"
-	xmlns:app="http://schemas.android.com/apk/res-auto"
-	xmlns:tools="http://schemas.android.com/tools"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
-	android:minWidth="25px"
-	android:minHeight="25px">
-	 <microcharts.droid.ChartView  
-        android:id="@+id/chartView"  
-        android:layout_width="match_parent"  
-        android:layout_height="160dp" /> 
+	android:orientation="vertical"
+	android:background="@drawable/background"
+    
 
-</RelativeLayout>
+    >
+	<RelativeLayout
+		android:layout_width="match_parent"
+		android:layout_height="335dp">
+		<TimePicker
+			android:id="@+id/tp_time"
+			android:scrollbarStyle="outsideOverlay"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_centerInParent="true"
+			style="@style/MyTimePickerWidgetStyle">
+			<Switch
+				android:layout_width="match_parent"
+				android:layout_height="match_parent"
+				android:id="@+id/switch1"
+				android:minWidth="25px"
+				android:minHeight="25px" />
+		</TimePicker>
+	</RelativeLayout>
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:orientation="horizontal"
+		android:weightSum="100">
+		<Button
+			android:id="@+id/btn_settime"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_weight="40"
+			android:text="Start Traking"
+		    />
+		<Button
+			android:id="@+id/btn_cancelalarm"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_weight="60"
+			android:text="Cancel"
+		   
+		/>
+	</LinearLayout>
+	<ToggleButton
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:id="@+id/toggleButton1" />
+	<Switch
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:id="@+id/switch2" />
+	<TextView
+		android:id="@+id/textView1"
+		android:layout_width="fill_parent"
+		android:layout_height="50dp"
+		android:textColor="@color/colorAccent"
+	    android:gravity="center"
+		android:text="..."
+         >
+	</TextView>
+	
+
+</LinearLayout>
