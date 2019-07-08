@@ -46,5 +46,9 @@ namespace SleepMonitor.ViewModel
         {
            await _repositoryService.AddAccelerometerData();
         }
+        public async Task<List<AccelerometerDataModel>> GetData()
+        {
+           return await _repositoryService.GetAllAccelerometerData();
+        }
     }
 }

@@ -45,19 +45,21 @@ namespace SleepMonitor.Services
                    }).ToList();
         }
 
-        //public async Task<List<AccelerometerDataModel>> GetAllAccelerometerData()
-        //{
-        //    //return (await _firebaseClient
-        //    //       .Child("Accelerometer")
-        //    //       .OnceAsync<AccelerometerDataModel>()).Select(accelerometer => new AccelerometerDataModel
-        //    //       {
-        //    //           BodyPosition = accelerometer.Object.BodyPosition,
-        //    //           BodyMovement = accelerometer.Object.BodyMovement,
-        //    //           XAxis = accelerometer.Object.XAxis,
-        //    //           YAxis = accelerometer.Object.YAxis,
-        //    //           ZAxis = accelerometer.Object.ZAxis
-        //    //       }).ToList();
-        //}
+        public async Task<List<AccelerometerDataModel>> GetAllAccelerometerData()
+        {
+            return (await _firebaseClient
+                   .Child("Accelerometer data")
+                   .OnceAsync<AccelerometerDataModel>()).Select(item => new AccelerometerDataModel
+                   {
+                       BPM = item.Object.BPM,
+                       sleepTime=item.Object.sleepTime,
+                       BodyPosition = item.Object.BodyPosition,
+                       BodyMovement = item.Object.BodyMovement,
+                       XAxis = item.Object.XAxis,
+                       YAxis = item.Object.YAxis,
+                       ZAxis = item.Object.ZAxis
+                   }).ToList();
+        }
 
         public async Task AddPersonData(string firstname, string lastname)
         {

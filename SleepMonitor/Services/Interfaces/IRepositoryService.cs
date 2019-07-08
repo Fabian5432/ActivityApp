@@ -16,7 +16,7 @@ namespace SleepMonitor.Services.Interfaces
     public interface IRepositoryService
     {
         Task<List<PersonModel>> GetAllPersons();
-        //Task<List<AccelerometerDataModel>> GetAllAccelerometerData();
+        Task<List<AccelerometerDataModel>> GetAllAccelerometerData();
         Task AddAccelerometerData();
         List<AccelerometerDataModel> ReadDataFromFile(string path);
         int random(int min, int max);

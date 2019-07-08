@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace SleepMonitor
 {
-    [Activity(Label = "Dispozitiv Monitorizare", MainLauncher = true)]
+    [Activity(Label = "Dispozitiv Monitorizare")]
     public class MainActivity : AppCompatActivity
     {
         private AccelerometerDataViewModel accelerometerData;
