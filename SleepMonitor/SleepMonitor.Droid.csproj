@@ -17,7 +17,6 @@
     <AndroidResgenFile>Resources\Resource.Designer.cs</AndroidResgenFile>
     <AndroidResgenClass>Resource</AndroidResgenClass>
     <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
-    <AndroidUseLatestPlatformSdk>false</AndroidUseLatestPlatformSdk>
     <TargetFrameworkVersion>v8.1</TargetFrameworkVersion>
     <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
     <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
@@ -35,9 +34,6 @@
     <AndroidUseSharedRuntime>True</AndroidUseSharedRuntime>
     <AndroidLinkMode>None</AndroidLinkMode>
     <EmbedAssembliesIntoApk>False</EmbedAssembliesIntoApk>
-    <AotAssemblies>false</AotAssemblies>
-    <EnableLLVM>false</EnableLLVM>
-    <BundleAssemblies>false</BundleAssemblies>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugSymbols>True</DebugSymbols>
@@ -59,10 +55,9 @@
     <Reference Include="Mono.Android" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Chart.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="Models\AccelerometerDataModel.cs" />
-    <Compile Include="Models\PersonModel.cs" />
+    <Compile Include="Models\DevideDataModel.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Bluetooth\Conexiune_Bluetooth.cs" />
@@ -76,7 +71,12 @@
     <Compile Include="ViewModel\BluetoothConnectionViewModel.cs" />
     <Compile Include="ViewModel\PersonViewModel.cs" />
     <Compile Include="ViewModel\ServiceViewModel.cs" />
-    <Compile Include="Views\UserProfile.cs" />
+    <Compile Include="Adapter\CustomListAdapter.cs" />
+    <Compile Include="Views\Fragments\MainPageViewFragment.cs" />
+    <Compile Include="Views\Fragments\ProfileViewFragment.cs" />
+    <Compile Include="Views\Fragments\SettingViewFragment.cs" />
+    <Compile Include="Views\ViewHolders\ViewHolder.cs" />
+    <Compile Include="Services\DeviceData.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -105,29 +105,80 @@
     <AndroidResource Include="Resources\mipmap-xxxhdpi\ic_launcher.png" />
     <AndroidResource Include="Resources\mipmap-xxxhdpi\ic_launcher_foreground.png" />
     <AndroidResource Include="Resources\mipmap-xxxhdpi\ic_launcher_round.png" />
+    <AndroidResource Include="Resources\layout\setting_page_layout.axml">
+      <SubType>
+      </SubType>
+      <Generator>
+      </Generator>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\main_page_layout.axml">
+      <SubType>
+      </SubType>
+      <Generator>
+      </Generator>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\login_page_layout.axml">
+      <SubType>
+      </SubType>
+      <Generator>
+      </Generator>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\toolbar.axml">
+      <SubType>
+      </SubType>
+      <Generator>
+      </Generator>
+    </AndroidResource>
+    <AndroidResource Include="Resources\menu\bottombar_menu.xml">
+      <SubType>Designer</SubType>
+      <Generator>
+      </Generator>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\profile_page_layout.axml">
+      <SubType>
+      </SubType>
+      <Generator>
+      </Generator>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\device_layout.axml">
+      <SubType>
+      </SubType>
+      <Generator>
+      </Generator>
+    </AndroidResource>
+    <AndroidResource Include="Resources\drawable\background.png">
+      <SubType>
+      </SubType>
+      <Generator>
+      </Generator>
+    </AndroidResource>
+    <AndroidResource Include="Resources\drawable\background2.jpg">
+      <SubType>
+      </SubType>
+      <Generator>
+      </Generator>
+    </AndroidResource>
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="FirebaseDatabase.net">
-      <Version>4.0.1</Version>
+      <Version>4.0.2</Version>
     </PackageReference>
     <PackageReference Include="Microcharts">
       <Version>0.7.1</Version>
     </PackageReference>
-    <PackageReference Include="Xamarin.Android.Support.Design" Version="28.0.0.1" />
+    <PackageReference Include="Xamarin.Android.Support.Design" Version="28.0.0.3" />
+    <PackageReference Include="Xamarin.Android.Support.SwipeRefreshLayout">
+      <Version>28.0.0.3</Version>
+    </PackageReference>
+    <PackageReference Include="Xamarin.Android.Support.v7.CardView">
+      <Version>28.0.0.3</Version>
+    </PackageReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\drawable\Image" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\activity_main.axml">
-      <SubType>Designer</SubType>
-    </AndroidResource>
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\background.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\layout\chart.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>

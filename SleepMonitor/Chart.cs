@@ -1,15 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using Entry = Microcharts.Entry;
 using Android.App;
-using Android.Content;
 using Android.OS;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
 using Microcharts;
 using Microcharts.Droid;
 using SkiaSharp;

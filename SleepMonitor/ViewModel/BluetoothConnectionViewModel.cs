@@ -31,9 +31,9 @@ namespace SleepMonitor.ViewModel
         {
             _connectivityService.Disconnected();
         }
-        public void WriteData()
+        public void WriteData(Java.Lang.String data)
         {
-            _connectivityService.BluetoothWriteData(new Java.Lang.String("e"));
+            _connectivityService.BluetoothWriteData(data);
         }
     }
 }

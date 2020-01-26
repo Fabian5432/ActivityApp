@@ -1,14 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using Android.App;
-using Android.Content;
-using Android.OS;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
 using SleepMonitor.Models;
 using SleepMonitor.Services.Interfaces;
 
@@ -20,8 +11,6 @@ namespace SleepMonitor.ViewModel
 
         private IRepositoryService _repositoryService;
         private IConnectivityService _connectivityService;
-
-        private AccelerometerDataModel accelerometerData;
 
         #endregion
 
@@ -36,15 +25,9 @@ namespace SleepMonitor.ViewModel
             await _connectivityService.ListenForData();
         }
 
-        public void SendData()
+        public async Task AddAccelerometerData()
         {
-            _connectivityService.BluetoothWriteData(new Java.Lang.String("p"));
-            
-        }
-
-        public async Task idAsync()
-        {
-           await _repositoryService.AddAccelerometerData();
+           await _repositoryService.AddData();
         }
         public async Task<List<AccelerometerDataModel>> GetData()
         {

@@ -1,89 +1,57 @@
 ﻿using Android.App;
 using Android.OS;
 using Android.Support.V7.App;
-using Microcharts;
-using SkiaSharp;
-using Microcharts.Droid;
-using System.Collections.Generic;
-using Android.Widget;
-using SleepMonitor.ViewModel;
-using Android.Bluetooth;
-using System.Threading.Tasks;
+using Android.Support.Design.Widget;
+using SleepMonitor.Fragments;
+using SleepMonitor.Views.Fragments;
 
 namespace SleepMonitor
 {
-    [Activity(Label = "Dispozitiv Monitorizare")]
+    [Activity(Label = "@string/app_name", MainLauncher = true, LaunchMode = Android.Content.PM.LaunchMode.SingleTop)]
     public class MainActivity : AppCompatActivity
     {
-        private AccelerometerDataViewModel accelerometerData;
-        private BluetoothConnectionViewModel bluetoothConnection;
-        private BluetoothSocket _btSocket;
-        ToggleButton _tgButton;
-        TextView _resultTextView;
-        Switch _switch;
-        Switch _switch1;
 
+        BottomNavigationView _bottomNavigationView;
 
-        protected override void OnCreate(Bundle savedInstanceState)
-        {
-            base.OnCreate(savedInstanceState);
+        protected override void OnCreate(Bundle bundle)
+        { 
+            base.OnCreate(bundle);
             // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.activity_main);
-            _tgButton = FindViewById<ToggleButton>(Resource.Id.toggleButton1);
-            _resultTextView = FindViewById<TextView>(Resource.Id.textView1);
-            _switch = FindViewById<Switch>(Resource.Id.switch1);
-            _switch1 = FindViewById<Switch>(Resource.Id.switch2);
 
-            _switch.CheckedChange += switch_state;
-            _switch1.CheckedChange += switch_state2;
-            _tgButton.CheckedChange += tgConnect_HandleCheckedChange;
+            _bottomNavigationView = FindViewById<BottomNavigationView>(Resource.Id.bottom_navigation);
 
-            accelerometerData = ServiceViewModel.GetService<AccelerometerDataViewModel>() as AccelerometerDataViewModel;
-            bluetoothConnection = ServiceViewModel.GetService<BluetoothConnectionViewModel>() as BluetoothConnectionViewModel;
-           
+            _bottomNavigationView.NavigationItemSelected += BottomNavigation_NavigationItemSelected;
+
+            LoadFragment(Resource.Id.menu_home);
         }
 
-        public async void tgConnect_HandleCheckedChange(object sender, CompoundButton.CheckedChangeEventArgs e)
+        private void BottomNavigation_NavigationItemSelected(object sender, BottomNavigationView.NavigationItemSelectedEventArgs e)
         {
-            if (e.IsChecked)
-            {
-                await Task.Delay(1000);
-                await accelerometerData.GetAccelerometerData();
-          
-                
-            }
-            else
-            {
-                _resultTextView.Text = string.Empty;
-
-            }
-            
+            LoadFragment(e.Item.ItemId);
         }
-        public void switch_state(object sender, CompoundButton.CheckedChangeEventArgs e)
+
+        void LoadFragment(int id)
         {
-            if(e.IsChecked)
-            { 
-                bluetoothConnection.BluetoothConnect();
-
-            }
-            else
+            Android.Support.V4.App.Fragment fragment = null;
+            switch (id)
             {
-                bluetoothConnection.BluetoothDisconnect();
+                case Resource.Id.menu_home:
+                    fragment = MainPageViewFragment.NewInstance();
+                    break;
+                case Resource.Id.menu_audio:
+                    fragment = ProfileViewFragment.NewInstance();
+                    break;
+                case Resource.Id.menu_video:
+                    fragment = SettingViewfragment.NewInstance();
+                    break;
             }
-        }
-        public async void switch_state2(object sender, CompoundButton.CheckedChangeEventArgs e)
-        {
-            if(e.IsChecked)
-            {   
-                await accelerometerData.idAsync();
-                await Task.Delay(1000);
+            if (fragment == null)
+                return;
 
-
-            }
-            else
-            {
-                _resultTextView.Text = string.Empty;
-            }
+            SupportFragmentManager.BeginTransaction()
+               .Replace(Resource.Id.content_frame, fragment)
+               .Commit();
         }
 
     }

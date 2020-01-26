@@ -4,9 +4,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 15.0.28010.2046
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SleepMonitor.Droid", "SleepMonitor\SleepMonitor.Droid.csproj", "{B05790DA-4CFA-4F60-87EB-FBFEF8D287B0}"
-	ProjectSection(ProjectDependencies) = postProject
-		{2209BBCD-5C30-4E09-9B6A-A91C12D3B4AF} = {2209BBCD-5C30-4E09-9B6A-A91C12D3B4AF}
-	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Home", "Home", "{CAA54FBB-F99C-419E-A00E-D27AC27FA7C5}"
 EndProject
