@@ -9,7 +9,7 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 
-namespace SleepMonitor.ViewModel
+namespace App.ViewModel
 {
     public class BaseViewModel
     {

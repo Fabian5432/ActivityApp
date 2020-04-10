@@ -2,12 +2,12 @@
 using Android.OS;
 using Android.Support.V7.App;
 using Android.Support.Design.Widget;
-using SleepMonitor.Fragments;
-using SleepMonitor.Views.Fragments;
+using App.Fragments;
+using App.Views.Fragments;
 
-namespace SleepMonitor
+namespace App.Activities
 {
-    [Activity(Label = "@string/app_name", MainLauncher = true, LaunchMode = Android.Content.PM.LaunchMode.SingleTop)]
+    [Activity(Label = "@string/app_name", MainLauncher = false, LaunchMode = Android.Content.PM.LaunchMode.SingleTop)]
     public class MainActivity : AppCompatActivity
     {
 
@@ -39,17 +39,17 @@ namespace SleepMonitor
                 case Resource.Id.menu_home:
                     fragment = MainPageViewFragment.NewInstance();
                     break;
-                case Resource.Id.menu_audio:
-                    fragment = ProfileViewFragment.NewInstance();
+                case Resource.Id.menu_history:
+                    fragment = HistoryViewFragment.NewInstance();
                     break;
-                case Resource.Id.menu_video:
-                    fragment = SettingViewfragment.NewInstance();
+                case Resource.Id.menu_profile:
+                    fragment = ProfileViewFragment.NewInstance();
                     break;
             }
             if (fragment == null)
                 return;
 
-            SupportFragmentManager.BeginTransaction()
+            _ = SupportFragmentManager.BeginTransaction()
                .Replace(Resource.Id.content_frame, fragment)
                .Commit();
         }

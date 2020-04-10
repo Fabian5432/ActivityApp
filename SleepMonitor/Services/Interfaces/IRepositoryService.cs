@@ -1,15 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using SleepMonitor.Models;
+using App.Models;
 
-namespace SleepMonitor.Services.Interfaces
+namespace App.Services.Interfaces
 {
     public interface IRepositoryService
     {
         Task<List<DeviceName>> GetAllPersons();
-        Task<List<AccelerometerDataModel>> GetAllAccelerometerData();
-        Task AddAccelerometerData();
         Task AddData();
-        List<AccelerometerDataModel> ReadDataFromFile(string path);
     }
 }

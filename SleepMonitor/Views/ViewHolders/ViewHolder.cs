@@ -1,7 +1,7 @@
 ﻿using System;
 using Android.Widget;
 
-namespace SleepMonitor.Views.ViewHolders 
+namespace App.Views.ViewHolders 
 {
     public class ViewHolder : Java.Lang.Object
     {

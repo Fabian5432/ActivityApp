@@ -1,12 +1,12 @@
-﻿using System.ComponentModel;
+﻿
+using Android.Widget;
 
-namespace SleepMonitor.Models
+namespace App.Models
 {
-    public class DeviceName : INotifyPropertyChanged
+    public class DeviceName
     {
         #region Constants
 
-        public event PropertyChangedEventHandler PropertyChanged;
         private static int id = 0;
 
         #endregion
@@ -15,30 +15,12 @@ namespace SleepMonitor.Models
         {
             PersonId = id++;
         }
-        private string name;
 
         public int PersonId { get; set; }
 
-        public string DevideName
-        {
-            get { return name; }
-
-            set {
-                name = value;
-                OnPropertyChanged("DevideName");
-            }
-        }
-
+        public string DevideName{get; set; }
 
         public string DeviceStateText { get; set; }
-   
-        protected void OnPropertyChanged(string name)
-        {
-            PropertyChangedEventHandler handler = PropertyChanged;
-            if (handler != null)
-            {
-                handler(this, new PropertyChangedEventArgs(name));
-            }
-        }
+
     }
 }

@@ -1,22 +1,14 @@
-﻿using SleepMonitor.Services;
+﻿using App.Services;
 
-namespace SleepMonitor.ViewModel
+namespace App.ViewModel
 {
     public class ServiceViewModel
     {
         public static BaseViewModel GetService<T>()
         {
-            if (typeof(T) == typeof(AccelerometerDataViewModel))
-            {
-                return new AccelerometerDataViewModel(ServiceLocator.GetRepositoryService,ServiceLocator.GetConnectivitySeervice);
-            }
-            else if(typeof(T) == typeof(PersonViewModel))
+            if(typeof(T) == typeof(PersonViewModel))
             {
                 return new PersonViewModel(ServiceLocator.GetRepositoryService);
-            }
-            else if(typeof(T)==typeof(BluetoothConnectionViewModel))
-            {
-                return new BluetoothConnectionViewModel(ServiceLocator.GetConnectivitySeervice);
             }
             return null;
         }

@@ -1,13 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28010.2046
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30002.166
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SleepMonitor.Droid", "SleepMonitor\SleepMonitor.Droid.csproj", "{B05790DA-4CFA-4F60-87EB-FBFEF8D287B0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "App.Droid", "SleepMonitor\App.Droid.csproj", "{B05790DA-4CFA-4F60-87EB-FBFEF8D287B0}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Home", "Home", "{CAA54FBB-F99C-419E-A00E-D27AC27FA7C5}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SleepMonitorTests", "SleepMonitorTests\SleepMonitorTests.csproj", "{2209BBCD-5C30-4E09-9B6A-A91C12D3B4AF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppTests", "SleepMonitorTests\AppTests.csproj", "{2209BBCD-5C30-4E09-9B6A-A91C12D3B4AF}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{49AB74E3-FD6C-4F63-A9F6-E4F6507795FC}"
 EndProject

@@ -2,13 +2,14 @@
 using Android.Views;
 using Android.Support.V4.App;
 using Android.Widget;
-using SleepMonitor.Services;
-using SleepMonitor.Adapter;
+using App.Services;
+using App.Adapter;
 using Android.Support.V4.Widget;
 using System;
+using Android.Support.V7.App;
 
-namespace SleepMonitor.Views.Fragments
-{
+namespace App.Views.Fragments
+{   
     public class MainPageViewFragment : Fragment
     {
         ListView _listview;
@@ -19,7 +20,7 @@ namespace SleepMonitor.Views.Fragments
         public override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
-
+            ((AppCompatActivity)Activity).SupportActionBar.SetTitle(Resource.String.homePage);
             // Create your fragment here
         }
 
@@ -32,27 +33,40 @@ namespace SleepMonitor.Views.Fragments
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             // Use this to return your custom view for this Fragment
-            // return inflater.Inflate(Resource.Layout.YourFragment, container, false);
+
             _view = inflater.Inflate(Resource.Layout.main_page_layout, null);
             _listview = (ListView)_view.FindViewById(Resource.Id.list_view);
             _swipetoRefresh = (SwipeRefreshLayout)_view.FindViewById(Resource.Id.swipeRefresh);
- 
-            _adapter = new CustomListAdapter(DeviceData.Users);
-
+            _adapter = new CustomListAdapter(new DeviceData().Users);
             _listview.Adapter = _adapter;
-            _swipetoRefresh.Refresh += _swipetoRefresh_Refresh;
 
             return _view;
+        }
+        public override void OnResume()
+        {
+            base.OnResume();
+            _swipetoRefresh.Refresh += _swipetoRefresh_Refresh;
+
+        }
+        public override void OnPause()
+        {
+            base.OnPause();
+            _swipetoRefresh.Refresh -= _swipetoRefresh_Refresh;
         }
 
         private void _swipetoRefresh_Refresh(object sender, EventArgs e)
         {
-            _adapter.NotifyDataSetChanged();
             _swipetoRefresh.Refreshing = true;
-            _adapter = new CustomListAdapter(DeviceData.Users);
-            _listview.Adapter = _adapter;
-            _swipetoRefresh.Refreshing = false;
+            Handler h = new Handler();
+            Action myAction = () =>
+            {
+                _adapter = new CustomListAdapter(new DeviceData().Users);
+                _listview.Adapter = _adapter;
+                _swipetoRefresh.Refreshing = false;
+            };
+            h.PostDelayed(myAction, 1000);
         }
+
 
     }
 }

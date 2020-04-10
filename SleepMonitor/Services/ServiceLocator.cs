@@ -1,11 +1,11 @@
-﻿using SleepMonitor.Services.Interfaces;
+﻿using App.Services.Interfaces;
 
-namespace SleepMonitor.Services
+namespace App.Services
 {
     public static class ServiceLocator
     {
         private static IRepositoryService _repositoryService;
-        private static IConnectivityService _connectivityService;
+        private static IQrScanService _qrScanService;
 
         public static IRepositoryService GetRepositoryService
         {
@@ -17,13 +17,12 @@ namespace SleepMonitor.Services
             }
         }
 
-        public static IConnectivityService GetConnectivitySeervice
+        public static IQrScanService GetQrScanService
         {
             get
-            {
-                if (_connectivityService == null)
-                    _connectivityService = new ConnectivityService();
-                return _connectivityService;
+            {  
+                _qrScanService = new QrCodeService();
+                return _qrScanService;
             }
         }
     }

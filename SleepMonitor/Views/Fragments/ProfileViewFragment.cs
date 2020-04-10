@@ -1,15 +1,18 @@
 ﻿using Android.OS;
+using Android.Support.V7.App;
 using Android.Views;
 
-namespace SleepMonitor.Fragments
+namespace App.Fragments
 {
     public class ProfileViewFragment : Android.Support.V4.App.Fragment
     {
+        View _view;
+
         public override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
+            ((AppCompatActivity)Activity).SupportActionBar.SetTitle(Resource.String.profilePage);
 
-            // Create your fragment here
         }
         public static ProfileViewFragment NewInstance()
         {
@@ -20,7 +23,8 @@ namespace SleepMonitor.Fragments
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             // Use this to return your custom view for this Fragment
-            return inflater.Inflate(Resource.Layout.profile_page_layout, null);
+            _view = inflater.Inflate(Resource.Layout.profile_page_layout, null);
+            return _view;
         }
     }
 }

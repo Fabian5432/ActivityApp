@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 using Android.Views;
 using Android.Widget;
-using SleepMonitor.Models;
-using SleepMonitor.Views.ViewHolders;
+using App.Models;
+using App.Views.ViewHolders;
 
-namespace SleepMonitor.Adapter
+namespace App.Adapter
 {
     public class CustomListAdapter : BaseAdapter<DeviceName>
     {
@@ -36,9 +36,10 @@ namespace SleepMonitor.Adapter
             if(view==null)
             {
                 view = LayoutInflater.From(parent.Context).Inflate(Resource.Layout.device_layout, parent, false);
+                var device_image = view.FindViewById<ImageView>(Resource.Id.item_image);
                 var device_text = view.FindViewById<TextView>(Resource.Id.deviceTextView);
                 var device_name = view.FindViewById<TextView>(Resource.Id.deviceNameView);
-                view.Tag = new ViewHolder() { DeviceName = device_name, DeviceText = device_text };
+                view.Tag = new ViewHolder() { DeviceName = device_name, DeviceText = device_text};
             }
             var holder = (ViewHolder)view.Tag;
             holder.DeviceName.Text = _persons[position].DevideName;

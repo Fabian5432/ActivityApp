@@ -9,9 +9,9 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
-using SleepMonitor.ViewModel;
+using App.ViewModel;
 
-namespace SleepMonitor.Services.Interfaces
+namespace App.Services.Interfaces
 {
     public interface IConnectivityService
     {
