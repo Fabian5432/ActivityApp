@@ -13,7 +13,6 @@ namespace App.ViewModel
         public PersonViewModel(IRepositoryService repositoryService)
         {
             _repositoryService = repositoryService;
-
         }
     }
 }

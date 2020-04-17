@@ -5,6 +5,8 @@ using Firebase.Database;
 using App.Models;
 using System.Threading.Tasks;
 using Firebase.Database.Query;
+using System;
+using System.IO;
 
 namespace App.Services
 {
@@ -15,35 +17,51 @@ namespace App.Services
         FirebaseClient _firebaseClient = new FirebaseClient("https://proiectdiploma-ea2e5.firebaseio.com/");
 
         #endregion
-
+        
         #region Properties
 
         #endregion
 
         #region Methods
 
-        public async Task<List<DeviceName>> GetAllPersons()
+        public async Task<List<User>> GetAllPersons()
         {
             return (await _firebaseClient
                    .Child("Persons")
-                   .OnceAsync<DeviceName>()).Select(person => new DeviceName
+                   .OnceAsync<User>()).Select(person => new User
                    {
                        PersonId = person.Object.PersonId,
-                       DevideName = person.Object.DevideName,
-                       DeviceStateText = person.Object.DeviceStateText
+                       Email = person.Object.Email,
+                       Password = person.Object.Password
+                       
                    }).ToList();
         }
 
-        public async Task AddData()
+        public async Task AddData(string email, string password, bool loggedin)
         {
-            await _firebaseClient
-                       .Child("Data")
-                           .PostAsync(new DeviceName()
-                           {
-                               DevideName = "dada",
-                               DeviceStateText="off"
-                           });
+            var id = Guid.NewGuid();
+                await _firebaseClient
+                            .Child("User")
+                            .PostAsync(new User()
+                            {   PersonId = id,
+                                Email = email,
+                                Password = Hash(password), 
+                                Status = loggedin,
+                                Activity = new List<ActivityModel>()
+                                {
+                                    new ActivityModel(){ ActivityName="Coffe", Date="12 Mar. 2020", Time= "1:30 PM"}
+                                }
+                               
+                             });
         }
+
+        public string Hash(string password)
+        {
+            var bytes = new System.Text.UTF8Encoding().GetBytes(password);
+            var hashBytes = System.Security.Cryptography.MD5.Create().ComputeHash(bytes);
+            return Convert.ToBase64String(hashBytes);
+        }
+
         #endregion
 
     }

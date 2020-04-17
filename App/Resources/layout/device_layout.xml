@@ -13,6 +13,7 @@
         android:layout_width="72dp"
         android:layout_height="72dp"
         android:src ="@drawable/coffe_activity_icon"
+        android:layout_centerVertical="true"
         android:paddingLeft="15dp"
         android:id="@+id/item_image" />
         <TextView
@@ -42,5 +43,11 @@
         android:layout_height="wrap_content"
         android:paddingLeft="96dp"
         android:paddingTop="26dp"/>
-
+<ImageView 
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:src="@drawable/icon_arrow"
+    android:layout_marginRight="15dp"
+    android:layout_alignParentRight="true"
+    android:layout_centerVertical="true"/>
 </RelativeLayout>

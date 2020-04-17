@@ -60,9 +60,12 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\ActivityModel.cs" />
+    <Compile Include="Services\Interfaces\ILoginService.cs" />
+    <Compile Include="Services\LoginService.cs" />
     <Compile Include="Views\Activities\LoginActivity.cs" />
     <Compile Include="Views\Activities\MainActivity.cs" />
-    <Compile Include="Models\DevideDataModel.cs" />
+    <Compile Include="Models\User.cs" />
     <Compile Include="Views\Activities\QrCodeActivity.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -117,12 +120,6 @@
       </Generator>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\main_page_layout.axml">
-      <SubType>
-      </SubType>
-      <Generator>
-      </Generator>
-    </AndroidResource>
-    <AndroidResource Include="Resources\layout\login_page_layout.axml">
       <SubType>
       </SubType>
       <Generator>
@@ -194,9 +191,6 @@
     <AndroidResource Include="Resources\drawable\coffecup.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\layout\login_page_layout.xml" />
-  </ItemGroup>
-  <ItemGroup>
     <AndroidResource Include="Resources\drawable\rounded_button.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
@@ -243,6 +237,14 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\coffe_activity_icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\login_page_layout.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\icon_arrow.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

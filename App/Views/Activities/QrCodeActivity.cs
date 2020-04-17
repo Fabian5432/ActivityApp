@@ -1,27 +1,38 @@
 ﻿using Android.App;
 using Android.OS;
+using Android.Support.V7.App;
+using Android.Views;
 using Android.Widget;
 using App.Services;
 using System;
 using ZXing.Mobile;
+using Toolbar = Android.Widget.Toolbar;
 
 namespace App.Activities
 {
     [Activity(Label = "QrCodeActivity")]
-    public class QrCodeActivity : Activity
+    public class QrCodeActivity : AppCompatActivity
     {
+        #region Components
+
         TextView _result;
         Button _scan_button;
+
+        #endregion
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.qrcode_layout);
-
             MobileBarcodeScanner.Initialize(Application);
             _result = FindViewById<TextView>(Resource.Id.textResult);
+            var toolbar = FindViewById<Toolbar>(Resource.Id.toolbar);
             _scan_button = FindViewById<Button>(Resource.Id.scan);
-     
+
+            SetActionBar(toolbar);
+            SupportActionBar.SetDisplayHomeAsUpEnabled(true);
+            SupportActionBar.SetHomeButtonEnabled(true);
+
         }
 
         protected override void OnResume()
@@ -51,6 +62,13 @@ namespace App.Activities
             { 
                 Console.WriteLine("Error", ex.Message);
             }
+        }
+
+        public override bool OnOptionsItemSelected(IMenuItem item)
+        {
+            if (item.ItemId == Android.Resource.Id.Home)
+                Finish();
+            return base.OnOptionsItemSelected(item);
         }
     }
 }

@@ -13,7 +13,7 @@ namespace App.Services
             var scanner = new MobileBarcodeScanner()
             {
                 TopText = "Scan the QR Code",
-                BottomText = "Please Wait",
+                BottomText = "Please Wait"
             };
 
             var scanResult = await scanner.Scan(optionsCustom);

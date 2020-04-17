@@ -6,16 +6,16 @@ using App.Views.ViewHolders;
 
 namespace App.Adapter
 {
-    public class CustomListAdapter : BaseAdapter<DeviceName>
+    public class CustomListAdapter : BaseAdapter<User>
     {
-        List<DeviceName> _persons;
+        List<User> _persons;
 
-        public CustomListAdapter(List<DeviceName> persons)
+        public CustomListAdapter(List<User> persons)
         {
             this._persons = persons;
         }
 
-        public override DeviceName this[int position]
+        public override User this[int position]
         {
             get { return _persons[position]; }
         }
@@ -42,8 +42,8 @@ namespace App.Adapter
                 view.Tag = new ViewHolder() { DeviceName = device_name, DeviceText = device_text};
             }
             var holder = (ViewHolder)view.Tag;
-            holder.DeviceName.Text = _persons[position].DevideName;
-            holder.DeviceText.Text = _persons[position].DeviceStateText;
+            holder.DeviceName.Text = _persons[position].Email;
+            holder.DeviceText.Text = _persons[position].Password;
 
             return view;
         }

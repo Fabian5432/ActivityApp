@@ -1,18 +1,32 @@
 ﻿using System.Threading;
+using System.Threading.Tasks;
 using Android.App;
 using Android.OS;
+using App.Services;
 
 namespace App.Activities
 {
-    [Activity(Label= "@string/app_name", Theme = "@style/MyTheme.Splash", MainLauncher =true, NoHistory =true)]
+    [Activity(Label= "@string/app_name", Theme = "@style/MyTheme.Splash", MainLauncher =true)]
     public class SplashScreen : Activity
     {
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
-            Thread.Sleep(1000);
-            StartActivity(typeof(MainActivity));
-            Finish();
+            Thread.Sleep(500);
+            Check();
+        }
+        
+        private async void Check()
+        {
+            var c =await ServiceLocator.GetLoginService.IsUserloggedinAsync();
+            if(c ==true)
+            {
+                StartActivity(typeof(MainActivity));
+            }
+            else
+            {
+                StartActivity(typeof(LoginActivity));
+            }
         }
     }
 }

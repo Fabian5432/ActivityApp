@@ -6,6 +6,7 @@ namespace App.Services
     {
         private static IRepositoryService _repositoryService;
         private static IQrScanService _qrScanService;
+        private static ILoginService _loginService;
 
         public static IRepositoryService GetRepositoryService
         {
@@ -23,6 +24,15 @@ namespace App.Services
             {  
                 _qrScanService = new QrCodeService();
                 return _qrScanService;
+            }
+        }
+
+        public static ILoginService GetLoginService
+        {
+            get
+            {   //if(_loginService == null)
+                _loginService = new LoginService();
+                return _loginService;
             }
         }
     }

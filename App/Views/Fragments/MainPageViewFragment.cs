@@ -7,6 +7,8 @@ using App.Adapter;
 using Android.Support.V4.Widget;
 using System;
 using Android.Support.V7.App;
+using Android.Content;
+using App.Activities;
 
 namespace App.Views.Fragments
 {   
@@ -46,12 +48,14 @@ namespace App.Views.Fragments
         {
             base.OnResume();
             _swipetoRefresh.Refresh += _swipetoRefresh_Refresh;
+            _listview.ItemClick += _itemClick;
 
         }
         public override void OnPause()
         {
             base.OnPause();
             _swipetoRefresh.Refresh -= _swipetoRefresh_Refresh;
+            _listview.ItemClick -= _itemClick;
         }
 
         private void _swipetoRefresh_Refresh(object sender, EventArgs e)
@@ -67,6 +71,17 @@ namespace App.Views.Fragments
             h.PostDelayed(myAction, 1000);
         }
 
+        void _itemClick(object sender, AdapterView.ItemClickEventArgs e)
+        {   
+            OpenScanPage(e.Position);
+        }
+
+        void OpenScanPage(int playId)
+        {
+            var intent = new Intent(Activity, typeof(QrCodeActivity));
+            intent.PutExtra("current_play_id", playId);
+            StartActivity(intent);
+        }
 
     }
 }
