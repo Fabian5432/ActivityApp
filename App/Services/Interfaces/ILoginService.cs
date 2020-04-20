@@ -6,7 +6,7 @@ namespace App.Services.Interfaces
 {
     public interface ILoginService
     {
-        Task Login(string email, string password, bool value);
+        Task Login(string email, string password);
         Task<bool> IsUserloggedinAsync();
     }
 }

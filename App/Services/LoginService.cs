@@ -16,6 +16,8 @@ namespace App.Services
         private readonly FirebaseClient _firebaseClient;
         private static readonly string child = "User";
 
+        public event EventHandler LoggedOut;
+        public event EventHandler LoggedIn;
         #endregion
 
         #region Constructor
@@ -43,23 +45,26 @@ namespace App.Services
                   .OnceAsync<User>()).FirstOrDefault(a => a.Object.Email == email);
         }
 
-        public async Task Login(string email, string password, bool value)
+        public async Task Login(string email, string password)
         {
-            var user = await GetUserByEmail(email);
-
-            if (user?.Object.Email == email && user?.Object.Password == Hash(password))
-            {  
-               await _firebaseClient
-                    .Child(child)
-                    .Child(user.Key)
-                    .Child("Status")
-                    .PutAsync(value);
-                Savecurrentuserid(user.Object.PersonId);
-            }
-            else
+            try
             {
-                return;
+                var user = await GetUserByEmail(email);
+                if (user?.Object.Email == email && user?.Object.Password == Hash(password))
+                {
+                    await _firebaseClient
+                         .Child(child)
+                         .Child(user.Key)
+                         .Child("Status")
+                         .PutAsync(true);
+                    Savecurrentuserid(user.Object.PersonId); 
+                }
             }
+            catch(Exception e)
+            {
+                throw new Exception("Credentials are incorrect", e);
+            }
+            LoggedIn?.Invoke(this, EventArgs.Empty);
         }
 
         public async Task<bool> IsUserloggedinAsync()

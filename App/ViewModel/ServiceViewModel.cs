@@ -1,14 +1,23 @@
 ﻿using App.Services;
+using App.Views.Fragments;
+using App.ViewModel.Interfaces;
 
 namespace App.ViewModel
 {
-    public class ServiceViewModel
+    public class ServiceViewModel: IViewModelLocatorService
     {
-        public static BaseViewModel GetService<T>()
+
+        public T CreateViewModelInstance<T>() where T : class, IBaseViewModel
         {
-            if(typeof(T) == typeof(PersonViewModel))
+            var serviceLocator = new ServiceLocator();
+
+            if (typeof(T) == typeof(PersonViewModel))
             {
-                return new PersonViewModel(ServiceLocator.GetRepositoryService);
+                return new PersonViewModel(serviceLocator.GetRepositoryService) as T;
+            }
+            if(typeof(T)== typeof(LoginViewModel))
+            {
+                return new LoginViewModel(serviceLocator.GetLoginService) as T;
             }
             return null;
         }

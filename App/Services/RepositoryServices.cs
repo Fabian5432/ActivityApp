@@ -14,11 +14,19 @@ namespace App.Services
     {
         #region Fields
 
-        FirebaseClient _firebaseClient = new FirebaseClient("https://proiectdiploma-ea2e5.firebaseio.com/");
+        private readonly FirebaseClient _firebaseClient; 
+        #endregion
+
+        #region Properties
 
         #endregion
-        
-        #region Properties
+
+        #region Constructor
+
+        public RepositoryServices()
+        {
+            _firebaseClient = new FirebaseClient("https://proiectdiploma-ea2e5.firebaseio.com/");
+        }
 
         #endregion
 
@@ -32,8 +40,8 @@ namespace App.Services
                    {
                        PersonId = person.Object.PersonId,
                        Email = person.Object.Email,
-                       Password = person.Object.Password
-                       
+                       Password = person.Object.Password,
+                       Activity = person.Object.Activity
                    }).ToList();
         }
 

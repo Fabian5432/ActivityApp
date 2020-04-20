@@ -1,6 +1,29 @@
-﻿namespace App.ViewModel
+﻿using App.ViewModel.Interfaces;
+using System;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
+
+namespace App.ViewModel
 {
-    public class BaseViewModel
-    {
+    public abstract class BaseViewModel : IBaseViewModel
+    {   
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected void OnPropertyChanged([CallerMemberName] String propertyName = "")
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        protected virtual bool SetProperty<T>(ref T storage, T value, [CallerMemberName] string propertyName = null)
+        {
+            if (Equals(storage, value)) return false;
+
+            storage = value;
+            OnPropertyChanged(propertyName);
+
+            return true;
+        }
+
     }
 }

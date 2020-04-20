@@ -1,25 +1,17 @@
-﻿using System;
-using Android.Views;
-using Android.App;
+﻿using Android.App;
 using Android.OS;
-using Android.Support.Design.Widget;
-using Android.Widget;
-using App.Services;
-using System.Threading;
-using System.Threading.Tasks;
+using App.Views.Fragments;
+using Android.Support.V7.App;
 
 namespace App.Activities
 {
     [Activity(Label = "@string/app_name", NoHistory =true)]
-    public class LoginActivity : Activity
+    public class LoginActivity : AppCompatActivity
     {
-        #region Fields
+        #region Components
 
-        private TextInputEditText _email;
-        private TextInputEditText _password;
-        private ProgressBar _progressBar;
-        private RepositoryServices d;
-        private Button _login;
+
+        private LoginFragment _loginFragment;
 
 
         #endregion
@@ -29,43 +21,26 @@ namespace App.Activities
             base.OnCreate(savedInstanceState);
             
             SetContentView(Resource.Layout.login_page_layout);
-            _login = FindViewById<Button>(Resource.Id.submit);
-            _email = FindViewById<TextInputEditText>(Resource.Id.editText);
-            _progressBar = FindViewById<ProgressBar>(Resource.Id.progressBar);
-            _password = FindViewById<TextInputEditText>(Resource.Id.password);
-            _progressBar.Visibility = ViewStates.Invisible;
 
-            var d = new RepositoryServices();
-            
+            if (savedInstanceState != null)
+            {
+                _loginFragment = (LoginFragment)SupportFragmentManager.FindFragmentById(Resource.Id.login_fragment_layout);
+            }
+
+            if (_loginFragment == null)
+            {
+                _loginFragment = LoginFragment.NewInstance();
+                ReplaceFragment(_loginFragment);
+            }
         }
 
-        protected override void OnResume()
+
+        public void ReplaceFragment(Android.Support.V4.App.Fragment fragment)
         {
-            base.OnResume();
-            _login.Click += buttonClick;
-            
+            SupportFragmentManager.BeginTransaction()
+                                  .Replace(Resource.Id.login_fragment_layout, fragment)
+                                  .Commit();
         }
 
-        protected override void OnPause()
-        {
-            base.OnPause();
-            _login.Click -= buttonClick;
-        }
-
-
-        bool buttonClicked = false;
-        public async void buttonClick(object sender, EventArgs e)
-        {
-            var d = ServiceLocator.GetLoginService;
-            var c = ServiceLocator.GetRepositoryService;
-       
-            buttonClicked = true;
-            await d.Login(_email.Text, _password.Text, buttonClicked);
-            //await c.AddData(_email.Text, _password.Text, buttonClicked);
-            Thread.Sleep(1000);
-            _progressBar.Visibility = ViewStates.Visible;
-            Toast.MakeText(this, "Succesfully logged in", ToastLength.Short).Show();
-            StartActivity(typeof(MainActivity));
-        }
     }
 }

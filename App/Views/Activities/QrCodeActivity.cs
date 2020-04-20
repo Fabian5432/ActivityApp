@@ -6,13 +6,14 @@ using Android.Widget;
 using App.Services;
 using System;
 using ZXing.Mobile;
+
 using Toolbar = Android.Widget.Toolbar;
 
 namespace App.Activities
 {
     [Activity(Label = "QrCodeActivity")]
     public class QrCodeActivity : AppCompatActivity
-    {
+    {  
         #region Components
 
         TextView _result;
@@ -28,7 +29,7 @@ namespace App.Activities
             _result = FindViewById<TextView>(Resource.Id.textResult);
             var toolbar = FindViewById<Toolbar>(Resource.Id.toolbar);
             _scan_button = FindViewById<Button>(Resource.Id.scan);
-
+            
             SetActionBar(toolbar);
             SupportActionBar.SetDisplayHomeAsUpEnabled(true);
             SupportActionBar.SetHomeButtonEnabled(true);
@@ -51,7 +52,7 @@ namespace App.Activities
         {
             try
             {
-                var scanner = ServiceLocator.GetQrScanService;
+                var scanner = new  ServiceLocator().GetQrScanService;
                 var result = await scanner.ScanAsync();
                 if (result != null)
                     _result.Text = result;

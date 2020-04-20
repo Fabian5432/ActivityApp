@@ -2,13 +2,13 @@
 
 namespace App.Services
 {
-    public static class ServiceLocator
+    public class ServiceLocator
     {
         private static IRepositoryService _repositoryService;
         private static IQrScanService _qrScanService;
         private static ILoginService _loginService;
 
-        public static IRepositoryService GetRepositoryService
+        public IRepositoryService GetRepositoryService
         {
             get
             {
@@ -18,7 +18,7 @@ namespace App.Services
             }
         }
 
-        public static IQrScanService GetQrScanService
+        public IQrScanService GetQrScanService
         {
             get
             {  
@@ -27,10 +27,10 @@ namespace App.Services
             }
         }
 
-        public static ILoginService GetLoginService
+        public ILoginService GetLoginService
         {
             get
-            {   //if(_loginService == null)
+            {   if(_loginService == null)
                 _loginService = new LoginService();
                 return _loginService;
             }
