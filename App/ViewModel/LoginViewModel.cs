@@ -23,7 +23,7 @@ namespace App.ViewModel
                 if (!Equals(_email, value))
                 {
                     _email = value;
-                    //OnPropertyChanged(nameof(CanLogin));
+                    OnPropertyChanged(nameof(isLoggedIn));
                 }
             }
         }
@@ -37,12 +37,12 @@ namespace App.ViewModel
                 if(!Equals(_password,value))
                 {
                     _password = value;
-                   // OnPropertyChanged(nameof(CanLogin));
+                    OnPropertyChanged(nameof(isLoggedIn));
                 }
             }
         }
 
-        public bool CanLogin => _loginService.IsUserloggedinAsync().Result && !string.IsNullOrWhiteSpace(Email) && !string.IsNullOrEmpty(Password);
+        public bool isLoggedIn => !string.IsNullOrWhiteSpace(Email) && !string.IsNullOrWhiteSpace(Password);
 
         #endregion
 
@@ -56,17 +56,20 @@ namespace App.ViewModel
 
         public async Task LoginAsync()
         {   
+            if(!isLoggedIn)
+                return;
+
             try
             {   
                 await _loginService.Login(Email, Password);
             }
             catch(Exception e)
             {
-                throw new Exception("Login error", e);
+                throw new Exception("Your email address or password are not valid", e);
             }
             finally 
             { 
-                //OnPropertyChanged(nameof(CanLogin)); 
+                OnPropertyChanged(nameof(isLoggedIn)); 
             }
 
         }

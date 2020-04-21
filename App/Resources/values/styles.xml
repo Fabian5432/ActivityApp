@@ -16,6 +16,11 @@
     <item name="colorControlActivated">@android:color/holo_orange_light</item>
   </style>
   
+  <style name = "NoActionBar" parent = "Theme.AppCompat.Light.NoActionBar">
+    <item name = "android:windowActionBar">false</item>
+    <item name = "android:windowNoTitle">true</item>
+  </style>
+  
   <style name="MyTheme.Splash" parent ="Theme.AppCompat.Light.NoActionBar">
     <item name="android:windowBackground">@drawable/splash_screen</item>
     <item name="android:windowNoTitle">true</item>

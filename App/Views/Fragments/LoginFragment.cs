@@ -24,7 +24,6 @@ namespace App.Views.Fragments
         public override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
-            ((AppCompatActivity)Activity).SupportActionBar.SetTitle(Resource.String.historyPage);
             // Create your fragment here
         }
         public static LoginFragment NewInstance()
@@ -52,17 +51,15 @@ namespace App.Views.Fragments
         public  override void OnResume()
         {
             base.OnResume();
-            _login.Click += buttonClick;
+            _login.Click += LoginButtonClick;
 
         }
 
         public override void OnPause()
         {
             base.OnPause();
-            _login.Click -= buttonClick;
+            _login.Click -= LoginButtonClick;
         }
-
-        bool buttonClicked = false;
 
         private void EmailOnTextChanged(object sender, TextChangedEventArgs e)
         {
@@ -74,17 +71,32 @@ namespace App.Views.Fragments
             ViewModel.Password = _password.Text;
         }
 
-        public async void buttonClick(object sender, EventArgs e)
+        public async void LoginButtonClick(object sender, EventArgs e)
         {
             ViewModel.Email = _email.Text;
             ViewModel.Password = _password.Text;
 
-            buttonClicked = true;
-            await ViewModel.LoginAsync();
-            Thread.Sleep(1000);
-            _progressBar.Visibility = ViewStates.Visible;
-            var intent = new Intent(Activity, typeof(MainActivity));
-            StartActivity(intent);
+            if(!ViewModel.isLoggedIn)
+                return;
+
+            try
+            {
+                await ViewModel.LoginAsync();
+                _progressBar.Visibility = ViewStates.Visible;
+                var intent = new Intent(Activity, typeof(MainActivity));
+                StartActivity(intent);
+            }
+            catch (Exception ex)
+            {
+                var builder = new AlertDialog.Builder(Context);
+                builder.SetTitle("Login failed");
+                builder.SetMessage(ex.Message);
+                builder.SetPositiveButton("Ok", (sender, e) => { });
+
+                AlertDialog alertDialog = builder.Create();
+                alertDialog.Show();
+            }
+
         }
     }
 }

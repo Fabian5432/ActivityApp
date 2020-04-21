@@ -48,9 +48,12 @@ namespace App.Services
         public async Task Login(string email, string password)
         {
             try
-            {
+            {   
                 var user = await GetUserByEmail(email);
-                if (user?.Object.Email == email && user?.Object.Password == Hash(password))
+                if(user.Equals(null))
+                    return;
+
+                if (user?.Object?.Email == email && user?.Object?.Password == Hash(password))
                 {
                     await _firebaseClient
                          .Child(child)
@@ -59,10 +62,14 @@ namespace App.Services
                          .PutAsync(true);
                     Savecurrentuserid(user.Object.PersonId); 
                 }
+                else
+                {
+                    throw new Exception("Credentials are incorrect");
+                }
             }
-            catch(Exception e)
+            catch(NullReferenceException e)
             {
-                throw new Exception("Credentials are incorrect", e);
+                throw new NullReferenceException("User is null", e);
             }
             LoggedIn?.Invoke(this, EventArgs.Empty);
         }

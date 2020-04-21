@@ -5,7 +5,7 @@ using Android.Support.V7.App;
 
 namespace App.Activities
 {
-    [Activity(Label = "@string/app_name", NoHistory =true)]
+    [Activity(Label = "@string/app_name", NoHistory =true, Theme = "@style/NoActionBar")]
     public class LoginActivity : AppCompatActivity
     {
         #region Components
