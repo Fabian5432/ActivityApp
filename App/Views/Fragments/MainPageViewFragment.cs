@@ -22,6 +22,7 @@ namespace App.Views.Fragments
         public override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
+            ((AppCompatActivity)Activity).SupportActionBar.SetTitle(Resource.String.homePage);
             // Create your fragment here
         }
 

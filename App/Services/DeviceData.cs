@@ -29,12 +29,12 @@ namespace App.Services
         {
             users.Add(new User()
             {   
-                Email = "1",
+                Email = "x2",
                 Password = "Coffe consumption"
             });
             users.Add(new User()
             {   
-                Email = "1",
+                Email = "x1",
                 Password = "Coffe clean"
             });
         }

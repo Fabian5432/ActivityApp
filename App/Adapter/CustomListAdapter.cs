@@ -35,7 +35,7 @@ namespace App.Adapter
             var view = convertView;
             if(view==null)
             {
-                view = LayoutInflater.From(parent.Context).Inflate(Resource.Layout.device_layout, parent, false);
+                view = LayoutInflater.From(parent.Context).Inflate(Resource.Layout.custom_activity_layout, parent, false);
                 var device_image = view.FindViewById<ImageView>(Resource.Id.item_image);
                 var device_text = view.FindViewById<TextView>(Resource.Id.deviceTextView);
                 var device_name = view.FindViewById<TextView>(Resource.Id.deviceNameView);

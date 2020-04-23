@@ -11,7 +11,7 @@ using Toolbar = Android.Widget.Toolbar;
 
 namespace App.Activities
 {
-    [Activity(Label = "QrCodeActivity")]
+    [Activity(Label = "Scan")]
     public class QrCodeActivity : AppCompatActivity
     {  
         #region Components

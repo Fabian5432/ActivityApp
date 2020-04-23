@@ -11,7 +11,6 @@
     <!-- Hint color and label color in FALSE state -->
     <item name="android:textColorHint">@android:color/darker_gray</item>
     <!-- Label color in TRUE state and bar color FALSE and TRUE State -->
-    <item name="colorPrimary">@android:color/darker_gray</item>
     <item name="colorControlNormal">@android:color/darker_gray</item>
     <item name="colorControlActivated">@android:color/holo_orange_light</item>
   </style>
@@ -20,13 +19,19 @@
     <item name = "android:windowActionBar">false</item>
     <item name = "android:windowNoTitle">true</item>
   </style>
+
+  <style name="AlertDialogStyle" parent="Theme.AppCompat.Light.Dialog">
+    <item name="android:windowBackground">@color/bottomBarColor</item>
+    <item name="android:textColor">@android:color/holo_orange_light</item>
+    <item name="android:textColorPrimary">@android:color/darker_gray</item>
+  </style>
   
   <style name="MyTheme.Splash" parent ="Theme.AppCompat.Light.NoActionBar">
     <item name="android:windowBackground">@drawable/splash_screen</item>
     <item name="android:windowNoTitle">true</item>
     <item name="android:windowFullscreen">true</item>
     <item name="android:windowContentOverlay">@null</item>
-    <item name="android:windowActionBar">true</item>
+    <item name="android:windowActionBar">false</item>
   </style>
 
 </resources>

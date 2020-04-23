@@ -15,6 +15,7 @@
         android:src ="@drawable/coffe_activity_icon"
         android:layout_centerVertical="true"
         android:paddingLeft="15dp"
+        android:layout_marginLeft="15dp"
         android:id="@+id/item_image" />
         <TextView
             android:id="@+id/deviceTextView"
@@ -22,9 +23,10 @@
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textColor="@android:color/white"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
             android:paddingLeft="96dp"
-            android:paddingBottom="20dp"/>
+            android:paddingBottom="26dp"/>
         <TextView
             android:id="@+id/deviceNameView"
             android:text=""
@@ -32,6 +34,7 @@
             android:textColor="@android:color/holo_orange_light"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
             android:paddingLeft="150dp"
             android:paddingTop="26dp"/>
     <TextView
@@ -41,6 +44,7 @@
         android:textColor="@android:color/darker_gray"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
         android:paddingLeft="96dp"
         android:paddingTop="26dp"/>
 <ImageView 

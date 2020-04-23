@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Threading;
+using System.Threading.Tasks;
 using Android.Content;
+using Android.Graphics;
 using Android.OS;
 using Android.Support.Design.Widget;
 using Android.Support.V7.App;
@@ -41,7 +43,6 @@ namespace App.Views.Fragments
             _password = (TextInputEditText)_view.FindViewById(Resource.Id.password);
 
             _progressBar.Visibility = ViewStates.Gone;
-
             _email.TextChanged += EmailOnTextChanged;
             _password.TextChanged += PasswordOnTextChanged;
 
@@ -73,6 +74,8 @@ namespace App.Views.Fragments
 
         public async void LoginButtonClick(object sender, EventArgs e)
         {
+
+
             ViewModel.Email = _email.Text;
             ViewModel.Password = _password.Text;
 
@@ -81,20 +84,27 @@ namespace App.Views.Fragments
 
             try
             {
-                await ViewModel.LoginAsync();
                 _progressBar.Visibility = ViewStates.Visible;
+                await ViewModel.LoginAsync();
+                await Task.Delay(500);
                 var intent = new Intent(Activity, typeof(MainActivity));
                 StartActivity(intent);
             }
             catch (Exception ex)
             {
-                var builder = new AlertDialog.Builder(Context);
+                _progressBar.Visibility = ViewStates.Visible;
+                await Task.Delay(500);
+                var builder = new AlertDialog.Builder(Context, Resource.Style.AlertDialogStyle);
                 builder.SetTitle("Login failed");
                 builder.SetMessage(ex.Message);
                 builder.SetPositiveButton("Ok", (sender, e) => { });
 
                 AlertDialog alertDialog = builder.Create();
                 alertDialog.Show();
+            }
+            finally
+            {
+                _progressBar.Visibility = ViewStates.Gone;
             }
 
         }

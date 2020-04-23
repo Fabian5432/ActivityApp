@@ -13,21 +13,22 @@ namespace App.Activities
         {
             base.OnCreate(savedInstanceState);
             Thread.Sleep(500);
-            StartActivity(typeof(LoginActivity));
             Check();
         }
         
         private async void Check()
         {
-            //var c = await ServiceLocator.GetLoginService.IsUserloggedinAsync();
-            //if(c ==true)
-            //{
-            //    StartActivity(typeof(MainActivity));
-            //}
-            //else
-            //{
-            //    StartActivity(typeof(LoginActivity));
-            //}
+            var c = new LoginService();
+
+            if (await c.IsUserloggedinAsync() == true)
+            {
+                StartActivity(typeof(MainActivity));
+            }
+            else
+            {
+                StartActivity(typeof(LoginActivity));
+            }
+            Finish();
         }
     }
 }
