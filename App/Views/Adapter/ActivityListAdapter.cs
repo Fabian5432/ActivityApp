@@ -4,15 +4,15 @@ using Android.Widget;
 using App.Models;
 using App.Views.ViewHolders;
 
-namespace App.Adapter
+namespace App.Views.Adapter
 {
-    public class CustomListAdapter : BaseAdapter<User>
+    public class ActivityListAdapter : BaseAdapter<User>
     {
         List<User> _persons;
 
-        public CustomListAdapter(List<User> persons)
+        public ActivityListAdapter(List<User> persons)
         {
-            this._persons = persons;
+            _persons = persons;
         }
 
         public override User this[int position]
@@ -36,14 +36,13 @@ namespace App.Adapter
             if(view==null)
             {
                 view = LayoutInflater.From(parent.Context).Inflate(Resource.Layout.custom_activity_layout, parent, false);
-                var device_image = view.FindViewById<ImageView>(Resource.Id.item_image);
-                var device_text = view.FindViewById<TextView>(Resource.Id.deviceTextView);
-                var device_name = view.FindViewById<TextView>(Resource.Id.deviceNameView);
-                view.Tag = new ViewHolder() { DeviceName = device_name, DeviceText = device_text};
+                var activity_name = view.FindViewById<TextView>(Resource.Id.activity_title_id);
+                var activity_value = view.FindViewById<TextView>(Resource.Id.activity_value_id);
+                view.Tag = new ActivityListAdapterViewHolder() { ActivityName = activity_name, ActivityValue = activity_value};
             }
-            var holder = (ViewHolder)view.Tag;
-            holder.DeviceName.Text = _persons[position].Email;
-            holder.DeviceText.Text = _persons[position].Password;
+            var holder = (ActivityListAdapterViewHolder)view.Tag;
+            holder.ActivityName.Text = _persons[position].Email;
+            holder.ActivityValue.Text = _persons[position].Password;
 
             return view;
         }

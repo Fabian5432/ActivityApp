@@ -20,6 +20,7 @@ namespace App.Activities
         Button _scan_button;
 
         #endregion
+        #region LifeCycle
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -29,7 +30,7 @@ namespace App.Activities
             _result = FindViewById<TextView>(Resource.Id.textResult);
             var toolbar = FindViewById<Toolbar>(Resource.Id.toolbar);
             _scan_button = FindViewById<Button>(Resource.Id.scan);
-            
+
             SetActionBar(toolbar);
             SupportActionBar.SetDisplayHomeAsUpEnabled(true);
             SupportActionBar.SetHomeButtonEnabled(true);
@@ -39,20 +40,24 @@ namespace App.Activities
         protected override void OnResume()
         {
             base.OnResume();
-            _scan_button.Click += btn_click;
+            _scan_button.Click += ScanButoonClickedAsync;
         }
 
         protected override void OnPause()
         {
             base.OnPause();
-            _scan_button.Click -= btn_click;
+            _scan_button.Click -= ScanButoonClickedAsync;
         }
 
-        private async void btn_click(object sender, EventArgs e)
+        #endregion
+
+        #region Methods
+
+        private async void ScanButoonClickedAsync(object sender, EventArgs e)
         {
             try
             {
-                var scanner = new  ServiceLocator().GetQrScanService;
+                var scanner = new ServiceLocator().GetQrScanService;
                 var result = await scanner.ScanAsync();
                 if (result != null)
                     _result.Text = result;
@@ -60,7 +65,7 @@ namespace App.Activities
 
             }
             catch (Exception ex)
-            { 
+            {
                 Console.WriteLine("Error", ex.Message);
             }
         }
@@ -71,5 +76,7 @@ namespace App.Activities
                 Finish();
             return base.OnOptionsItemSelected(item);
         }
+
+        #endregion
     }
 }

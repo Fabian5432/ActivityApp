@@ -18,7 +18,7 @@ namespace App.Views.Fragments
             ViewModel = ViewModelLocatorService?.CreateViewModelInstance<TViewModel>();
         }
 
-        BaseFragment(TViewModel viewModel)
+        public BaseFragment(TViewModel viewModel)
         {
             ViewModel = viewModel;
         }

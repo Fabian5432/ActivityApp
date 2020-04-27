@@ -1,4 +1,4 @@
-  
+<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:cardview="http://schemas.android.com/apk/res-auto"
     android:orientation="horizontal"  
@@ -10,48 +10,47 @@
     android:paddingBottom="4dp"
     android:background="@color/viewColor">
  <ImageView
-        android:layout_width="72dp"
+        android:layout_width="55dp"
         android:layout_height="72dp"
         android:src ="@drawable/coffe_activity_icon"
         android:layout_centerVertical="true"
-        android:paddingLeft="15dp"
-        android:layout_marginLeft="15dp"
+        android:layout_marginLeft="5dp"
         android:id="@+id/item_image" />
         <TextView
-            android:id="@+id/deviceTextView"
+            android:id="@+id/activity_title_id"
             android:text="Coffe consumption"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textColor="@android:color/white"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:paddingLeft="96dp"
+            android:paddingLeft="70dp"
             android:paddingBottom="26dp"/>
         <TextView
-            android:id="@+id/deviceNameView"
-            android:text=""
+            android:id="@+id/activity_value_id"
+            android:text="dad"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:textColor="@android:color/holo_orange_light"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:paddingLeft="150dp"
+            android:paddingLeft="120dp"
             android:paddingTop="26dp"/>
     <TextView
-        android:id="@+id/deviceNameView3"
+        android:id="@+id/activity_subtitle_id"
         android:text="Today:"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:textColor="@android:color/darker_gray"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
-        android:paddingLeft="96dp"
+        android:paddingLeft="70dp"
         android:paddingTop="26dp"/>
 <ImageView 
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:src="@drawable/icon_arrow"
-    android:layout_marginRight="15dp"
+    android:layout_marginRight="5dp"
     android:layout_alignParentRight="true"
     android:layout_centerVertical="true"/>
 </RelativeLayout>

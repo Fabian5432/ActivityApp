@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Threading;
 using System.Threading.Tasks;
 using Android.Content;
-using Android.Graphics;
 using Android.OS;
 using Android.Support.Design.Widget;
 using Android.Support.V7.App;
@@ -17,11 +15,17 @@ namespace App.Views.Fragments
 {
     public class LoginFragment : LoginBaseFragment<LoginViewModel>
     {
+        #region Components 
+
         private View _view;
         private TextInputEditText _email;
         private TextInputEditText _password;
         private ProgressBar _progressBar;
         private Button _login;
+
+        #endregion
+
+        #region LifeCycle
 
         public override void OnCreate(Bundle savedInstanceState)
         {
@@ -49,18 +53,22 @@ namespace App.Views.Fragments
             return _view;
         }
 
-        public  override void OnResume()
+        public override void OnResume()
         {
             base.OnResume();
-            _login.Click += LoginButtonClick;
+            _login.Click += LoginButtonClickAsync;
 
         }
 
         public override void OnPause()
         {
             base.OnPause();
-            _login.Click -= LoginButtonClick;
+            _login.Click -= LoginButtonClickAsync;
         }
+
+        #endregion
+         
+        #region Methods 
 
         private void EmailOnTextChanged(object sender, TextChangedEventArgs e)
         {
@@ -72,14 +80,14 @@ namespace App.Views.Fragments
             ViewModel.Password = _password.Text;
         }
 
-        public async void LoginButtonClick(object sender, EventArgs e)
+        public async void LoginButtonClickAsync(object sender, EventArgs e)
         {
 
 
             ViewModel.Email = _email.Text;
             ViewModel.Password = _password.Text;
 
-            if(!ViewModel.isLoggedIn)
+            if (!ViewModel.isLoggedIn)
                 return;
 
             try
@@ -108,5 +116,7 @@ namespace App.Views.Fragments
             }
 
         }
+
+        #endregion
     }
 }

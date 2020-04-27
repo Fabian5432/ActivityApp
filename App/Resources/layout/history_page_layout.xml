@@ -13,12 +13,21 @@
         android:background= "@color/white"
         android:layout_margin = "16dp"
         android:id="@+id/history_searchView_id" />
-     <ListView
-        android:id="@+id/history_list_view_id"
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/coordinator_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/viewColor">
+ <ListView
+        android:id="@+id/history_list_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fastScrollEnabled="true"
         android:scrollbars="none"
         android:divider="#aaabab"
-        android:dividerHeight="4px"/>
+        android:layout_margin="8dp"
+        android:dividerHeight="1dp"/>
+</android.support.design.widget.CoordinatorLayout>
 </LinearLayout>

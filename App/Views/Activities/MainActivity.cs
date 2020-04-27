@@ -10,11 +10,16 @@ namespace App.Activities
     [Activity(Label = "@string/app_name", MainLauncher = false, LaunchMode = Android.Content.PM.LaunchMode.SingleTop)]
     public class MainActivity : AppCompatActivity
     {
+        #region Components
 
         BottomNavigationView _bottomNavigationView;
 
+        #endregion
+
+        #region LifeCycle
+
         protected override void OnCreate(Bundle bundle)
-        { 
+        {
             base.OnCreate(bundle);
             // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.activity_main);
@@ -25,6 +30,10 @@ namespace App.Activities
 
             LoadFragment(Resource.Id.menu_home);
         }
+
+        #endregion
+
+        #region Methods 
 
         private void BottomNavigation_NavigationItemSelected(object sender, BottomNavigationView.NavigationItemSelectedEventArgs e)
         {
@@ -49,10 +58,11 @@ namespace App.Activities
             if (fragment == null)
                 return;
 
-            _ = SupportFragmentManager.BeginTransaction()
+           SupportFragmentManager.BeginTransaction()
                .Replace(Resource.Id.content_frame, fragment)
                .Commit();
         }
 
+        #endregion
     }
 }

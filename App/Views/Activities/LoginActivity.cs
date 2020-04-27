@@ -10,16 +10,16 @@ namespace App.Activities
     {
         #region Components
 
-
         private LoginFragment _loginFragment;
 
-
         #endregion
+
+        #region LifeCycle
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
-            
+
             SetContentView(Resource.Layout.login_page_layout);
 
             if (savedInstanceState != null)
@@ -34,6 +34,9 @@ namespace App.Activities
             }
         }
 
+        #endregion
+
+        #region Methods
 
         public void ReplaceFragment(Android.Support.V4.App.Fragment fragment)
         {
@@ -42,5 +45,6 @@ namespace App.Activities
                                   .Commit();
         }
 
+        #endregion
     }
 }

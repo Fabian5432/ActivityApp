@@ -1,57 +1,53 @@
-
+<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:cardview="http://schemas.android.com/apk/res-auto"
     android:orientation="horizontal"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:minWidth="25px"
-    android:minHeight="25px"
-    android:paddingTop="20dp"
-    android:paddingBottom="4dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:minWidth="15px"  
+    android:minHeight="15px"
     android:background="@color/viewColor">
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src ="@mipmap/ic_clock_24px"
-        android:layout_centerVertical="true"
-        android:layout_marginLeft="15dp"
-        android:paddingBottom="26dp"
-        android:layout_alignLeft="@id/deviceNameView"
-        android:id="@+id/date_image_id" />
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src ="@mipmap/ic_date_24px"
         android:layout_centerVertical="true"
-        android:layout_marginLeft="15dp"
+        android:layout_marginLeft="5dp"
+        android:paddingBottom="26dp"
+        android:id="@+id/date_image_id" />
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src ="@mipmap/ic_clock_24px"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="5dp"
         android:paddingTop="26dp"
-        android:layout_alignLeft="@id/deviceNameView"
         android:id="@+id/clock_image_id" />
     <TextView
         android:id="@+id/date_id"
         android:text="12 Mar. 2020"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textColor="@android:color/white"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
-        android:layout_margin="40dp"
+        android:layout_margin="28dp"
         android:paddingBottom="26dp"/>
     <TextView
         android:id="@+id/clock_id"
         android:text="13:20 PM"
-        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textAppearance="?android:attr/textAppearanceMedium"
         android:textColor="@android:color/darker_gray"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
-        android:layout_margin="40dp"
+        android:layout_margin="30dp"
         android:paddingTop="26dp"/>
   <TextView
         android:id="@+id/activity_type_id"
         android:text="Coffe"
-        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textAppearance="?android:attr/textAppearanceMedium"
         android:textColor="@android:color/darker_gray"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

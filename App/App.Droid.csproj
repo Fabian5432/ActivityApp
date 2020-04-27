@@ -61,6 +61,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Models\ActivityModel.cs" />
+    <Compile Include="Services\HistoryData.cs" />
     <Compile Include="Services\Interfaces\ILoginService.cs" />
     <Compile Include="Services\LoginService.cs" />
     <Compile Include="ViewModel\Interfaces\IBaseViewModel.cs" />
@@ -72,7 +73,6 @@
     <Compile Include="Views\Activities\QrCodeActivity.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\Interfaces\IConnectivityService.cs" />
     <Compile Include="Services\Interfaces\IQrScanService.cs" />
     <Compile Include="Services\Interfaces\IRepositoryService.cs" />
     <Compile Include="Services\QrCodeService.cs" />
@@ -81,7 +81,8 @@
     <Compile Include="Views\Activities\SplashScreen.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
     <Compile Include="ViewModel\PersonViewModel.cs" />
-    <Compile Include="Adapter\CustomListAdapter.cs" />
+    <Compile Include="Views\Adapter\ActivityListAdapter.cs" />
+    <Compile Include="Views\Adapter\HistoryListAdapter.cs" />
     <Compile Include="Views\Fragments\Base\BaseFragment.cs" />
     <Compile Include="ViewModel\Interfaces\IViewModelLocatorService.cs" />
     <Compile Include="Views\Fragments\Base\LoginBaseFragment.cs" />
@@ -89,7 +90,8 @@
     <Compile Include="Views\Fragments\MainPageViewFragment.cs" />
     <Compile Include="Views\Fragments\ProfileViewFragment.cs" />
     <Compile Include="Views\Fragments\HistoryViewFragment.cs" />
-    <Compile Include="Views\ViewHolders\ViewHolder.cs" />
+    <Compile Include="Views\ViewHolders\HistoryListAdapterViewHolder.cs" />
+    <Compile Include="Views\ViewHolders\ActivityListAdapterViewHolder.cs" />
     <Compile Include="Services\DeviceData.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -135,8 +137,8 @@
     <PackageReference Include="FirebaseDatabase.net">
       <Version>4.0.4</Version>
     </PackageReference>
-    <PackageReference Include="Microcharts">
-      <Version>0.7.1</Version>
+    <PackageReference Include="Xamarin.Android.Support.Compat">
+      <Version>28.0.0.3</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.Android.Support.Design" Version="28.0.0.3" />
     <PackageReference Include="Xamarin.Android.Support.Fragment">
@@ -146,6 +148,12 @@
       <Version>28.0.0.3</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.Android.Support.v7.CardView">
+      <Version>28.0.0.3</Version>
+    </PackageReference>
+    <PackageReference Include="Xamarin.Android.Support.v7.Preference">
+      <Version>28.0.0.3</Version>
+    </PackageReference>
+    <PackageReference Include="Xamarin.Android.Support.v7.RecyclerView">
       <Version>28.0.0.3</Version>
     </PackageReference>
     <PackageReference Include="ZXing.Net.Mobile">

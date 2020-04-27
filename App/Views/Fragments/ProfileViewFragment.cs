@@ -6,7 +6,13 @@ namespace App.Fragments
 {
     public class ProfileViewFragment : Android.Support.V4.App.Fragment
     {
+        #region Components
+
         View _view;
+
+        #endregion
+
+        #region LifeCycle
 
         public override void OnCreate(Bundle savedInstanceState)
         {
@@ -26,5 +32,8 @@ namespace App.Fragments
             _view = inflater.Inflate(Resource.Layout.profile_page_layout, null);
             return _view;
         }
+
+        #endregion
+
     }
 }

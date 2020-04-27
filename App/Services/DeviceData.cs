@@ -3,7 +3,6 @@ using System.Linq;
 using Firebase.Database;
 using App.Models;
 
-
 namespace App.Services
 {
     public class DeviceData
@@ -28,14 +27,14 @@ namespace App.Services
         void AddData(List<User> users)
         {
             users.Add(new User()
-            {   
-                Email = "x2",
-                Password = "Coffe consumption"
+            {
+                Email = "Coffe consumption",
+                Password = "x2"
             });
             users.Add(new User()
-            {   
-                Email = "x1",
-                Password = "Coffe clean"
+            {
+                Email = "Coffe consumption",
+                Password = "x2"
             });
         }
     }
