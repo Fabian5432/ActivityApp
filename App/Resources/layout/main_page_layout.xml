@@ -7,46 +7,58 @@
     android:layout_height="match_parent"
     android:gravity="center_horizontal"
     android:background="@color/viewColor">
-    <View
+  <!--CardView layout with Textview-->
+  <android.support.v7.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="120dp"
-        android:gravity="center_horizontal"
-        android:background="@color/viewColor"
-        android:id="@+id/view1" />
-    <android.support.v7.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:layout_marginRight="15dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="26dp"
         android:layout_marginLeft="15dp"
-        app:cardCornerRadius="8dp"
+        android:layout_marginRight="15dp"
+        app:cardCornerRadius="5dp"
         app:cardBackgroundColor="@color/bottomBarColor">
-        <android.support.design.widget.FloatingActionButton
-            android:id="@+id/fab"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="end|center"
-            android:layout_marginRight="8dp"
-            app:backgroundTint="@android:color/holo_orange_light"
-            android:src="@android:drawable/ic_input_add" />
-        <TextView
-            android:text="Activities"
-            android:textAppearance="?android:attr/textAppearanceLarge"
+         <TextView
+            android:text="Hello!"
+            android:textAppearance="?android:attr/textAppearanceSmall"
             android:layout_width="match_parent"
-            android:textAlignment="center"
-            android:textColor="@color/white"
+            android:gravity="top|left"
+            android:textColor="@android:color/holo_orange_light"
+            android:layout_margin="8dp"
             android:layout_height="match_parent"
-            android:id="@+id/textView1" />
+            android:id="@+id/main_page_hello_id" />
+        <TextView
+            android:text="Vlasceanu Fabian"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:layout_width="match_parent"
+            android:textColor="@color/white"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="26dp"
+            android:layout_height="match_parent"
+            android:id="@+id/main_page_username_id" />
+   <Button
+    android:layout_width="match_parent"
+    android:layout_height="40dp"
+    android:layout_gravity="bottom"
+    android:background="@android:color/holo_orange_light"
+    android:theme="@drawable/rounded_button"
+    android:textAppearance="?android:attr/textAppearanceLarge"
+    android:textColor="@android:color/black"
+    android:text="+"/>
     </android.support.v7.widget.CardView>
+<!--Listview with swipetoRefresh-->
  <android.support.v4.widget.SwipeRefreshLayout
             android:id="@+id/swipeRefresh"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+        >
             <ListView
                 android:id="@+id/list_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:scrollbars="none"
-                android:divider="#aaabab"
-                android:dividerHeight="4px"/>
-        </android.support.v4.widget.SwipeRefreshLayout>
+                android:divider="@color/viewColor"
+                android:dividerHeight="20px"/>
+  </android.support.v4.widget.SwipeRefreshLayout>
 </LinearLayout>

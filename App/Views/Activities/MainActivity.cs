@@ -7,7 +7,7 @@ using App.Views.Fragments;
 
 namespace App.Activities
 {
-    [Activity(Label = "@string/app_name", MainLauncher = false, LaunchMode = Android.Content.PM.LaunchMode.SingleTop)]
+    [Activity(Label = "@string/app_name", MainLauncher = false, LaunchMode = Android.Content.PM.LaunchMode.SingleTop, ScreenOrientation = Android.Content.PM.ScreenOrientation.Portrait)]
     public class MainActivity : AppCompatActivity
     {
         #region Components
@@ -27,7 +27,6 @@ namespace App.Activities
             _bottomNavigationView = FindViewById<BottomNavigationView>(Resource.Id.bottom_navigation);
 
             _bottomNavigationView.NavigationItemSelected += BottomNavigation_NavigationItemSelected;
-
             LoadFragment(Resource.Id.menu_home);
         }
 

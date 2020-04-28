@@ -5,14 +5,14 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:background="@color/viewColor">
+    <!--SearchView layout-->
     <SearchView
-        android:minWidth="25px"
-        android:minHeight="25px"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background= "@color/white"
         android:layout_margin = "16dp"
+        android:background="@color/white"
         android:id="@+id/history_searchView_id" />
+    <!--Listview layout-->
 <android.support.design.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -24,7 +24,6 @@
         android:id="@+id/history_list_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fastScrollEnabled="true"
         android:scrollbars="none"
         android:divider="#aaabab"
         android:layout_margin="8dp"

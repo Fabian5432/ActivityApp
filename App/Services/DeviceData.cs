@@ -28,12 +28,7 @@ namespace App.Services
         {
             users.Add(new User()
             {
-                Email = "Coffe consumption",
-                Password = "x2"
-            });
-            users.Add(new User()
-            {
-                Email = "Coffe consumption",
+                Email = "Coffe",
                 Password = "x2"
             });
         }
