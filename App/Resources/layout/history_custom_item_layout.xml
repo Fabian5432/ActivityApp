@@ -9,20 +9,22 @@
     android:paddingBottom="12dp"
     android:background="@color/viewColor">
     <ImageView
+        android:contentDescription="@string/desc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src ="@mipmap/ic_date_24px"
         android:layout_centerVertical="true"
-        android:layout_marginLeft="5dp"
-        android:paddingBottom="26dp"
+        android:layout_marginLeft="@dimen/history_item_icon_margin_left"
+        android:paddingBottom="@dimen/history_item_icon_padding_bottom"
         android:id="@+id/date_image_id" />
     <ImageView
+        android:contentDescription="@string/desc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src ="@mipmap/ic_clock_24px"
         android:layout_centerVertical="true"
-        android:layout_marginLeft="5dp"
-        android:paddingTop="26dp"
+        android:layout_marginLeft="@dimen/history_item_icon_margin_left"
+        android:paddingTop="@dimen/history_item_icon_padding_top"
         android:id="@+id/clock_image_id" />
     <TextView
         android:id="@+id/date_id"
@@ -32,8 +34,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
-        android:layout_marginLeft="30dp"
-        android:paddingBottom="26dp"/>
+        android:layout_marginLeft="@dimen/history_item_text_margin_left"
+        android:paddingBottom="@dimen/history_item_text_padding_bottom"/>
     <TextView
         android:id="@+id/clock_id"
         android:text="13:20 PM"
@@ -42,8 +44,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
-        android:layout_marginLeft="30dp"
-        android:paddingTop="26dp"/>
+        android:layout_marginLeft="@dimen/history_item_text_margin_left"
+        android:paddingTop="@dimen/history_item_text_padding_top"/>
   <TextView
         android:id="@+id/activity_type_id"
         android:text="Coffe"
