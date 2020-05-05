@@ -180,9 +180,6 @@
     <AndroidResource Include="Resources\drawable\activitylogo.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\coffecup.png" />
-  </ItemGroup>
-  <ItemGroup>
     <AndroidResource Include="Resources\drawable\rounded_button.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
@@ -220,9 +217,6 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\logo.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\coffe_activity_icon.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\login_page_layout.xml">
