@@ -28,7 +28,7 @@
         android:id="@+id/clock_image_id" />
     <TextView
         android:id="@+id/date_id"
-        android:text="12 Mar. 2020"
+        android:text="Date"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textColor="@android:color/white"
         android:layout_width="wrap_content"
@@ -38,7 +38,7 @@
         android:paddingBottom="@dimen/history_item_text_padding_bottom"/>
     <TextView
         android:id="@+id/clock_id"
-        android:text="13:20 PM"
+        android:text="Time"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:textColor="@android:color/darker_gray"
         android:layout_width="wrap_content"
@@ -48,12 +48,12 @@
         android:paddingTop="@dimen/history_item_text_padding_top"/>
   <TextView
         android:id="@+id/activity_type_id"
-        android:text="Coffe"
+        android:text="Activity Name"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:textColor="@android:color/darker_gray"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
         android:layout_alignParentRight="true"
-        android:layout_marginRight="50dp"/>
+        android:layout_marginRight="@dimen/history_item_text_margin_right"/>
 </RelativeLayout>

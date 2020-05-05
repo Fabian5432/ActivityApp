@@ -19,6 +19,7 @@ namespace App.Services
         {
             users.Add(new ActivityModel()
             {
+                ActivityName ="Meeting",
                 Date = "12 Mar 2020",
                 Time = "13:30 PM"
             });

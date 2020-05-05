@@ -1,6 +1,7 @@
 ﻿using Android.OS;
 using Android.Support.V7.App;
 using Android.Views;
+using Android.Widget;
 
 namespace App.Fragments
 {
@@ -9,6 +10,7 @@ namespace App.Fragments
         #region Components
 
         View _view;
+        Button _account_settings;
 
         #endregion
 
@@ -30,6 +32,7 @@ namespace App.Fragments
         {
             // Use this to return your custom view for this Fragment
             _view = inflater.Inflate(Resource.Layout.profile_page_layout, null);
+            _account_settings = (Button)_view.FindViewById(Resource.Id.account_settings);
             return _view;
         }
 

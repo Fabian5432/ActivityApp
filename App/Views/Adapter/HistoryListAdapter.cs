@@ -37,11 +37,14 @@ namespace App.Views.Adapter
             if (view == null)
             {
                 view = LayoutInflater.From(parent.Context).Inflate(Resource.Layout.history_custom_item_layout, parent, false);
+                var activity_type = view.FindViewById<TextView>(Resource.Id.activity_type_id);
                 var activity_date = view.FindViewById<TextView>(Resource.Id.date_id);
                 var activity_time = view.FindViewById<TextView>(Resource.Id.clock_id);
-                view.Tag = new HistoryListAdapterViewHolder() { ActivityDate = activity_date, ActivityTime = activity_time};
+                view.Tag = new HistoryListAdapterViewHolder() {
+                    ActivityType=activity_type, ActivityDate = activity_date, ActivityTime = activity_time };
             }
             var holder = (HistoryListAdapterViewHolder)view.Tag;
+            holder.ActivityType.Text = _activity[position].ActivityName;
             holder.ActivityDate.Text = _activity[position].Date;
             holder.ActivityTime.Text = _activity[position].Time;
 

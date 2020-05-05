@@ -13,7 +13,8 @@ namespace App.Activities
         {
             base.OnCreate(savedInstanceState);
             Thread.Sleep(500);
-            Check();
+            StartActivity(typeof(MainActivity));
+            //Check();
         }
         
         private async void Check()

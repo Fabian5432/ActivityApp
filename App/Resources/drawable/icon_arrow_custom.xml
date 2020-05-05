@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+  <item android:drawable="@drawable/icon_arrow"
+        android:width="7.4dp"
+        android:height="12dp"
+        android:gravity="left"
+        android:end="15dp">
+  </item>
+</layer-list>
