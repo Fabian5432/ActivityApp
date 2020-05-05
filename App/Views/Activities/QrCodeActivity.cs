@@ -6,7 +6,6 @@ using Android.Widget;
 using App.Services;
 using System;
 using ZXing.Mobile;
-
 using Toolbar = Android.Widget.Toolbar;
 
 namespace App.Activities
@@ -20,6 +19,7 @@ namespace App.Activities
         Button _scan_button;
 
         #endregion
+        
         #region LifeCycle
 
         protected override void OnCreate(Bundle savedInstanceState)
@@ -73,7 +73,7 @@ namespace App.Activities
         public override bool OnOptionsItemSelected(IMenuItem item)
         {
             if (item.ItemId == Android.Resource.Id.Home)
-                Finish();
+            Finish();
             return base.OnOptionsItemSelected(item);
         }
 

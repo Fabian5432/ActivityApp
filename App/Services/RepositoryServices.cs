@@ -6,7 +6,6 @@ using App.Models;
 using System.Threading.Tasks;
 using Firebase.Database.Query;
 using System;
-using System.IO;
 
 namespace App.Services
 {

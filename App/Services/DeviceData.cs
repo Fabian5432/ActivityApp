@@ -18,17 +18,16 @@ namespace App.Services
             Users = temp.ToList();
         }
 
-        string GetDeviceName()
-        {
-            return _firebaseClient
-            .Child("Data").OnceSingleAsync<User>().Result.Email.ToString();
-        }
-
         void AddData(List<User> users)
         {
             users.Add(new User()
             {
-                Email = "Coffe",
+                Email = "Coffee",
+                Password = "x2"
+            });
+            users.Add(new User()
+            {
+                Email = "Meetings",
                 Password = "x2"
             });
         }

@@ -20,6 +20,7 @@ namespace App.Views.Fragments
         View _view;
         SwipeRefreshLayout _swipetoRefresh;
         ActivityListAdapter _adapter;
+        Button _addButton;
 
         #endregion
 
@@ -45,6 +46,7 @@ namespace App.Views.Fragments
             _view = inflater.Inflate(Resource.Layout.main_page_layout, null);
             _listview = (ListView)_view.FindViewById(Resource.Id.list_view);
             _swipetoRefresh = (SwipeRefreshLayout)_view.FindViewById(Resource.Id.swipeRefresh);
+            _addButton = (Button)_view.FindViewById(Resource.Id.main_page_add_button_id);
             _adapter = new ActivityListAdapter(new DeviceData().Users);
             _listview.Adapter = _adapter; 
 
@@ -55,6 +57,7 @@ namespace App.Views.Fragments
             base.OnResume();
             _swipetoRefresh.Refresh += SwipetoRefresh;
             _listview.ItemClick += ItemClick;
+            _addButton.Click += AddButtonClick;
 
         }
         public override void OnPause()
@@ -62,6 +65,7 @@ namespace App.Views.Fragments
             base.OnPause();
             _swipetoRefresh.Refresh -= SwipetoRefresh;
             _listview.ItemClick -= ItemClick;
+            _addButton.Click -= AddButtonClick;
         }
 
         #endregion
@@ -84,6 +88,12 @@ namespace App.Views.Fragments
         private void ItemClick(object sender, AdapterView.ItemClickEventArgs e)
         {
             OpenScanPage(e.Position);
+        }
+
+        private void AddButtonClick(object sender, EventArgs e)
+        {
+            var intent = new Intent(Activity, typeof(QrCodeActivity));
+            StartActivity(intent);
         }
 
         private void OpenScanPage(int playId)

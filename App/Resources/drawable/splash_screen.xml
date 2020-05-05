@@ -3,6 +3,12 @@
   <item>
     <color android:color="@color/viewColor"/>
   </item>
+      <item
+        android:drawable="@drawable/miele_logo"
+        android:height="62dp"
+        android:width="163dp"
+        android:gravity="top|center">
+  </item>
   <item>
     <bitmap
         android:src="@drawable/logo"
