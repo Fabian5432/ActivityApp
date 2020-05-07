@@ -34,6 +34,7 @@ namespace App.Fragments
             _listview = (ListView)_view.FindViewById(Resource.Id.history_list_view);
             _adapter = new HistoryListAdapter(new HistoryData().Activity);
             _listview.Adapter = _adapter;
+            
             return _view;
         }
 

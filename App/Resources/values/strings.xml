@@ -5,4 +5,5 @@
     <string name="homePage">Activity list</string>
     <string name="profilePage">Profile</string>
     <string name="historyPage">History</string>
+    <string name="accountSettings">Account settings</string>
 </resources>

@@ -87,7 +87,7 @@ namespace App.Views.Fragments
             ViewModel.Email = _email.Text;
             ViewModel.Password = _password.Text;
 
-            if (!ViewModel.isLoggedIn)
+            if (!ViewModel.CanLogin)
                 return;
 
             try

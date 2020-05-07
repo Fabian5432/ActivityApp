@@ -89,6 +89,8 @@
     <Compile Include="Views\ViewHolders\HistoryListAdapterViewHolder.cs" />
     <Compile Include="Views\ViewHolders\ActivityListAdapterViewHolder.cs" />
     <Compile Include="Services\DeviceData.cs" />
+    <Compile Include="Views\Activities\AccountSettingsActivity.cs" />
+    <Compile Include="Views\Fragments\AccountSettingsFragment.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -148,7 +150,23 @@
       <SubType></SubType>
       <Generator></Generator>
     </AndroidResource>
-    <AndroidResource Include="Resources\drawable\icon_arrow_custom.xml">
+    <AndroidResource Include="Resources\drawable\icon_arrow.xml">
+      <SubType></SubType>
+      <Generator></Generator>
+    </AndroidResource>
+    <AndroidResource Include="Resources\drawable\ic_admin.png">
+      <SubType></SubType>
+      <Generator></Generator>
+    </AndroidResource>
+    <AndroidResource Include="Resources\drawable\icon_admin.xml">
+      <SubType></SubType>
+      <Generator></Generator>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\account_settings_page_layout.xml">
+      <SubType></SubType>
+      <Generator></Generator>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\account_settings_fragment_layout.xml">
       <SubType></SubType>
       <Generator></Generator>
     </AndroidResource>
@@ -178,6 +196,9 @@
     </PackageReference>
     <PackageReference Include="ZXing.Net.Mobile">
       <Version>2.4.1</Version>
+    </PackageReference>
+    <PackageReference Include="Xam.Plugin.Connectivity">
+      <Version>3.2.0</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
@@ -240,7 +261,7 @@
     </AndroidResource>
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\icon_arrow.png" />
+    <AndroidResource Include="Resources\drawable\ic_arrow.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\login_fragment_layout.xml">

@@ -23,7 +23,7 @@ namespace App.ViewModel
                 if (!Equals(_email, value))
                 {
                     _email = value;
-                    OnPropertyChanged(nameof(isLoggedIn));
+                    OnPropertyChanged(nameof(CanLogin));
                 }
             }
         }
@@ -37,12 +37,12 @@ namespace App.ViewModel
                 if(!Equals(_password,value))
                 {
                     _password = value;
-                    OnPropertyChanged(nameof(isLoggedIn));
+                    OnPropertyChanged(nameof(CanLogin));
                 }
             }
         }
 
-        public bool isLoggedIn => !string.IsNullOrWhiteSpace(Email) && !string.IsNullOrWhiteSpace(Password);
+        public bool CanLogin => !string.IsNullOrWhiteSpace(Email) && !string.IsNullOrWhiteSpace(Password);
 
         #endregion
 
@@ -56,7 +56,7 @@ namespace App.ViewModel
 
         public async Task LoginAsync()
         {   
-            if(!isLoggedIn)
+            if(!CanLogin)
                 return;
 
             try
@@ -69,7 +69,7 @@ namespace App.ViewModel
             }
             finally 
             { 
-                OnPropertyChanged(nameof(isLoggedIn)); 
+                OnPropertyChanged(nameof(CanLogin)); 
             }
 
         }

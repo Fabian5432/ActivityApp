@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/viewColor">
+     <Button
+        android:id="@+id/change_password_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:drawableRight="@drawable/ic_arrow"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textAlignment="textStart"
+        android:paddingHorizontal="15dp"
+        android:textColor="@color/white"
+        android:background="@color/viewColor"
+        android:text="Change password" />
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray"/>
+    <Button
+        android:id="@+id/logout_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:drawableRight="@drawable/ic_arrow"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textAlignment="textStart"
+        android:paddingHorizontal="15dp"
+        android:textColor="@android:color/holo_orange_light"
+        android:background="@color/viewColor"
+        android:text="Logout..." />
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray"/>
+</LinearLayout>

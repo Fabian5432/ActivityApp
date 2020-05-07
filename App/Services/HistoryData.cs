@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using App.Models;
 
@@ -20,37 +21,61 @@ namespace App.Services
             users.Add(new ActivityModel()
             {
                 ActivityName ="Meeting",
+                Date = "12 Mar. 2020",
+                Time = "13:30 PM"
+            });
+            users.Add(new ActivityModel()
+            {
+                ActivityName = "Coffee",
+                Date = "12 Mar. 2020",
+                Time = "13:30 PM"
+            });
+            users.Add(new ActivityModel()
+            {
+                ActivityName = "Meeting",
+                Date = DateTime.Now.ToString("dd MMM. yyyy"),
+                Time = DateTime.Now.ToString("h:mm tt")
+            });
+            users.Add(new ActivityModel()
+            {
+                ActivityName = "Coffee",
+                Date = DateTime.Now.Month.ToString(),
+                Time = "13:30 PM"
+            });
+            users.Add(new ActivityModel()
+            {
+                ActivityName = "Coffee",
+                Date = "12 Mar. 2020",
+                Time = "13:30 PM"
+            });
+            users.Add(new ActivityModel()
+            {
+                ActivityName = "Meeting",
+                Date = "12 Mar. 2020",
+                Time = "13:30 PM"
+            });
+            users.Add(new ActivityModel()
+            {
+                ActivityName = "Meeting",
                 Date = "12 Mar 2020",
                 Time = "13:30 PM"
             });
             users.Add(new ActivityModel()
             {
-                Date = "12 Mar 2020",
+                ActivityName = "Meeting",
+                Date = "12 Mar. 2020",
                 Time = "13:30 PM"
             });
             users.Add(new ActivityModel()
             {
-                Date = "12 Mar 2020",
+                ActivityName = "Meeting",
+                Date = "12 Mar. 2020",
                 Time = "13:30 PM"
             });
             users.Add(new ActivityModel()
             {
-                Date = "12 Mar 2020",
-                Time = "13:30 PM"
-            });
-            users.Add(new ActivityModel()
-            {
-                Date = "12 Mar 2020",
-                Time = "13:30 PM"
-            });
-            users.Add(new ActivityModel()
-            {
-                Date = "12 Mar 2020",
-                Time = "13:30 PM"
-            });
-            users.Add(new ActivityModel()
-            {
-                Date = "12 Mar 2020",
+                ActivityName = "Meeting",
+                Date = "12 Mar. 2020",
                 Time = "13:30 PM"
             });
         }

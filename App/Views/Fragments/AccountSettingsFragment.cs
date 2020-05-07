@@ -1,0 +1,40 @@
+﻿using Android.OS;
+using Android.Support.V7.App;
+using Android.Views;
+
+
+
+namespace App.Views.Fragments
+{
+    public class AccountSettingsFragment : Android.Support.V4.App.Fragment
+    {
+        #region Components
+
+        View _view;
+
+        #endregion
+
+        #region LifeCycle
+
+        public override void OnCreate(Bundle savedInstanceState)
+        {
+            base.OnCreate(savedInstanceState);
+            ((AppCompatActivity)Activity).SupportActionBar.SetTitle(Resource.String.accountSettings);
+
+        }
+        public static AccountSettingsFragment NewInstance()
+        {
+            var profile_fragment = new AccountSettingsFragment { Arguments = new Bundle() };
+            return profile_fragment;
+        }
+
+        public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+        {
+            // Use this to return your custom view for this Fragment
+            _view = inflater.Inflate(Resource.Layout.account_settings_fragment_layout, null);
+            return _view;
+        }
+
+        #endregion
+    }
+}

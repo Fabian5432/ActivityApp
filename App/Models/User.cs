@@ -14,6 +14,10 @@ namespace App.Models
 
         public string Password { get; set; }
 
+        public bool IsAdmin { get; set; }
+
+        public bool IsLoggedIn { get; set; }
+
         public bool Status { get; set; }
 
         public List<ActivityModel> Activity { get; set; }

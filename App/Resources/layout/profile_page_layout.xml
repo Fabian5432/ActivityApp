@@ -6,6 +6,7 @@
     android:layout_height="fill_parent"
     android:background="@color/viewColor">
     <ImageView
+        android:contentDescription="@string/desc"
         android:layout_width="92dp"
         android:layout_height="200dp"
         android:src="@drawable/icon_perm_identity_rounded"
@@ -16,7 +17,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
-        android:text="Mr.Miele User"
+        android:text="Mr.Miele account"
         android:textColor="@color/white"
         android:textAppearance="?android:attr/textAppearanceMedium"/>
    <TextView
@@ -41,12 +42,27 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:drawableLeft="@drawable/icon_lock"
-        android:drawableRight="@drawable/icon_arrow_custom"
+        android:drawableRight="@drawable/icon_arrow"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textAlignment="textStart"
         android:textColor="@color/white"
         android:background="@color/viewColor"
-        android:text="Account settings"/>
+        android:text="Account settings" />
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray"/>
+    <Button
+        android:id="@+id/device_admin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:drawableLeft="@drawable/icon_admin"
+        android:drawableRight="@drawable/icon_arrow"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textAlignment="textStart"
+        android:textColor="@android:color/holo_orange_light"
+        android:background="@color/viewColor"
+        android:text="Device admin" />
     <View
         android:layout_width="fill_parent"
         android:layout_height="1dp"

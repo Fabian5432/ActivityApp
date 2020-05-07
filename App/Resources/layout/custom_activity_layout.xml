@@ -42,7 +42,7 @@
     android:contentDescription="@string/desc"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:src="@drawable/icon_arrow"
+    android:src="@drawable/ic_arrow"
     android:layout_marginRight="@dimen/custom_activity_item_margin_right"
     android:layout_alignParentRight="true"
     android:layout_centerVertical="true"/>
