@@ -32,7 +32,7 @@ namespace App.Services
         #region Methods 
 
         private async Task<FirebaseObject<User>> GetCurrentUserbyId(Guid id)
-        {
+        {  
             return (await _firebaseClient
                             .Child(child)
                             .OnceAsync<User>()).FirstOrDefault(a => a.Object.PersonId == id);
