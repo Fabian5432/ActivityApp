@@ -6,4 +6,5 @@
     <string name="profilePage">Profile</string>
     <string name="historyPage">History</string>
     <string name="accountSettings">Account settings</string>
+    <string name="changePassword">Change password</string>
 </resources>

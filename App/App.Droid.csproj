@@ -91,6 +91,8 @@
     <Compile Include="Services\DeviceData.cs" />
     <Compile Include="Views\Activities\AccountSettingsActivity.cs" />
     <Compile Include="Views\Fragments\AccountSettingsFragment.cs" />
+    <Compile Include="Views\Activities\ChangePasswordActivity.cs" />
+    <Compile Include="Views\Fragments\ChangePasswordFragment.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -119,7 +121,7 @@
     <AndroidResource Include="Resources\mipmap-xxxhdpi\ic_launcher.png" />
     <AndroidResource Include="Resources\mipmap-xxxhdpi\ic_launcher_foreground.png" />
     <AndroidResource Include="Resources\mipmap-xxxhdpi\ic_launcher_round.png" />
-    <AndroidResource Include="Resources\layout\toolbar.axml">
+    <AndroidResource Include="Resources\layout\toolbar.xml">
       <SubType>
       </SubType>
       <Generator>
@@ -167,6 +169,14 @@
       <Generator></Generator>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\account_settings_fragment_layout.xml">
+      <SubType></SubType>
+      <Generator></Generator>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\change_password_page_layout.xml">
+      <SubType></SubType>
+      <Generator></Generator>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\change_password_fragment_layout.xml">
       <SubType></SubType>
       <Generator></Generator>
     </AndroidResource>

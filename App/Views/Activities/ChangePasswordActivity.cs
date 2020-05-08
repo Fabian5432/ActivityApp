@@ -1,4 +1,5 @@
-﻿using Android.App;
+﻿
+using Android.App;
 using Android.OS;
 using Android.Support.V7.App;
 using Android.Views;
@@ -7,12 +8,12 @@ using Toolbar = Android.Widget.Toolbar;
 
 namespace App.Views.Activities
 {
-    [Activity(Label = "AccountSettingsActivity")]
-    public class AccountSettingsActivity : AppCompatActivity
+    [Activity(Label = "ChangePasswordActivity")]
+    public class ChangePasswordActivity : AppCompatActivity
     {
         #region Components
 
-        private AccountSettingsFragment _accountsettingsFragment;
+        private ChangePasswordFragment _changepasswordFragment;
 
         #endregion
 
@@ -26,17 +27,17 @@ namespace App.Views.Activities
             SupportActionBar.SetDisplayHomeAsUpEnabled(true);
             SupportActionBar.SetHomeButtonEnabled(true);
 
-            SetContentView(Resource.Layout.account_settings_page_layout);
+            SetContentView(Resource.Layout.change_password_page_layout);
 
             if (savedInstanceState != null)
             {
-                _accountsettingsFragment = (AccountSettingsFragment)SupportFragmentManager.FindFragmentById(Resource.Id.account_settings_fragment_layout);
+                _changepasswordFragment = (ChangePasswordFragment)SupportFragmentManager.FindFragmentById(Resource.Id.change_password_fragment_layout);
             }
 
-            if (_accountsettingsFragment == null)
+            if (_changepasswordFragment == null)
             {
-                _accountsettingsFragment = AccountSettingsFragment.NewInstance();
-                ReplaceFragment(_accountsettingsFragment);
+                _changepasswordFragment = ChangePasswordFragment.NewInstance();
+                ReplaceFragment(_changepasswordFragment);
             }
         }
 
@@ -47,7 +48,7 @@ namespace App.Views.Activities
         public void ReplaceFragment(Android.Support.V4.App.Fragment fragment)
         {
             SupportFragmentManager.BeginTransaction()
-                                  .Replace(Resource.Id.account_settings_fragment_layout, fragment)
+                                  .Replace(Resource.Id.change_password_fragment_layout, fragment)
                                   .Commit();
         }
 
