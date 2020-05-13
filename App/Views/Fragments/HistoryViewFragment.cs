@@ -12,10 +12,16 @@ namespace App.Fragments
 {
     public class HistoryViewFragment : Fragment
     {
+        #region Components
+
         private View _view;
-        ListView _listview;
-        HistoryListAdapter _adapter;
-        Dialog _loading;
+        private ListView _listview;
+        private HistoryListAdapter _adapter;
+        private Dialog _loading;
+
+        #endregion
+
+        #region LifCycle
 
         public override void OnCreate(Bundle savedInstanceState)
         {
@@ -43,18 +49,24 @@ namespace App.Fragments
         }
 
         public override void OnResume()
-        {   
+        {
             base.OnResume();
 
             _loading.Show();
             Handler h = new Handler();
-            Action myAction = () =>
+            void myAction()
             {
                 _adapter = new HistoryListAdapter(new HistoryData().Activity);
                 _listview.Adapter = _adapter;
                 _loading.Dismiss();
-            };
+            }
             h.PostDelayed(myAction, 100);
         }
+
+        #endregion
+
+        #region MyRegion
+
+        #endregion
     }
 }

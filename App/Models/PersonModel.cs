@@ -1,36 +1,25 @@
-﻿using System;
+﻿using Android.Widget;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Android.App;
-using Android.Content;
-using Android.OS;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
 
-namespace SleepMonitor.Models
+namespace App.Models
 {
     public class PersonModel
-    {
-        #region Constants
+    {  
+        public Guid PersonId { get; set; }
 
-        private static int id = 0;
+        public string Username { get; set; }
 
-        #endregion
+        public string Email{get; set; }
 
-        public PersonModel()
-        {
-            PersonId = id++;
-        }
+        public string Password { get; set; }
 
-        public int PersonId { get; set; }
+        public bool IsAdmin { get; set; }
 
-        public string Firstname { get; set; }
+        public bool IsLoggedIn { get; set; }
 
-        public string LastName { get; set; }
+        public bool Status { get; set; }
 
-        public List<AccelerometerDataModel> AccelerometerData {get; set;}
-
+        public List<ActivityModel> Activity { get; set; }
     }
 }

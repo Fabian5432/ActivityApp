@@ -6,7 +6,7 @@ namespace App.Services.Interfaces
 {
     public interface IRepositoryService
     {
-        Task<List<User>> GetAllPersons();
+        Task<List<PersonModel>> GetAllPersons();
         Task AddData(string email, string password, bool loggedin);
     }
 }

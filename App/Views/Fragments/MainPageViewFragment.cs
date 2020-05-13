@@ -76,12 +76,12 @@ namespace App.Views.Fragments
         {
             _swipetoRefresh.Refreshing = true;
             Handler h = new Handler();
-            Action myAction = () =>
+            void myAction()
             {
                 _adapter = new ActivityListAdapter(new DeviceData().Users);
                 _listview.Adapter = _adapter;
                 _swipetoRefresh.Refreshing = false;
-            };
+            }
             h.PostDelayed(myAction, 1000);
         }
 

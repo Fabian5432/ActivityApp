@@ -31,11 +31,11 @@ namespace App.Services
 
         #region Methods
 
-        public async Task<List<User>> GetAllPersons()
+        public async Task<List<PersonModel>> GetAllPersons()
         {
             return (await _firebaseClient
                    .Child("Persons")
-                   .OnceAsync<User>()).Select(person => new User
+                   .OnceAsync<PersonModel>()).Select(person => new PersonModel
                    {
                        PersonId = person.Object.PersonId,
                        Email = person.Object.Email,
@@ -49,7 +49,7 @@ namespace App.Services
             var id = Guid.NewGuid();
                 await _firebaseClient
                             .Child("User")
-                            .PostAsync(new User()
+                            .PostAsync(new PersonModel()
                             {   PersonId = id,
                                 Email = email,
                                 Password = Hash(password), 

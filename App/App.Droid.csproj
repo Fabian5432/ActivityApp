@@ -65,7 +65,7 @@
     <Compile Include="ViewModel\ServiceViewModel.cs" />
     <Compile Include="Views\Activities\LoginActivity.cs" />
     <Compile Include="Views\Activities\MainActivity.cs" />
-    <Compile Include="Models\User.cs" />
+    <Compile Include="Models\PersonModel.cs" />
     <Compile Include="Views\Activities\QrCodeActivity.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

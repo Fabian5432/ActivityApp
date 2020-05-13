@@ -6,16 +6,16 @@ using App.Views.ViewHolders;
 
 namespace App.Views.Adapter
 {
-    public class ActivityListAdapter : BaseAdapter<User>
+    public class ActivityListAdapter : BaseAdapter<PersonModel>
     {
-        List<User> _persons;
+        List<PersonModel> _persons;
 
-        public ActivityListAdapter(List<User> persons)
+        public ActivityListAdapter(List<PersonModel> persons)
         {
             _persons = persons;
         }
 
-        public override User this[int position]
+        public override PersonModel this[int position]
         {
             get { return _persons[position]; }
         }

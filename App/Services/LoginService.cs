@@ -31,18 +31,18 @@ namespace App.Services
 
         #region Methods 
 
-        private async Task<FirebaseObject<User>> GetCurrentUserbyId(Guid id)
+        private async Task<FirebaseObject<PersonModel>> GetCurrentUserbyId(Guid id)
         {  
             return (await _firebaseClient
                             .Child(child)
-                            .OnceAsync<User>()).FirstOrDefault(a => a.Object.PersonId == id);
+                            .OnceAsync<PersonModel>()).FirstOrDefault(a => a.Object.PersonId == id);
         }
 
-        private async Task<FirebaseObject<User>> GetUserByEmail(string email)
+        private async Task<FirebaseObject<PersonModel>> GetUserByEmail(string email)
         {
             return (await _firebaseClient
                   .Child(child)
-                  .OnceAsync<User>()).FirstOrDefault(a => a.Object.Email == email);
+                  .OnceAsync<PersonModel>()).FirstOrDefault(a => a.Object.Email == email);
         }
 
         public async Task Login(string email, string password)
@@ -83,7 +83,7 @@ namespace App.Services
             var currentUserid = await GetCurrentUserbyId(Guid.Parse(idfromfile));
             var isUserloggedin = _firebaseClient
                    .Child(child)
-                   .Child(currentUserid.Key).OnceSingleAsync<User>().Result.Status;
+                   .Child(currentUserid.Key).OnceSingleAsync<PersonModel>().Result.Status;
 
             if (isUserloggedin!=false)
                 return true;

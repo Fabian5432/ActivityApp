@@ -23,9 +23,9 @@ namespace App.Services
 
         public List<ActivityModel> GetAllActivity()
         {  
-            User result = _firebaseClient
+            PersonModel result = _firebaseClient
                    .Child("User")
-                   .Child("-M57RIoDRvKV7fEbbtnJ").OnceSingleAsync<User>().Result;
+                   .Child("-M57RIoDRvKV7fEbbtnJ").OnceSingleAsync<PersonModel>().Result;
             return result.Activity.OrderBy(e=>DateTime.Parse(e.Date).Date.Month).ThenBy(e=>DateTime.Parse(e.Date).Date.Year).ToList();
         }
         void additem(List<ActivityModel> activity)

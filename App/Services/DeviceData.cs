@@ -9,23 +9,23 @@ namespace App.Services
     {  
         static readonly FirebaseClient _firebaseClient = new FirebaseClient("https://proiectdiploma-ea2e5.firebaseio.com/");
 
-        public List<User> Users { get; set; }
+        public List<PersonModel> Users { get; set; }
 
         public DeviceData()
         {
-            var temp = new List<User>();
+            var temp = new List<PersonModel>();
             AddData(temp);
             Users = temp.ToList();
         }
 
-        void AddData(List<User> users)
+        void AddData(List<PersonModel> users)
         {
-            users.Add(new User()
+            users.Add(new PersonModel()
             {
                 Email = "Coffee",
                 Password = "x2"
             });
-            users.Add(new User()
+            users.Add(new PersonModel()
             {
                 Email = "Meetings",
                 Password = "x2"
