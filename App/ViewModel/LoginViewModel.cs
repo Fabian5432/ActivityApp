@@ -46,7 +46,6 @@ namespace App.ViewModel
 
         #endregion
 
-
         #region Constructor
 
         public LoginViewModel(ILoginService loginService)

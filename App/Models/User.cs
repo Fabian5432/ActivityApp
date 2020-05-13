@@ -5,7 +5,7 @@ using System.Collections.Generic;
 namespace App.Models
 {
     public class User
-    {
+    {  
         public Guid PersonId { get; set; }
 
         public string Username { get; set; }

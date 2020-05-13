@@ -7,6 +7,7 @@ namespace App.Services.Interfaces
     public interface ILoginService
     {
         Task Login(string email, string password);
+        Task Logout();
         Task<bool> IsUserloggedinAsync();
     }
 }

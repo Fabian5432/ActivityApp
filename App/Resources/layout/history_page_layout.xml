@@ -5,13 +5,14 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:background="@color/viewColor">
+
     <!--SearchView layout-->
     <SearchView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin = "16dp"
-        android:background="@color/white"
-        android:id="@+id/history_searchView_id" />
+        android:background="@drawable/rounded_search_bar"
+        android:id="@+id/history_searchView_id"/>
 
 <RelativeLayout
     android:layout_width="match_parent"

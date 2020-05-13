@@ -1,10 +1,11 @@
 ﻿using Android.OS;
 using Android.Support.V7.App;
 using Android.Views;
+using Fragment = Android.Support.V4.App.Fragment;
 
 namespace App.Views.Fragments
 {
-    public class ChangePasswordFragment : Android.Support.V4.App.Fragment
+    public class ChangePasswordFragment : Fragment
     {
         #region Components
 

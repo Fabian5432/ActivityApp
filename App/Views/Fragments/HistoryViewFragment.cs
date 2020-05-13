@@ -1,17 +1,21 @@
-﻿using Android.OS;
+﻿using System;
+using Android.App;
+using Android.OS;
 using Android.Support.V7.App;
 using Android.Views;
 using Android.Widget;
 using App.Services;
 using App.Views.Adapter;
+using Fragment = Android.Support.V4.App.Fragment;
 
 namespace App.Fragments
 {
-    public class HistoryViewFragment : Android.Support.V4.App.Fragment
+    public class HistoryViewFragment : Fragment
     {
         private View _view;
         ListView _listview;
         HistoryListAdapter _adapter;
+        Dialog _loading;
 
         public override void OnCreate(Bundle savedInstanceState)
         {
@@ -32,11 +36,25 @@ namespace App.Fragments
             // return inflater.Inflate(Resource.Layout.YourFragment, container, false);
             _view = inflater.Inflate(Resource.Layout.history_page_layout, null);
             _listview = (ListView)_view.FindViewById(Resource.Id.history_list_view);
-            _adapter = new HistoryListAdapter(new HistoryData().Activity);
-            _listview.Adapter = _adapter;
-            
+            _loading = new Dialog(Context);
+            _loading.SetContentView(Resource.Layout.loading_view_layout);
+
             return _view;
         }
 
+        public override void OnResume()
+        {   
+            base.OnResume();
+
+            _loading.Show();
+            Handler h = new Handler();
+            Action myAction = () =>
+            {
+                _adapter = new HistoryListAdapter(new HistoryData().Activity);
+                _listview.Adapter = _adapter;
+                _loading.Dismiss();
+            };
+            h.PostDelayed(myAction, 100);
+        }
     }
 }

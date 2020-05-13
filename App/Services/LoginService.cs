@@ -106,6 +106,12 @@ namespace App.Services
             var hashBytes = System.Security.Cryptography.MD5.Create().ComputeHash(bytes);
             return Convert.ToBase64String(hashBytes);
         }
+
+        public Task Logout()
+        {
+            throw new NotImplementedException();
+        }
+
         #endregion
 
     }

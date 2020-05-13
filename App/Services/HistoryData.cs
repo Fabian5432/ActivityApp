@@ -2,82 +2,38 @@
 using System.Collections.Generic;
 using System.Linq;
 using App.Models;
+using Firebase.Database;
+using Firebase.Database.Query;
 
 namespace App.Services
 {
     public class HistoryData
     {
+        FirebaseClient _firebaseClient = new FirebaseClient("https://proiectdiploma-ea2e5.firebaseio.com/");
+
         public List<ActivityModel> Activity { get; set; }
 
+        
         public HistoryData()
         {
             var temp = new List<ActivityModel>();
-            AddData(temp);
+            additem(temp);
             Activity = temp.ToList();
         }
 
-        void AddData(List<ActivityModel> users)
+        public List<ActivityModel> GetAllActivity()
+        {  
+            User result = _firebaseClient
+                   .Child("User")
+                   .Child("-M57RIoDRvKV7fEbbtnJ").OnceSingleAsync<User>().Result;
+            return result.Activity.OrderBy(e=>DateTime.Parse(e.Date).Date.Month).ThenBy(e=>DateTime.Parse(e.Date).Date.Year).ToList();
+        }
+        void additem(List<ActivityModel> activity)
         {
-            users.Add(new ActivityModel()
+            foreach(var i in GetAllActivity())
             {
-                ActivityName ="Meeting",
-                Date = "12 Mar. 2020",
-                Time = "13:30 PM"
-            });
-            users.Add(new ActivityModel()
-            {
-                ActivityName = "Coffee",
-                Date = "12 Mar. 2020",
-                Time = "13:30 PM"
-            });
-            users.Add(new ActivityModel()
-            {
-                ActivityName = "Meeting",
-                Date = DateTime.Now.ToString("dd MMM. yyyy"),
-                Time = DateTime.Now.ToString("h:mm tt")
-            });
-            users.Add(new ActivityModel()
-            {
-                ActivityName = "Coffee",
-                Date = DateTime.Now.Month.ToString(),
-                Time = "13:30 PM"
-            });
-            users.Add(new ActivityModel()
-            {
-                ActivityName = "Coffee",
-                Date = "12 Mar. 2020",
-                Time = "13:30 PM"
-            });
-            users.Add(new ActivityModel()
-            {
-                ActivityName = "Meeting",
-                Date = "12 Mar. 2020",
-                Time = "13:30 PM"
-            });
-            users.Add(new ActivityModel()
-            {
-                ActivityName = "Meeting",
-                Date = "12 Mar 2020",
-                Time = "13:30 PM"
-            });
-            users.Add(new ActivityModel()
-            {
-                ActivityName = "Meeting",
-                Date = "12 Mar. 2020",
-                Time = "13:30 PM"
-            });
-            users.Add(new ActivityModel()
-            {
-                ActivityName = "Meeting",
-                Date = "12 Mar. 2020",
-                Time = "13:30 PM"
-            });
-            users.Add(new ActivityModel()
-            {
-                ActivityName = "Meeting",
-                Date = "12 Mar. 2020",
-                Time = "13:30 PM"
-            });
+                activity.Insert(0, i);
+            }
         }
     }
 }

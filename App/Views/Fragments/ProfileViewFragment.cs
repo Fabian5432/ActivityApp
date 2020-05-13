@@ -5,10 +5,11 @@ using Android.Support.V7.App;
 using Android.Views;
 using Android.Widget;
 using App.Views.Activities;
+using Fragment = Android.Support.V4.App.Fragment;
 
 namespace App.Fragments
 {
-    public class ProfileViewFragment : Android.Support.V4.App.Fragment
+    public class ProfileViewFragment : Fragment
     {
         #region Components
 

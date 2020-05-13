@@ -4,6 +4,7 @@ using Android.Support.V7.App;
 using Android.Support.Design.Widget;
 using App.Fragments;
 using App.Views.Fragments;
+using Fragment = Android.Support.V4.App.Fragment;
 
 namespace App.Activities
 {
@@ -13,6 +14,9 @@ namespace App.Activities
         #region Components
 
         BottomNavigationView _bottomNavigationView;
+        private Fragment _homeFragment;
+        private Fragment _historyFragment;
+        private Fragment _profileFragment;
 
         #endregion
 
@@ -23,11 +27,25 @@ namespace App.Activities
             base.OnCreate(bundle);
             // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.activity_main);
-
             _bottomNavigationView = FindViewById<BottomNavigationView>(Resource.Id.bottom_navigation);
 
-            _bottomNavigationView.NavigationItemSelected += BottomNavigation_NavigationItemSelected;
+            _homeFragment = MainPageViewFragment.NewInstance();
+            _historyFragment = HistoryViewFragment.NewInstance();
+            _profileFragment = ProfileViewFragment.NewInstance();
+
             LoadFragment(Resource.Id.menu_home);
+        }
+
+        protected override void OnResume()
+        {
+            base.OnResume();
+            _bottomNavigationView.NavigationItemSelected += BottomNavigation_NavigationItemSelected;
+        }
+
+        protected override void OnPause()
+        {
+            base.OnPause();
+            _bottomNavigationView.NavigationItemSelected -= BottomNavigation_NavigationItemSelected;
         }
 
         #endregion
@@ -36,6 +54,7 @@ namespace App.Activities
 
         private void BottomNavigation_NavigationItemSelected(object sender, BottomNavigationView.NavigationItemSelectedEventArgs e)
         {
+            
             LoadFragment(e.Item.ItemId);
         }
 
@@ -43,25 +62,31 @@ namespace App.Activities
         {
             Android.Support.V4.App.Fragment fragment = null;
             switch (id)
-            {
+            { 
                 case Resource.Id.menu_home:
-                    fragment = MainPageViewFragment.NewInstance();
+                    fragment = _homeFragment;
                     break;
                 case Resource.Id.menu_history:
-                    fragment = HistoryViewFragment.NewInstance();
+                    fragment = _historyFragment;
                     break;
                 case Resource.Id.menu_profile:
-                    fragment = ProfileViewFragment.NewInstance();
+                    fragment = _profileFragment;
                     break;
             }
             if (fragment == null)
                 return;
 
-           SupportFragmentManager.BeginTransaction()
-               .Replace(Resource.Id.content_frame, fragment)
-               .Commit();
+            ReplaceFragment(fragment);
         }
 
+        public void ReplaceFragment(Android.Support.V4.App.Fragment fragment)
+        {
+            SupportFragmentManager.BeginTransaction()
+                                  .Replace(Resource.Id.content_frame, fragment)
+                                  .Commit();
+        }
+
+        
         #endregion
     }
 }

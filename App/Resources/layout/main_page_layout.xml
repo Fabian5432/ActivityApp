@@ -46,6 +46,7 @@
     android:textColor="@android:color/white"
     android:text="+"/>
     </android.support.v7.widget.CardView>
+
 <!--Listview with swipetoRefresh-->
  <android.support.v4.widget.SwipeRefreshLayout
             android:id="@+id/swipeRefresh"
