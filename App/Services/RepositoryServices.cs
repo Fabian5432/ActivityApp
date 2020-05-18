@@ -9,11 +9,13 @@ using System;
 
 namespace App.Services
 {
-    public class RepositoryServices: IRepositoryService
+    public class RepositoryServices : IRepositoryService
     {
         #region Fields
 
-        private readonly FirebaseClient _firebaseClient; 
+        private readonly FirebaseClient _firebaseClient;
+        private readonly string Child = "User";
+
         #endregion
 
         #region Properties
@@ -25,6 +27,7 @@ namespace App.Services
         public RepositoryServices()
         {
             _firebaseClient = new FirebaseClient("https://proiectdiploma-ea2e5.firebaseio.com/");
+
         }
 
         #endregion
@@ -38,37 +41,41 @@ namespace App.Services
                    .OnceAsync<PersonModel>()).Select(person => new PersonModel
                    {
                        PersonId = person.Object.PersonId,
+                       FirstName = person.Object.FirstName,
+                       LastName = person.Object.LastName,
                        Email = person.Object.Email,
                        Password = person.Object.Password,
-                       Activity = person.Object.Activity
+                       IsAdmin = person.Object.IsAdmin,
+                       IsLoggedIn = person.Object.IsLoggedIn,
+                       Activity = person.Object.Activity,
+
                    }).ToList();
         }
 
-        public async Task AddData(string email, string password, bool loggedin)
+        public async Task AddPerson(PersonModel person)
         {
-            var id = Guid.NewGuid();
+            if (_firebaseClient.Equals(null))
+                return;
+            try
+            {
                 await _firebaseClient
-                            .Child("User")
-                            .PostAsync(new PersonModel()
-                            {   PersonId = id,
-                                Email = email,
-                                Password = Hash(password), 
-                                Status = loggedin,
-                                Activity = new List<ActivityModel>()
-                                {
-                                    new ActivityModel(){ ActivityName="Coffe", Date="12 Mar. 2020", Time= "1:30 PM"}
-                                }
-                               
-                             });
+                       .Child(Child)
+                       .PostAsync(person);
+            }
+            catch (Exception e)
+            {
+                throw new Exception("Firebase client exception", e);
+            }
         }
 
-        public string Hash(string password)
-        {
-            var bytes = new System.Text.UTF8Encoding().GetBytes(password);
-            var hashBytes = System.Security.Cryptography.MD5.Create().ComputeHash(bytes);
-            return Convert.ToBase64String(hashBytes);
+        public async Task<PersonModel> GetPerson(Guid id)
+        {   
+            var persons = await GetAllPersons();
+            await _firebaseClient.Child(Child).
+                OnceAsync<PersonModel>();
+            return persons.Where(person => person.PersonId == id).FirstOrDefault();
         }
-
+        
         #endregion
 
     }

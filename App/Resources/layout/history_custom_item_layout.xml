@@ -30,7 +30,7 @@
         android:id="@+id/date_id"
         android:text="Date"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textColor="@android:color/white"
+        android:textColor="@android:color/holo_orange_light"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"

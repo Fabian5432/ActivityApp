@@ -22,13 +22,23 @@ namespace App.Services
         {
             users.Add(new PersonModel()
             {
-                Email = "Coffee",
-                Password = "x2"
+                Email = "Work",
+                Password = "3 items"
             });
             users.Add(new PersonModel()
             {
-                Email = "Meetings",
-                Password = "x2"
+                Email = "Food",
+                Password = "4 items"
+            });
+            users.Add(new PersonModel()
+            {
+                Email = "Sport",
+                Password = "2 items"
+            });
+            users.Add(new PersonModel()
+            {
+                Email = "Hobby",
+                Password = "2 items"
             });
         }
     }

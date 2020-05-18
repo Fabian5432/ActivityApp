@@ -93,6 +93,11 @@
     <Compile Include="Views\Fragments\AccountSettingsFragment.cs" />
     <Compile Include="Views\Activities\ChangePasswordActivity.cs" />
     <Compile Include="Views\Fragments\ChangePasswordFragment.cs" />
+    <Compile Include="ViewModel\ActivityViewModel.cs" />
+    <Compile Include="ViewModel\HistoryPageViewModel.cs" />
+    <Compile Include="ViewModel\HistoryViewModel.cs" />
+    <Compile Include="ViewModel\HistoryItemViewModel.cs" />
+    <Compile Include="Models\HistoryModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -133,10 +138,6 @@
       </Generator>
     </AndroidResource>
     <AndroidResource Include="Resources\values\dimens.xml">
-      <SubType></SubType>
-      <Generator></Generator>
-    </AndroidResource>
-    <AndroidResource Include="Resources\drawable\miele_logo.png">
       <SubType></SubType>
       <Generator></Generator>
     </AndroidResource>

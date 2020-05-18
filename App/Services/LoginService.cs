@@ -83,7 +83,7 @@ namespace App.Services
             var currentUserid = await GetCurrentUserbyId(Guid.Parse(idfromfile));
             var isUserloggedin = _firebaseClient
                    .Child(child)
-                   .Child(currentUserid.Key).OnceSingleAsync<PersonModel>().Result.Status;
+                   .Child(currentUserid.Key).OnceSingleAsync<PersonModel>().Result.IsLoggedIn;
 
             if (isUserloggedin!=false)
                 return true;

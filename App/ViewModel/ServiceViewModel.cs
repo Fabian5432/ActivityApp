@@ -11,10 +11,6 @@ namespace App.ViewModel
         {
             var serviceLocator = new ServiceLocator();
 
-            if (typeof(T) == typeof(PersonViewModel))
-            {
-                return new PersonViewModel(serviceLocator.GetRepositoryService) as T;
-            }
             if(typeof(T)== typeof(LoginViewModel))
             {
                 return new LoginViewModel(serviceLocator.GetLoginService) as T;

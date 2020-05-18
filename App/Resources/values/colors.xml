@@ -7,6 +7,6 @@
   <color name="hint">#FF5F4B88</color>
   <color name="white">#fff</color>
   <color name="colorYellow">#fff64e</color>
-  <color name="bottomBarColor">#2c2f30</color>
-  <color name="viewColor">#1f1f1f</color>
+  <color name="bottomBarColor">@color/white</color>
+  <color name="viewColor">@color/white</color>
 </resources>

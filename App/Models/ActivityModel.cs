@@ -1,5 +1,4 @@
 ﻿
-
 namespace App.Models
 {
     public class ActivityModel 

@@ -1,5 +1,4 @@
-﻿using Android.Widget;
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 namespace App.Models
@@ -8,9 +7,11 @@ namespace App.Models
     {  
         public Guid PersonId { get; set; }
 
-        public string Username { get; set; }
+        public string FirstName { get; set; }
 
-        public string Email{get; set; }
+        public string LastName { get; set; }
+
+        public string Email{ get; set; }
 
         public string Password { get; set; }
 
@@ -18,8 +19,7 @@ namespace App.Models
 
         public bool IsLoggedIn { get; set; }
 
-        public bool Status { get; set; }
-
         public List<ActivityModel> Activity { get; set; }
+
     }
 }
