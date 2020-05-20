@@ -17,7 +17,7 @@ namespace App.Fragments
         private View _view;
         private ListView _listview;
         private HistoryListAdapter _adapter;
-        private Dialog _loading;
+        private ProgressBar _progressBar;
 
         #endregion
 
@@ -42,30 +42,28 @@ namespace App.Fragments
             // return inflater.Inflate(Resource.Layout.YourFragment, container, false);
             _view = inflater.Inflate(Resource.Layout.history_page_layout, null);
             _listview = (ListView)_view.FindViewById(Resource.Id.history_list_view);
-            _loading = new Dialog(Context);
-            _loading.SetContentView(Resource.Layout.loading_view_layout);
+            _progressBar = (ProgressBar)_view.FindViewById(Resource.Id.loading_bar);
 
             return _view;
         }
 
         public override void OnResume()
-        {
+        {  
             base.OnResume();
-
-            _loading.Show();
+            _progressBar.Visibility = ViewStates.Visible;
             Handler h = new Handler();
             void myAction()
             {
                 _adapter = new HistoryListAdapter(new HistoryData().Activity);
                 _listview.Adapter = _adapter;
-                _loading.Dismiss();
+                _progressBar.Visibility = ViewStates.Invisible;
             }
             h.PostDelayed(myAction, 100);
         }
 
         #endregion
 
-        #region MyRegion
+        #region Methods
 
         #endregion
     }

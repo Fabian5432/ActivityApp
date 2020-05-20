@@ -2,8 +2,8 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:background="@color/viewColor">
 
     <!--SearchView layout-->
@@ -53,14 +53,22 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/viewColor">
- <ListView
+<ListView
         android:id="@+id/history_list_view"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:scrollbars="none"
         android:divider="#aaabab"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:dividerHeight="1dp"/>
+<ProgressBar
+        android:id="@+id/loading_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:indeterminate="true"
+        android:background="@android:color/transparent"
+        android:indeterminateTint="@android:color/holo_orange_light"/>
+
 </android.support.design.widget.CoordinatorLayout>
 </LinearLayout>

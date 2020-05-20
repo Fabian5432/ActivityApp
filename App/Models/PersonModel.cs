@@ -19,7 +19,7 @@ namespace App.Models
 
         public bool IsLoggedIn { get; set; }
 
-        public List<ActivityModel> Activity { get; set; }
+        public List<HistoryModel> Activity { get; set; }
 
     }
 }

@@ -24,5 +24,4 @@
         android:text="Scan"
         android:textColor="@color/white"
         android:background="@drawable/rounded_button"/>
-
 </LinearLayout>

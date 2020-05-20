@@ -9,5 +9,7 @@ namespace App.Models
 
         public string Time { get; set; }
 
+        public string ActivityCount { get; set; }
+
     }
 }

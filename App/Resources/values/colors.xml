@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#2c3e50</color>
-    <color name="colorPrimaryDark">#1B3147</color>
+    <color name="colorPrimary">#2c2f30</color>
+    <color name="colorPrimaryDark">#2c2f30</color>
     <color name="colorAccent">#3498db</color>
-     <color name="colorWhite">#ffffff</color>
-  <color name="hint">#FF5F4B88</color>
-  <color name="white">#fff</color>
-  <color name="colorYellow">#fff64e</color>
-  <color name="bottomBarColor">@color/white</color>
-  <color name="viewColor">@color/white</color>
+    <color name="colorWhite">#ffffff</color>
+    <color name="hint">#FF5F4B88</color>
+    <color name="white">#fff</color>
+    <color name="colorYellow">#fff64e</color>
+    <color name="bottomBarColor">#2c2f30</color>
+    <color name="viewColor">#1f1f1f</color>
+    <color name="cardview"></color>
+    <color name="transparent">#80FFFFFF</color>
 </resources>

@@ -13,8 +13,9 @@ namespace App.ViewModel
 
         public HistoryViewModel(HistoryModel historyModel)
         {
-            Name = historyModel.Name;
+            Name = historyModel.ActivityName;
             Date = historyModel.Date;
+            Time = historyModel.Time;
         }
     }
 }

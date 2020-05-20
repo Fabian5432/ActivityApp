@@ -13,7 +13,7 @@ namespace App.Activities
         {
             base.OnCreate(savedInstanceState);
             Thread.Sleep(500);
-            StartActivity(typeof(MainActivity));
+            StartActivity(typeof(LoginActivity));
             //Check();
         }
         

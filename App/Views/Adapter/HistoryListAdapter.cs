@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using Android.Views;
 using Android.Widget;
 using App.Models;
@@ -8,16 +6,16 @@ using App.Views.ViewHolders;
 
 namespace App.Views.Adapter
 {
-    public class HistoryListAdapter : BaseAdapter<ActivityModel>
+    public class HistoryListAdapter : BaseAdapter<HistoryModel>
     {
-        readonly List<ActivityModel> _activity;
+        readonly List<HistoryModel> _activity;
 
-        public HistoryListAdapter(List<ActivityModel> activities)
+        public HistoryListAdapter(List<HistoryModel> activities)
         {
             _activity = activities;
         }
 
-        public override ActivityModel this[int position]
+        public override HistoryModel this[int position]
         {
             get { return _activity[position]; }
         }

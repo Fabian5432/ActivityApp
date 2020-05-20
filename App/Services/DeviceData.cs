@@ -22,6 +22,11 @@ namespace App.Services
         {
             users.Add(new PersonModel()
             {
+                Email = "Idea",
+                Password = "3 items"
+            });
+            users.Add(new PersonModel()
+            {
                 Email = "Work",
                 Password = "3 items"
             });

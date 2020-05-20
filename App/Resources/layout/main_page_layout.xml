@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center_horizontal"
-    android:background="#f0f7fc">
+    android:background="@color/viewColor">
   <!--CardView layout with Textview-->
 
   <android.support.v7.widget.CardView
@@ -16,7 +16,7 @@
         android:layout_marginLeft="@dimen/main_page_cardview_margin_left"
         android:layout_marginRight="@dimen/main_page_cardview_margin_right"
         app:cardCornerRadius="5dp"
-        app:cardBackgroundColor="@android:color/holo_orange_light">
+        app:cardBackgroundColor="@color/bottomBarColor">
          <TextView
             android:text="Hello!"
             android:textAppearance="?android:attr/textAppearanceSmall"
@@ -40,7 +40,7 @@
     android:layout_width="match_parent"
     android:layout_height="@dimen/main_page_button_layout_hight"
     android:layout_gravity="bottom"
-    android:background="@color/white"
+    android:background="@android:color/holo_orange_light"
     android:theme="@drawable/rounded_button"
     android:textAppearance="?android:attr/textAppearanceLarge"
     android:textColor="@android:color/white"
@@ -52,7 +52,6 @@
             android:id="@+id/swipeRefresh"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:indeterminateTint="@android:color/holo_orange_light"
             android:layout_marginTop="@dimen/main_page_swipe_to_refresh_margin_top"
             android:layout_marginLeft="@dimen/main_page_swipe_to_refresh_margin_left"
             android:layout_marginRight="@dimen/main_page_swipe_to_refresh_margin_right">
