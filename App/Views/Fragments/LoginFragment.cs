@@ -93,7 +93,7 @@ namespace App.Views.Fragments
             try
             {
                 _progressBar.Visibility = ViewStates.Visible;
-                await ViewModel.LoginAsync();
+                await ViewModel.RegisterAync();
                 await Task.Delay(500);
                 var intent = new Intent(Activity, typeof(MainActivity));
                 StartActivity(intent);

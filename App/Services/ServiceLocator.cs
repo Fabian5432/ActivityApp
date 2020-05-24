@@ -7,13 +7,35 @@ namespace App.Services
         private static IRepositoryService _repositoryService;
         private static IQrScanService _qrScanService;
         private static ILoginService _loginService;
+        private static IFirebaseDatabaseConnection _firebaseDatabaseConnection;
+        private static IFirebaseDatabaseHelper _firebaseDatabaseHelper;
+
+        public IFirebaseDatabaseConnection GetFirebaseDatabaseConnection
+        {
+            get
+            {
+                if (_firebaseDatabaseConnection == null)
+                    _firebaseDatabaseConnection = new FirebaseDatabaseConnection();
+                return _firebaseDatabaseConnection;
+            }
+        }
+
+        public IFirebaseDatabaseHelper GetDatabaseHelper
+        {
+            get
+            {
+                if (_firebaseDatabaseHelper == null)
+                    _firebaseDatabaseHelper = new FirebaseDatabaseHelper(GetFirebaseDatabaseConnection);
+                return _firebaseDatabaseHelper;
+            }
+        }
 
         public IRepositoryService GetRepositoryService
         {
             get
             {
                 if (_repositoryService == null)
-                    _repositoryService = new RepositoryServices();
+                    _repositoryService = new RepositoryService(GetDatabaseHelper);
                 return _repositoryService;
             }
         }
@@ -31,7 +53,7 @@ namespace App.Services
         {
             get
             {   if(_loginService == null)
-                _loginService = new LoginService();
+                    _loginService = new LoginService(GetDatabaseHelper);
                 return _loginService;
             }
         }

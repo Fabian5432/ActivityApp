@@ -47,7 +47,6 @@ namespace App.Views.Fragments
             _listview = (ListView)_view.FindViewById(Resource.Id.list_view);
             _swipetoRefresh = (SwipeRefreshLayout)_view.FindViewById(Resource.Id.swipeRefresh);
             _addButton = (Button)_view.FindViewById(Resource.Id.main_page_add_button_id);
-            _adapter = new ActivityListAdapter(new DeviceData().Users);
             _listview.Adapter = _adapter; 
 
             return _view;
@@ -78,7 +77,6 @@ namespace App.Views.Fragments
             Handler h = new Handler();
             void myAction()
             {
-                _adapter = new ActivityListAdapter(new DeviceData().Users);
                 _listview.Adapter = _adapter;
                 _swipetoRefresh.Refreshing = false;
             }

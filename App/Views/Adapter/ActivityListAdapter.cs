@@ -6,16 +6,16 @@ using App.Views.ViewHolders;
 
 namespace App.Views.Adapter
 {
-    public class ActivityListAdapter : BaseAdapter<PersonModel>
+    public class ActivityListAdapter : BaseAdapter<UserModel>
     {
-        List<PersonModel> _persons;
+        List<UserModel> _persons;
 
-        public ActivityListAdapter(List<PersonModel> persons)
+        public ActivityListAdapter(List<UserModel> persons)
         {
             _persons = persons;
         }
 
-        public override PersonModel this[int position]
+        public override UserModel this[int position]
         {
             get { return _persons[position]; }
         }
@@ -41,8 +41,8 @@ namespace App.Views.Adapter
                 view.Tag = new ActivityListAdapterViewHolder() { ActivityName = activity_name, ActivityValue = activity_value};
             }
             var holder = (ActivityListAdapterViewHolder)view.Tag;
-            holder.ActivityName.Text = _persons[position].Email;
-            holder.ActivityValue.Text = _persons[position].Password;
+            holder.ActivityName.Text = _persons[position].UserCredentials.Email;
+            holder.ActivityValue.Text = _persons[position].UserCredentials.Password;
 
             return view;
         }

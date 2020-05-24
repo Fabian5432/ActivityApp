@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using App.Models;
 
@@ -6,6 +7,6 @@ namespace App.Services.Interfaces
 {
     public interface IRepositoryService
     {
-        Task<List<PersonModel>> GetAllPersons();
+
     }
 }

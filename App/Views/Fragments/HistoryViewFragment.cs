@@ -54,7 +54,7 @@ namespace App.Fragments
             Handler h = new Handler();
             void myAction()
             {
-                _adapter = new HistoryListAdapter(new HistoryData().Activity);
+
                 _listview.Adapter = _adapter;
                 _progressBar.Visibility = ViewStates.Invisible;
             }

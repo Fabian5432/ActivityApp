@@ -16,8 +16,6 @@ namespace App.ViewModel
         public ActivityViewModel(ActivityModel activityModel)
         {
             ActivityName = activityModel.ActivityName;
-            Date = activityModel.Date;
-            Time = activityModel.Time;
         }
     }
 }

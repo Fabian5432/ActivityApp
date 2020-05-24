@@ -5,7 +5,7 @@ namespace App.ViewModel
 {
     public class HistoryViewModel : BaseViewModel
     {
-        public string Name { get; set; }
+        public string Title { get; set; }
         public string Date { get; set; }
         public string Time { get; set; }
 
@@ -13,7 +13,6 @@ namespace App.ViewModel
 
         public HistoryViewModel(HistoryModel historyModel)
         {
-            Name = historyModel.ActivityName;
             Date = historyModel.Date;
             Time = historyModel.Time;
         }

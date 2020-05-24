@@ -17,19 +17,19 @@ namespace App.Activities
             //Check();
         }
         
-        private async void Check()
-        {
-            var c = new LoginService();
+        //private async void Check()
+        //{
+        //    var c = new LoginService();
 
-            if (await c.IsUserloggedinAsync() == true)
-            {
-                StartActivity(typeof(MainActivity));
-            }
-            else
-            {
-                StartActivity(typeof(LoginActivity));
-            }
-            Finish();
-        }
+        //    if (await c.IsUserloggedinAsync() == true)
+        //    {
+        //        StartActivity(typeof(MainActivity));
+        //    }
+        //    else
+        //    {
+        //        StartActivity(typeof(LoginActivity));
+        //    }
+        //    Finish();
+        //}
     }
 }

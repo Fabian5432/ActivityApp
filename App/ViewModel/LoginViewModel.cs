@@ -1,5 +1,6 @@
 ﻿using App.Services.Interfaces;
 using System;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace App.ViewModel
@@ -41,8 +42,23 @@ namespace App.ViewModel
                 }
             }
         }
+        private string _confirmedpassword;
 
+        public string ConfirmedPassword
+        {
+            get => _confirmedpassword;
+            set
+            {
+                if (!Equals(_confirmedpassword, value))
+                {
+                    _confirmedpassword = value;
+                    OnPropertyChanged(nameof(Password));
+                }
+            }
+        }
         public bool CanLogin => !string.IsNullOrWhiteSpace(Email) && !string.IsNullOrWhiteSpace(Password);
+
+        public bool CanRegister => !string.IsNullOrWhiteSpace(Email) && !string.IsNullOrWhiteSpace(Password);// && ConfirmedPassword.Equals(Password)
 
         #endregion
 
@@ -53,25 +69,81 @@ namespace App.ViewModel
             _loginService = loginService;
         }
 
+        #endregion
+
+        #region Methods
+
         public async Task LoginAsync()
-        {   
-            if(!CanLogin)
+        {
+            if (!CanLogin)
                 return;
 
             try
-            {   
+            {
                 await _loginService.Login(Email, Password);
             }
-            catch(Exception e)
+            catch (Exception e)
             {
-                throw new Exception("Your email address or password are not valid", e);
+                throw new Exception(e.Message, e);
             }
-            finally 
-            { 
-                OnPropertyChanged(nameof(CanLogin)); 
+            finally
+            {
+                OnPropertyChanged(nameof(CanLogin));
             }
 
         }
+
+        public async Task RegisterAync()
+        {
+            if (!CanRegister)
+                return;
+            try
+            {   if(IsValidEmail(Email))
+                {
+                    await _loginService.Register(Email, Password);
+                }
+                else
+                {
+                    throw new Exception("Your email adress is not valid");
+                }
+            
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message, e);
+            }
+            finally
+            {
+                OnPropertyChanged(nameof(CanRegister));
+            }
+        }
+
+
+        private bool IsValidEmail(string email)
+        {
+            try
+            {
+                var addr = new System.Net.Mail.MailAddress(email);
+                return addr.Address == email;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        private bool IsPasswordValid(string password)
+        {
+            var hasNumber = new Regex(@"[0-9]+");
+            var hasUpperChar = new Regex(@"[A-Z]+");
+            var hasMinimum8Chars = new Regex(@".{8,}");
+
+            var isValidated = hasNumber.IsMatch(password) && hasUpperChar.IsMatch(password) && hasMinimum8Chars.IsMatch(password);
+            return isValidated;
+        }
         #endregion
+
+
+
     }
 }

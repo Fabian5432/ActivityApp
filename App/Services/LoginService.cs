@@ -1,10 +1,6 @@
 ﻿using App.Models;
 using App.Services.Interfaces;
-using Firebase.Database;
-using Firebase.Database.Query;
 using System;
-using System.IO;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace App.Services
@@ -13,103 +9,112 @@ namespace App.Services
     {
         #region Fields
 
-        private readonly FirebaseClient _firebaseClient;
-        private static readonly string child = "User";
-
+        private readonly IFirebaseDatabaseHelper _firebaseDatabaseHelper;
         public event EventHandler LoggedOut;
         public event EventHandler LoggedIn;
+
         #endregion
 
         #region Constructor
 
-        public LoginService()
+        public LoginService(IFirebaseDatabaseHelper firebaseDatabaseHelper)
         {
-            _firebaseClient= new FirebaseClient("https://proiectdiploma-ea2e5.firebaseio.com/");
+            _firebaseDatabaseHelper = firebaseDatabaseHelper;
         }
 
         #endregion
 
         #region Methods 
 
-        private async Task<FirebaseObject<PersonModel>> GetCurrentUserbyId(Guid id)
-        {  
-            return (await _firebaseClient
-                            .Child(child)
-                            .OnceAsync<PersonModel>()).FirstOrDefault(a => a.Object.PersonId == id);
-        }
-
-        private async Task<FirebaseObject<PersonModel>> GetUserByEmail(string email)
-        {
-            return (await _firebaseClient
-                  .Child(child)
-                  .OnceAsync<PersonModel>()).FirstOrDefault(a => a.Object.Email == email);
-        }
-
         public async Task Login(string email, string password)
         {
             try
-            {   
-                var user = await GetUserByEmail(email);
-                if(user.Equals(null))
-                    return;
-
-                if (user?.Object?.Email == email && user?.Object?.Password == Hash(password))
+            {
+                var users = await _firebaseDatabaseHelper.GetAllUsers();
+                if (users.Equals(null) && users.Count!=0)
                 {
-                    await _firebaseClient
-                         .Child(child)
-                         .Child(user.Key)
-                         .Child("Status")
-                         .PutAsync(true);
-                    Savecurrentuserid(user.Object.PersonId); 
+                    foreach (var user in users)
+                    {
+                        var userCredentials = new UserCredentials() { Email = user.UserCredentials.Email, Password = user.UserCredentials.Password };
+                        if (userCredentials.Email == email && userCredentials.Password == password)
+                        {   
+                            _firebaseDatabaseHelper.SaveId(user.UserId);
+                        }
+                        else
+                        {
+                            throw new Exception("Email or password are incorrect");
+                        }
+                    }
                 }
                 else
                 {
-                    throw new Exception("Credentials are incorrect");
+                    throw new Exception("Your email or password are not vaild");
                 }
+
             }
             catch(NullReferenceException e)
             {
-                throw new NullReferenceException("User is null", e);
+                throw new NullReferenceException("UserModel is null", e);
             }
             LoggedIn?.Invoke(this, EventArgs.Empty);
         }
 
         public async Task<bool> IsUserloggedinAsync()
-        {   
-            string path = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
-            string settingsPath = Path.Combine(path, "userid.txt");
-            string idfromfile = File.ReadAllText(settingsPath);
+        {
+            var user = await _firebaseDatabaseHelper.GetCurrentUser();
 
-            var currentUserid = await GetCurrentUserbyId(Guid.Parse(idfromfile));
-            var isUserloggedin = _firebaseClient
-                   .Child(child)
-                   .Child(currentUserid.Key).OnceSingleAsync<PersonModel>().Result.IsLoggedIn;
-
-            if (isUserloggedin!=false)
+            if (user.Object.UserStatus.IsLoggedIn!=false)
                 return true;
             else
                 return false;
         }
 
-        private void Savecurrentuserid(Guid id)
+        public async Task Logout()
         {
-            string path = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
-            string settingsPath = Path.Combine(path, "userid.txt");
-            StreamWriter stream = File.CreateText(settingsPath);
-            stream.WriteLine(id);
-            stream.Close();
+            LoggedOut?.Invoke(this, EventArgs.Empty);
         }
-
-        public string Hash(string password)
+                                                                                                                                                                                           
+        public async Task Register(string email, string password)
         {
-            var bytes = new System.Text.UTF8Encoding().GetBytes(password);
-            var hashBytes = System.Security.Cryptography.MD5.Create().ComputeHash(bytes);
-            return Convert.ToBase64String(hashBytes);
-        }
-
-        public Task Logout()
-        {
-            throw new NotImplementedException();
+            try
+            {  
+                var userCredentials = new UserCredentials() { Email = email, Password = password };
+                var users = await _firebaseDatabaseHelper.GetAllUsers();
+                if (users!=null && users.Count!=0)
+                    foreach (var user in users)
+                    {
+                        if (user?.UserCredentials?.Email != email)
+                        {
+                            await _firebaseDatabaseHelper.AddUser(new UserModel() {
+                                UserId =  Guid.NewGuid(),
+                                UserStatus=new UserStatus() {
+                                    IsLoggedIn = false,
+                                    IsAdmin = false},
+                                UserCredentials = userCredentials });
+                        }
+                        else
+                        {
+                            throw new Exception("Email is already in use");
+                        }
+                    }
+                else
+                {
+                    await _firebaseDatabaseHelper.AddUser(new UserModel()
+                    {
+                        UserId = Guid.NewGuid(),
+                        UserStatus = new UserStatus()
+                        {
+                            IsLoggedIn = false,
+                            IsAdmin = false
+                        },
+                        UserCredentials = userCredentials
+                    });
+                }
+            }
+            catch (NullReferenceException e)
+            {
+                throw new NullReferenceException("", e);
+            }
         }
 
         #endregion

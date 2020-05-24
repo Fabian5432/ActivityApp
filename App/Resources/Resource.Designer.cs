@@ -4437,79 +4437,85 @@ namespace App
 			public const int notification_template_part_time = 2131427398;
 			
 			// aapt resource value: 0x7F0B0047
-			public const int preference = 2131427399;
+			public const int onboarding_page_layout = 2131427399;
 			
 			// aapt resource value: 0x7F0B0048
-			public const int preference_category = 2131427400;
+			public const int preference = 2131427400;
 			
 			// aapt resource value: 0x7F0B0049
-			public const int preference_category_material = 2131427401;
+			public const int preference_category = 2131427401;
 			
 			// aapt resource value: 0x7F0B004A
-			public const int preference_dialog_edittext = 2131427402;
+			public const int preference_category_material = 2131427402;
 			
 			// aapt resource value: 0x7F0B004B
-			public const int preference_dropdown = 2131427403;
+			public const int preference_dialog_edittext = 2131427403;
 			
 			// aapt resource value: 0x7F0B004C
-			public const int preference_dropdown_material = 2131427404;
+			public const int preference_dropdown = 2131427404;
 			
 			// aapt resource value: 0x7F0B004D
-			public const int preference_information = 2131427405;
+			public const int preference_dropdown_material = 2131427405;
 			
 			// aapt resource value: 0x7F0B004E
-			public const int preference_information_material = 2131427406;
+			public const int preference_information = 2131427406;
 			
 			// aapt resource value: 0x7F0B004F
-			public const int preference_list_fragment = 2131427407;
+			public const int preference_information_material = 2131427407;
 			
 			// aapt resource value: 0x7F0B0050
-			public const int preference_material = 2131427408;
+			public const int preference_list_fragment = 2131427408;
 			
 			// aapt resource value: 0x7F0B0051
-			public const int preference_recyclerview = 2131427409;
+			public const int preference_material = 2131427409;
 			
 			// aapt resource value: 0x7F0B0052
-			public const int preference_widget_checkbox = 2131427410;
+			public const int preference_recyclerview = 2131427410;
 			
 			// aapt resource value: 0x7F0B0053
-			public const int preference_widget_seekbar = 2131427411;
+			public const int preference_widget_checkbox = 2131427411;
 			
 			// aapt resource value: 0x7F0B0054
-			public const int preference_widget_seekbar_material = 2131427412;
+			public const int preference_widget_seekbar = 2131427412;
 			
 			// aapt resource value: 0x7F0B0055
-			public const int preference_widget_switch = 2131427413;
+			public const int preference_widget_seekbar_material = 2131427413;
 			
 			// aapt resource value: 0x7F0B0056
-			public const int preference_widget_switch_compat = 2131427414;
+			public const int preference_widget_switch = 2131427414;
 			
 			// aapt resource value: 0x7F0B0057
-			public const int profile_page_layout = 2131427415;
+			public const int preference_widget_switch_compat = 2131427415;
 			
 			// aapt resource value: 0x7F0B0058
-			public const int qrcode_layout = 2131427416;
+			public const int profile_page_layout = 2131427416;
 			
 			// aapt resource value: 0x7F0B0059
-			public const int select_dialog_item_material = 2131427417;
+			public const int qrcode_layout = 2131427417;
 			
 			// aapt resource value: 0x7F0B005A
-			public const int select_dialog_multichoice_material = 2131427418;
+			public const int register_page_layout = 2131427418;
 			
 			// aapt resource value: 0x7F0B005B
-			public const int select_dialog_singlechoice_material = 2131427419;
+			public const int select_dialog_item_material = 2131427419;
 			
 			// aapt resource value: 0x7F0B005C
-			public const int support_simple_spinner_dropdown_item = 2131427420;
+			public const int select_dialog_multichoice_material = 2131427420;
 			
 			// aapt resource value: 0x7F0B005D
-			public const int toolbar = 2131427421;
+			public const int select_dialog_singlechoice_material = 2131427421;
 			
 			// aapt resource value: 0x7F0B005E
-			public const int zxingscanneractivitylayout = 2131427422;
+			public const int support_simple_spinner_dropdown_item = 2131427422;
 			
 			// aapt resource value: 0x7F0B005F
-			public const int zxingscannerfragmentlayout = 2131427423;
+			public const int toolbar = 2131427423;
+			
+			// aapt resource value: 0x7F0B0060
+			public const int zxingscanneractivitylayout = 2131427424;
+			
+			// aapt resource value: 0x7F0B0061
+			public const int zxingscannerfragmentlayout = 2131427425;
 			
 			static Layout()
 			{

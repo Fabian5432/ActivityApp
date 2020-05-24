@@ -43,7 +43,6 @@ namespace App.Views.Adapter
                     ActivityType=activity_type, ActivityDate = activity_date, ActivityTime = activity_time };
             }
             var holder = (HistoryListAdapterViewHolder)view.Tag;
-            holder.ActivityType.Text = _activity[position].ActivityName;
             holder.ActivityDate.Text = _activity[position].Date;
             holder.ActivityTime.Text = _activity[position].Time;
 
