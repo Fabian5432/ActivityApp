@@ -15,11 +15,13 @@
           android:layout_height="wrap_content"
           android:id="@+id/textView1" />
     <ImageView
-    android:contentDescription="@string/desc"
-    android:src="@drawable/logo"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:id="@+id/activity_logo" />
+        android:contentDescription="@string/desc"
+        android:src="@drawable/icon_logo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/activity_logo"
+        android:adjustViewBounds="false"
+        android:cropToPadding="false" />
 
     <!--Email and password-->
     <android.support.design.widget.TextInputLayout

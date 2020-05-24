@@ -2,6 +2,53 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/viewColor">
+
+<!--Title-->
+    <TextView
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:text="Welcome"
+          android:textSize="20dp"
+          android:gravity="center_horizontal"
+          android:textColor="@color/white"
+          android:layout_margin="15dp"
+          android:id="@+id/register_title" />
+  <ImageView
+        android:contentDescription="@string/desc"
+        android:src="@drawable/icon_logo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/activity_logo"
+        android:adjustViewBounds="false"
+        android:cropToPadding="false" />
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        >
+        <Button
+            android:id="@+id/go_to_register_button"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textStyle="bold"
+            android:layout_margin="20dp"
+            android:textColor= "@android:color/black"
+            android:text="Register"
+            android:background="@drawable/rounded_button"/>
+        <Button
+            android:id="@+id/go_to_login_button"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textStyle="bold"
+            android:layout_margin="20dp"
+            android:textColor= "@android:color/white"
+            android:text="Login"
+            android:background="@drawable/rounded_button"/>
+
+    </GridLayout>
 
 </LinearLayout>

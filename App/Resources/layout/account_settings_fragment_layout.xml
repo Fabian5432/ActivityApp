@@ -8,10 +8,10 @@
         android:id="@+id/change_password_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:drawableRight="@drawable/ic_arrow"
+        android:drawableRight="@drawable/ic_arrow_white"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textAlignment="textStart"
-        android:paddingHorizontal="15dp"
+        android:paddingLeft="15dp"
         android:textColor="@color/white"
         android:background="@color/viewColor"
         android:text="Change password" />
