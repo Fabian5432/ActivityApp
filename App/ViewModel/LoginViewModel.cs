@@ -58,7 +58,7 @@ namespace App.ViewModel
         }
         public bool CanLogin => !string.IsNullOrWhiteSpace(Email) && !string.IsNullOrWhiteSpace(Password);
 
-        public bool CanRegister => !string.IsNullOrWhiteSpace(Email) && !string.IsNullOrWhiteSpace(Password);// && ConfirmedPassword.Equals(Password)
+        public bool CanRegister => !string.IsNullOrWhiteSpace(Email) && !string.IsNullOrWhiteSpace(Password) && !string.IsNullOrWhiteSpace(ConfirmedPassword) && ConfirmedPassword.Equals(Password);
 
         #endregion
 

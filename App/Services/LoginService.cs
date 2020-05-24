@@ -12,6 +12,7 @@ namespace App.Services
         private readonly IFirebaseDatabaseHelper _firebaseDatabaseHelper;
         public event EventHandler LoggedOut;
         public event EventHandler LoggedIn;
+        public event EventHandler SignIn;
 
         #endregion
 
@@ -29,21 +30,25 @@ namespace App.Services
         public async Task Login(string email, string password)
         {
             try
-            {
+            {   bool userFounded = false;
                 var users = await _firebaseDatabaseHelper.GetAllUsers();
-                if (users.Equals(null) && users.Count!=0)
+                var userCredentials = new UserCredentials() { Email =email, Password = password };
+
+                if (!users.Equals(null) && users.Count!=0)
                 {
                     foreach (var user in users)
                     {
-                        var userCredentials = new UserCredentials() { Email = user.UserCredentials.Email, Password = user.UserCredentials.Password };
-                        if (userCredentials.Email == email && userCredentials.Password == password)
+
+                        if (user.UserCredentials.Email == userCredentials.Email && user.UserCredentials.Password == userCredentials.Password )
                         {   
                             _firebaseDatabaseHelper.SaveId(user.UserId);
+                            userFounded = true;
                         }
-                        else
-                        {
-                            throw new Exception("Email or password are incorrect");
-                        }
+                        continue;
+                    }
+                    if(userFounded==false)
+                    {
+                        throw new Exception("Your credentials are invalid!");
                     }
                 }
                 else
@@ -54,7 +59,7 @@ namespace App.Services
             }
             catch(NullReferenceException e)
             {
-                throw new NullReferenceException("UserModel is null", e);
+                throw new NullReferenceException("User list is null", e);
             }
             LoggedIn?.Invoke(this, EventArgs.Empty);
         }
@@ -77,44 +82,41 @@ namespace App.Services
         public async Task Register(string email, string password)
         {
             try
-            {  
+            {
+                bool isUserRegistered = false; 
                 var userCredentials = new UserCredentials() { Email = email, Password = password };
                 var users = await _firebaseDatabaseHelper.GetAllUsers();
                 if (users!=null && users.Count!=0)
+                {
                     foreach (var user in users)
                     {
-                        if (user?.UserCredentials?.Email != email)
+                        if (user?.UserCredentials?.Email == email)
                         {
-                            await _firebaseDatabaseHelper.AddUser(new UserModel() {
-                                UserId =  Guid.NewGuid(),
-                                UserStatus=new UserStatus() {
-                                    IsLoggedIn = false,
-                                    IsAdmin = false},
-                                UserCredentials = userCredentials });
+                            isUserRegistered = true;
+                            throw new Exception("User is already registered");
                         }
-                        else
-                        {
-                            throw new Exception("Email is already in use");
-                        }
+                        continue;
                     }
-                else
-                {
-                    await _firebaseDatabaseHelper.AddUser(new UserModel()
+                    if (isUserRegistered == false)
                     {
-                        UserId = Guid.NewGuid(),
-                        UserStatus = new UserStatus()
+                        await _firebaseDatabaseHelper.AddUser(new UserModel()
                         {
-                            IsLoggedIn = false,
-                            IsAdmin = false
-                        },
-                        UserCredentials = userCredentials
-                    });
+                            UserId = Guid.NewGuid(),
+                            UserStatus = new UserStatus()
+                            {
+                                IsLoggedIn = false,
+                                IsAdmin = false
+                            },
+                            UserCredentials = userCredentials
+                        });
+                    }
                 }
             }
             catch (NullReferenceException e)
             {
-                throw new NullReferenceException("", e);
+                throw new NullReferenceException("Users list is null", e);
             }
+            SignIn.Invoke(this, EventArgs.Empty);
         }
 
         #endregion

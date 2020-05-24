@@ -1,10 +1,7 @@
-﻿using System;
-using Android.App;
-using Android.OS;
+﻿using Android.OS;
 using Android.Support.V7.App;
 using Android.Views;
 using Android.Widget;
-using App.Services;
 using App.Views.Adapter;
 using Fragment = Android.Support.V4.App.Fragment;
 

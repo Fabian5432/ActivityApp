@@ -3380,22 +3380,25 @@ namespace App
 			public const int notify_panel_notification_icon_bg = 2131165319;
 			
 			// aapt resource value: 0x7F070088
-			public const int preference_list_divider_material = 2131165320;
+			public const int onboarding = 2131165320;
 			
 			// aapt resource value: 0x7F070089
-			public const int rounded_button = 2131165321;
+			public const int preference_list_divider_material = 2131165321;
 			
 			// aapt resource value: 0x7F07008A
-			public const int rounded_search_bar = 2131165322;
+			public const int rounded_button = 2131165322;
 			
 			// aapt resource value: 0x7F07008B
-			public const int splash_screen = 2131165323;
+			public const int rounded_search_bar = 2131165323;
 			
 			// aapt resource value: 0x7F07008C
-			public const int tooltip_frame_dark = 2131165324;
+			public const int splash_screen = 2131165324;
 			
 			// aapt resource value: 0x7F07008D
-			public const int tooltip_frame_light = 2131165325;
+			public const int tooltip_frame_dark = 2131165325;
+			
+			// aapt resource value: 0x7F07008E
+			public const int tooltip_frame_light = 2131165326;
 			
 			static Drawable()
 			{

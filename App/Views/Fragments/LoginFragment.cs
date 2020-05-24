@@ -84,7 +84,7 @@ namespace App.Views.Fragments
         {
 
 
-            ViewModel.Email = _email.Text;
+            ViewModel.Email = _email.Text.ToLower();
             ViewModel.Password = _password.Text;
 
             if (!ViewModel.CanLogin)
@@ -93,10 +93,11 @@ namespace App.Views.Fragments
             try
             {
                 _progressBar.Visibility = ViewStates.Visible;
-                await ViewModel.RegisterAync();
+                await ViewModel.LoginAsync();
                 await Task.Delay(500);
                 var intent = new Intent(Activity, typeof(MainActivity));
                 StartActivity(intent);
+                Activity.Finish();
             }
             catch (Exception ex)
             {
