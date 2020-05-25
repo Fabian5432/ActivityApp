@@ -53,6 +53,12 @@ namespace App.Services
             await _firebaseClient.Child(UserChild).Child(persontoDelete.Key).DeleteAsync();
         }
 
+        public async Task AddActivityToUser(ActivityModel activity)
+        {
+            var user = await GetCurrentUser();
+            await _firebaseClient.Child(UserChild).Child(user.Key).Child("Activity").PostAsync(activity);
+        }
+
         public void SaveId(Guid id)
         {
             string path = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
@@ -70,5 +76,7 @@ namespace App.Services
 
             return Guid.Parse(idfromfile);
         }
+
+
     }
 }

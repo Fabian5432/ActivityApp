@@ -10,6 +10,7 @@ namespace App.Services.Interfaces
     {
         Task<List<UserModel>> GetAllUsers();
         Task<FirebaseObject<UserModel>> GetCurrentUser();
+        Task AddActivityToUser(ActivityModel activity);
         Task AddUser(UserModel person);
         Task DeleteUser();
 

@@ -7,15 +7,12 @@ namespace App.ViewModel
     {
         public string ActivityName { get; set; }
 
-        public string Date { get; set; }
-
-        public string Time { get; set; }
-
         public ActivityViewModel() { }
 
         public ActivityViewModel(ActivityModel activityModel)
         {
             ActivityName = activityModel.ActivityName;
         }
+
     }
 }

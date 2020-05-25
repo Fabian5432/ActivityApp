@@ -27,9 +27,10 @@ namespace App.Services
 
         #region Methods
        
-        public async Task AddActivityAsync(ActivityModel activity)
+        public async Task AddActivityAsync(string activityname)
         {
-           
+            var activity = new ActivityModel() { ActivityName = activityname };
+            await  _firebaseDatabaseHelper.AddActivityToUser(activity);
         }
 
         #region Encryption Method

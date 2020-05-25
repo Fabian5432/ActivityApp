@@ -58,7 +58,7 @@ namespace App.ViewModel
         }
         public bool CanLogin => !string.IsNullOrWhiteSpace(Email) && !string.IsNullOrWhiteSpace(Password);
 
-        public bool CanRegister => !string.IsNullOrWhiteSpace(Email) && !string.IsNullOrWhiteSpace(Password) && !string.IsNullOrWhiteSpace(ConfirmedPassword) && ConfirmedPassword.Equals(Password);
+        public bool CanRegister => !string.IsNullOrWhiteSpace(Email) && !string.IsNullOrWhiteSpace(Password) && !string.IsNullOrWhiteSpace(ConfirmedPassword);
 
         #endregion
 
@@ -98,13 +98,13 @@ namespace App.ViewModel
             if (!CanRegister)
                 return;
             try
-            {   if(IsValidEmail(Email))
+            {   if (IsValidEmail(Email) && ConfirmedPassword.Equals(Password) && IsPasswordValid(Password))
                 {
                     await _loginService.Register(Email, Password);
                 }
                 else
                 {
-                    throw new Exception("Your email adress is not valid");
+                    throw new Exception("Credentials are not valid");
                 }
             
             }
