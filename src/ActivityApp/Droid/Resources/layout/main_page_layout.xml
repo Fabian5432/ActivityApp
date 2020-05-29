@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:background="@color/viewColor">
+  <!--CardView layout with Textview-->
+
+  <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/main_page_cardview_hight"
+        android:layout_marginTop="@dimen/main_page_cardview_margin_top"
+        android:layout_marginLeft="@dimen/main_page_cardview_margin_left"
+        android:layout_marginRight="@dimen/main_page_cardview_margin_right"
+        app:cardCornerRadius="5dp"
+        app:cardBackgroundColor="@color/bottomBarColor">
+         <TextView
+            android:text="Hello!"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:layout_width="match_parent"
+            android:gravity="top|left"
+            android:textColor="@color/white"
+            android:layout_margin="@dimen/main_page_textview_margin"
+            android:layout_height="match_parent"
+            android:id="@+id/main_page_hello_id" />
+        <TextView
+            android:text="Vlasceanu Fabian"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:layout_width="match_parent"
+            android:textColor="@color/white"
+            android:layout_marginLeft="@dimen/main_page_textview_margin_left"
+            android:layout_marginTop="@dimen/main_page_textview_margin_top"
+            android:layout_height="match_parent"
+            android:id="@+id/main_page_username_id" />
+   <Button
+    android:id="@+id/main_page_add_button_id"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/main_page_button_layout_hight"
+    android:layout_gravity="bottom"
+    android:background="@android:color/holo_orange_light"
+    android:theme="@drawable/rounded_button"
+    android:textAppearance="?android:attr/textAppearanceLarge"
+    android:textColor="@android:color/white"
+    android:text="+"/>
+    </android.support.v7.widget.CardView>
+
+<!--Listview with swipetoRefresh-->
+ <android.support.v4.widget.SwipeRefreshLayout
+            android:id="@+id/swipeRefresh"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/main_page_swipe_to_refresh_margin_top"
+            android:layout_marginLeft="@dimen/main_page_swipe_to_refresh_margin_left"
+            android:layout_marginRight="@dimen/main_page_swipe_to_refresh_margin_right">
+         <ListView
+            android:id="@+id/list_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="none"
+            android:divider="@null"
+            android:dividerHeight="@dimen/main_page_listview_divider_height"/>
+  </android.support.v4.widget.SwipeRefreshLayout>
+</LinearLayout>

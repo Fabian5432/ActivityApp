@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+  <item android:drawable="@drawable/icon_lock"
+        android:width="16dp"
+        android:height="21dp"
+        android:gravity="right"
+        android:start="15dp"
+        android:end="10dp">
+  </item>
+</layer-list>
