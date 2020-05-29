@@ -1,13 +1,14 @@
 using NUnit.Framework;
 
-namespace AppUnitTests
+namespace ActivityAppUnitTests
 {
     [TestFixture]
-    public class Tests
+    public class LoginViewModelTest
     {
         [SetUp]
         public void Setup()
         {
+           
         }
 
         [Test]
