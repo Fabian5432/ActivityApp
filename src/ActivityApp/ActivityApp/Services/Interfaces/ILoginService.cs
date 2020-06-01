@@ -7,6 +7,5 @@ namespace ActivityApp.Services.Interfaces
         Task Login(string email, string password);
         Task Register(string email, string password);
         Task Logout();
-        Task<bool> IsUserloggedinAsync();
     }
 }

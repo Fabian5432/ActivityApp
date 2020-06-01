@@ -11,30 +11,36 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ActivityApp.Droid", "src\Ac
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "ActivityApp", "src\ActivityApp\ActivityApp\ActivityApp.shproj", "{2462BE48-B8B1-4B0E-B5DF-388ADF4F44B2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ActivityAppUnitTests", "ActivityAppUnitTests\ActivityAppUnitTests.csproj", "{C57FEDD4-B635-4747-8E1C-E48C45B9F6C5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ActivityAppUnitTests", "ActivityAppUnitTests\ActivityAppUnitTests.csproj", "{C57FEDD4-B635-4747-8E1C-E48C45B9F6C5}"
 EndProject
 Global
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		src\ActivityApp\ActivityApp\ActivityApp.projitems*{2462be48-b8b1-4b0e-b5df-388adf4f44b2}*SharedItemsImports = 13
+		src\ActivityApp\ActivityApp\ActivityApp.projitems*{b05790da-4cfa-4f60-87eb-fbfef8d287b0}*SharedItemsImports = 4
+		src\ActivityApp\ActivityApp\ActivityApp.projitems*{c57fedd4-b635-4747-8e1c-e48c45b9f6c5}*SharedItemsImports = 5
+	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
-		Release|Any CPU = Release|Any CPU
 		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{B05790DA-4CFA-4F60-87EB-FBFEF8D287B0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{B05790DA-4CFA-4F60-87EB-FBFEF8D287B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B05790DA-4CFA-4F60-87EB-FBFEF8D287B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B05790DA-4CFA-4F60-87EB-FBFEF8D287B0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B05790DA-4CFA-4F60-87EB-FBFEF8D287B0}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
 		{B05790DA-4CFA-4F60-87EB-FBFEF8D287B0}.Debug|x86.ActiveCfg = Debug|Any CPU
 		{B05790DA-4CFA-4F60-87EB-FBFEF8D287B0}.Debug|x86.Build.0 = Debug|Any CPU
+		{B05790DA-4CFA-4F60-87EB-FBFEF8D287B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B05790DA-4CFA-4F60-87EB-FBFEF8D287B0}.Release|Any CPU.Build.0 = Release|Any CPU
 		{B05790DA-4CFA-4F60-87EB-FBFEF8D287B0}.Release|x86.ActiveCfg = Release|Any CPU
 		{B05790DA-4CFA-4F60-87EB-FBFEF8D287B0}.Release|x86.Build.0 = Release|Any CPU
 		{C57FEDD4-B635-4747-8E1C-E48C45B9F6C5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C57FEDD4-B635-4747-8E1C-E48C45B9F6C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C57FEDD4-B635-4747-8E1C-E48C45B9F6C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C57FEDD4-B635-4747-8E1C-E48C45B9F6C5}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C57FEDD4-B635-4747-8E1C-E48C45B9F6C5}.Debug|x86.ActiveCfg = Debug|Any CPU
 		{C57FEDD4-B635-4747-8E1C-E48C45B9F6C5}.Debug|x86.Build.0 = Debug|Any CPU
+		{C57FEDD4-B635-4747-8E1C-E48C45B9F6C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C57FEDD4-B635-4747-8E1C-E48C45B9F6C5}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C57FEDD4-B635-4747-8E1C-E48C45B9F6C5}.Release|x86.ActiveCfg = Release|Any CPU
 		{C57FEDD4-B635-4747-8E1C-E48C45B9F6C5}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection

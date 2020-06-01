@@ -1,5 +1,8 @@
-﻿using ActivityApp.Models;
+﻿using ActivityApp.Helper;
+using ActivityApp.Models;
 using ActivityApp.Services.Interfaces;
+using Firebase.Auth;
+using Plugin.Connectivity;
 using System;
 using System.Threading.Tasks;
 
@@ -10,16 +13,16 @@ namespace ActivityApp.Services
         #region Fields
 
         private readonly IFirebaseDatabaseHelper _firebaseDatabaseHelper;
+        private readonly IFirebaseAuthProvider _firebaseAuthProvider;
         public event EventHandler LoggedOut;
-        public event EventHandler LoggedIn;
-        public event EventHandler SignIn;
 
         #endregion
 
         #region Constructor
 
-        public LoginService(IFirebaseDatabaseHelper firebaseDatabaseHelper)
+        public LoginService(IFirebaseDatabaseHelper firebaseDatabaseHelper, IFirebaseAuthProvider firebaseAuthProvider)
         {
+            _firebaseAuthProvider = firebaseAuthProvider;
             _firebaseDatabaseHelper = firebaseDatabaseHelper;
         }
 
@@ -30,49 +33,30 @@ namespace ActivityApp.Services
         public async Task Login(string email, string password)
         {
             try
-            {   bool userFounded = false;
-                var users = await _firebaseDatabaseHelper.GetAllUsers();
-                var userCredentials = new UserCredentials() { Email =email, Password = password };
-
-                if (!users.Equals(null) && users.Count!=0)
+            {   if(CrossConnectivity.Current.IsConnected.Equals(true))
                 {
-                    foreach (var user in users)
-                    {
-
-                        if (user.UserCredentials.Email == userCredentials.Email && user.UserCredentials.Password == userCredentials.Password )
-                        {
-                            userFounded = true;
-                            _firebaseDatabaseHelper.SaveId(user.UserId);
-                            await _firebaseDatabaseHelper.UpdateUserLoginStatus(true);
-                        }
-                        continue;
-                    }
-                    if(userFounded==false)
-                    {
-                        throw new Exception("Your credentials are invalid!");
-                    }
+                    var auth = await _firebaseAuthProvider.SignInWithEmailAndPasswordAsync(email, password);
+                    UserLocalData.RemoveToken();
+                    UserLocalData.userToken = auth.FirebaseToken;
+                    UserLocalData.RemoveUserId();
+                    UserLocalData.userId = auth.User.LocalId;
                 }
                 else
                 {
-                    throw new Exception("Your email or password are not vaild");
+                    throw new Exception("Server is unavailable right now, try again later");
                 }
-
             }
-            catch(NullReferenceException e)
+            catch(Exception e)
             {
-                throw new NullReferenceException("User list is null", e);
+                if(e.Message.Contains("INVALID_PASSWORD") || e.Message.Contains("EMAIL_NOT_FOUND"))
+                {
+                    throw new Exception("Your email or password are not valid", e);
+                }
+                else
+                {
+                    throw new Exception(e.Message, e);
+                }
             }
-            LoggedIn?.Invoke(this, EventArgs.Empty);
-        }
-
-        public async Task<bool> IsUserloggedinAsync()
-        {
-            var user = await _firebaseDatabaseHelper.GetCurrentUser();
-
-            if (user.Object.UserStatus.IsLoggedIn!=false)
-                return true;
-            else
-                return false;
         }
 
         public async Task Logout()
@@ -85,40 +69,27 @@ namespace ActivityApp.Services
         {
             try
             {
-                bool isUserRegistered = false; 
-                var userCredentials = new UserCredentials() { Email = email, Password = password };
-                var users = await _firebaseDatabaseHelper.GetAllUsers();
-                if (users!=null && users.Count!=0)
-                {
-                    foreach (var user in users)
-                    {
-                        if (user?.UserCredentials?.Email == email)
-                        {
-                            isUserRegistered = true;
-                            throw new Exception("User is already registered");
-                        }
-                        continue;
-                    }
-                    if (isUserRegistered == false)
-                    {
-                        await _firebaseDatabaseHelper.AddUser(new UserModel()
-                        {
-                            UserId = Guid.NewGuid(),
+                var auth = await _firebaseAuthProvider.CreateUserWithEmailAndPasswordAsync(email, password);
+                UserLocalData.userToken = auth.FirebaseToken;
+                var userCredentials = new UserCredentials() { Email = email};
+                await _firebaseDatabaseHelper.AddUser(new UserModel()
+                       {
+                            UserId = auth.User.LocalId,
                             UserStatus = new UserStatus()
                             {
-                                IsLoggedIn = false,
                                 IsAdmin = false
                             },
                             UserCredentials = userCredentials
                         });
-                    }
+                UserLocalData.RemoveToken();
+            }
+            catch (Exception e)
+            {
+                if(e.Message.Contains("EMAIL_EXISTS"))
+                {
+                    throw new Exception("Email is already registerd");
                 }
             }
-            catch (NullReferenceException e)
-            {
-                throw new NullReferenceException("Users list is null", e);
-            }
-            SignIn.Invoke(this, EventArgs.Empty);
         }
 
         #endregion

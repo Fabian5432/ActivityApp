@@ -6,6 +6,7 @@ using Fragment = Android.Support.V4.App.Fragment;
 using ActivityApp.Views.Fragments;
 using ActivityApp.Fragments;
 using Android;
+using Plugin.Connectivity;
 
 namespace ActivityApp.Activities
 {
@@ -76,6 +77,10 @@ namespace ActivityApp.Activities
             }
             if (fragment == null)
                 return;
+            if(CrossConnectivity.Current.IsConnected==false)
+            {
+                fragment = AccountSettingsFragment.NewInstance();
+            }
 
             ReplaceFragment(fragment);
         }

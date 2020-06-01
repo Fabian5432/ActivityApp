@@ -112,10 +112,6 @@ namespace ActivityApp.ViewModel
             {
                 throw new Exception(e.Message, e);
             }
-            finally
-            {
-                OnPropertyChanged(nameof(CanRegister));
-            }
         }
 
         public async void Logout()

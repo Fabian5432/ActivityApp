@@ -1,5 +1,7 @@
-﻿using ActivityApp.Models;
+﻿using ActivityApp.Helper;
+using ActivityApp.Models;
 using ActivityApp.Services.Interfaces;
+using Firebase.Auth;
 using Firebase.Database;
 using Firebase.Database.Query;
 using Plugin.Connectivity;
@@ -25,7 +27,8 @@ namespace ActivityApp.Services
         #endregion
 
         public FirebaseDatabaseHelper(IFirebaseDatabaseConnection firebaseDatabaseConnection)
-        { 
+        {
+
             if (_firebaseClient == null)
             _firebaseClient = firebaseDatabaseConnection.GetFirebaseClient();
             items = new List<ActivityModel>();
@@ -53,7 +56,7 @@ namespace ActivityApp.Services
             if (CrossConnectivity.Current.IsConnected)
             {
               currentUser = (await _firebaseClient.Child(UserChild).OnceAsync<UserModel>()).
-              Where(user => user.Object.UserId == GetSavedUserId()).FirstOrDefault();
+              Where(user => user.Object.UserId == UserLocalData.userId).FirstOrDefault();
             }
 
             return currentUser; 
@@ -85,24 +88,6 @@ namespace ActivityApp.Services
             {
                 await _firebaseClient.Child(UserChild).Child(user.Key).Child(ActivityChild).PostAsync(activity);
             }
-        }
-
-        public void SaveId(Guid id)
-        {
-            string path = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
-            string settingsPath = Path.Combine(path, "userid.txt");
-            StreamWriter stream = File.CreateText(settingsPath);
-            stream.WriteLine(id);
-            stream.Close();
-        }
-
-        public Guid GetSavedUserId()
-        {
-            string path = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
-            string settingsPath = Path.Combine(path, "userid.txt");
-            string idfromfile = File.ReadAllText(settingsPath);
-
-            return Guid.Parse(idfromfile);
         }
 
         public async Task<List<ActivityModel>> GetAllUserActivities(bool forceRefresh = false)

@@ -15,7 +15,5 @@ namespace ActivityApp.Services.Interfaces
         Task AddUser(UserModel person);
         Task UpdateUserLoginStatus(bool loginStatus);
         Task DeleteUser();
-
-        void SaveId(Guid id);
     }
 }

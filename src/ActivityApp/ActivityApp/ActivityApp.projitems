@@ -9,6 +9,7 @@
     <Import_RootNamespace>ActivityApp</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Helper\UserLocalData.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\ActivityModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\HistoryModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\UserCredentials.cs" />

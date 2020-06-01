@@ -105,6 +105,7 @@ namespace ActivityApp.Views.Fragments
                 await Task.Delay(500);
                 var intent = new Intent(Activity, typeof(OnboardingActivity));
                 StartActivity(intent);
+                Activity.Finish();
             }
             catch (Exception ex)
             {

@@ -1,4 +1,5 @@
 ﻿using ActivityApp.Services.Interfaces;
+using Firebase.Auth;
 
 namespace ActivityApp.Services
 {
@@ -9,6 +10,17 @@ namespace ActivityApp.Services
         private static ILoginService _loginService;
         private static IFirebaseDatabaseConnection _firebaseDatabaseConnection;
         private static IFirebaseDatabaseHelper _firebaseDatabaseHelper;
+        private static IFirebaseAuthProvider _firebaseAuthProvider;
+
+        public IFirebaseAuthProvider GetFirebaseAuthProvider
+        {
+            get
+            {
+                if (_firebaseAuthProvider == null)
+                    _firebaseAuthProvider = new FirebaseAuthProvider(new FirebaseConfig("AIzaSyA-Ii9kue7tBwdPhqMRN7auPkW_77JbKPQ"));
+                return _firebaseAuthProvider;
+            }
+        }
 
         public IFirebaseDatabaseConnection GetFirebaseDatabaseConnection
         {
@@ -53,7 +65,7 @@ namespace ActivityApp.Services
         {
             get
             {   if(_loginService == null)
-                    _loginService = new LoginService(GetDatabaseHelper);
+                    _loginService = new LoginService(GetDatabaseHelper, GetFirebaseAuthProvider);
                 return _loginService;
             }
         }
