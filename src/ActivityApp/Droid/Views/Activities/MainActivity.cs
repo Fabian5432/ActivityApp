@@ -5,12 +5,11 @@ using Android.Support.Design.Widget;
 using Fragment = Android.Support.V4.App.Fragment;
 using ActivityApp.Views.Fragments;
 using ActivityApp.Fragments;
-using Android;
 using Plugin.Connectivity;
 
 namespace ActivityApp.Activities
 {
-    [Activity(Label = "@string/app_name", MainLauncher = false, LaunchMode = Android.Content.PM.LaunchMode.SingleTop, ScreenOrientation = Android.Content.PM.ScreenOrientation.Portrait)]
+    [Activity(Label = "@string/app_name", MainLauncher = false, ScreenOrientation = Android.Content.PM.ScreenOrientation.Portrait)]
     public class MainActivity : AppCompatActivity
     {
         #region Components
@@ -62,7 +61,7 @@ namespace ActivityApp.Activities
 
         void LoadFragment(int id)
         {
-            Android.Support.V4.App.Fragment fragment = null;
+            Fragment fragment = null;
             switch (id)
             { 
                 case Resource.Id.menu_home:
@@ -85,7 +84,7 @@ namespace ActivityApp.Activities
             ReplaceFragment(fragment);
         }
 
-        public void ReplaceFragment(Android.Support.V4.App.Fragment fragment)
+        public void ReplaceFragment(Fragment fragment)
         {
             SupportFragmentManager.BeginTransaction()
                                   .Replace(Resource.Id.content_frame, fragment)

@@ -45,14 +45,14 @@ namespace ActivityApp.Views.Fragments
         public override void OnResume()
         {
             base.OnResume();
-            _changePasswordButton.Click += goChangePassword;
+            _changePasswordButton.Click += GoChangePassword;
             _logoutButton.Click += Logout;
         }
 
         public override void OnPause()
         {
             base.OnPause();
-            _changePasswordButton.Click -= goChangePassword;
+            _changePasswordButton.Click -= GoChangePassword;
             _logoutButton.Click -= Logout;
 
         }
@@ -61,7 +61,7 @@ namespace ActivityApp.Views.Fragments
 
         #region Methods 
 
-        private void goChangePassword(object sender, EventArgs e)
+        private void GoChangePassword(object sender, EventArgs e)
         {
             var intent = new Intent(Activity, typeof(ChangePasswordActivity));
             StartActivity(intent);
@@ -71,10 +71,10 @@ namespace ActivityApp.Views.Fragments
         {
             ViewModel.Logout();
             var intent = new Intent(Activity, typeof(OnboardingActivity));
+            intent.SetFlags(ActivityFlags.ClearTop);
             StartActivity(intent);
             Activity.Finish();
         }
-
         #endregion
 
 

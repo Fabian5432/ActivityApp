@@ -8,7 +8,7 @@ using System;
 
 namespace ActivityApp.Views.Activities
 {
-    [Activity(Label = "OnboardingActivity", Theme = "@style/NoActionBar")]
+    [Activity(Label = "OnboardingActivity", LaunchMode = Android.Content.PM.LaunchMode.SingleTop, Theme = "@style/NoActionBar")]
     public class OnboardingActivity : AppCompatActivity
     {
         #region Components
