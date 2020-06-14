@@ -24,8 +24,6 @@ namespace ActivityApp.Views.Activities
 
             _loginButton = FindViewById<Button>(Resource.Id.go_to_login_button);
             _registerButton = FindViewById<Button>(Resource.Id.go_to_register_button);
-
-            // Create your application here
         }
 
         protected override void OnResume()

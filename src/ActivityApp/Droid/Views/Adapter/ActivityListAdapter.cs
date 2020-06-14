@@ -17,6 +17,7 @@ namespace ActivityApp.Views.Adapter
         {
             this.activity = activity;
             this.activityViewModel = activityViewModel;
+
             this.activityViewModel.Items.CollectionChanged += (sender, args) =>
             {
                 this.activity.RunOnUiThread(NotifyDataSetChanged);

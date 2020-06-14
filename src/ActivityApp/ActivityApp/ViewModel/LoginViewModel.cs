@@ -92,6 +92,10 @@ namespace ActivityApp.ViewModel
             }
 
         }
+        public string GetEmail()
+        {
+            return _loginService.GetCurrenUserEmail();
+        }
 
         public async Task RegisterAync()
         {
@@ -118,6 +122,7 @@ namespace ActivityApp.ViewModel
         {
             await _loginService.Logout();
         }
+        #region Helper Methods 
 
         private bool IsValidEmail(string email)
         {
@@ -141,6 +146,9 @@ namespace ActivityApp.ViewModel
             var isValidated = hasNumber.IsMatch(password) && hasUpperChar.IsMatch(password) && hasMinimum8Chars.IsMatch(password);
             return isValidated;
         }
+
+        #endregion
+
         #endregion
 
 

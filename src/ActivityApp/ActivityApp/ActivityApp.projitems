@@ -33,6 +33,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Services\QrCodeService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\RepositoryService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\ServiceLocator.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Helper\Command.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Models\" />

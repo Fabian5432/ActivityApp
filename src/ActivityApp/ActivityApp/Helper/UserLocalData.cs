@@ -10,9 +10,15 @@ namespace ActivityApp.Helper
         public enum DataKey
         {
             userToken,
-            userId
+            userId,
+            logged
         }
 
+        public static string logged
+        {
+            get => AppSettings.GetValueOrDefault(DataKey.logged.ToString(), string.Empty);
+            set => AppSettings.AddOrUpdateValue(DataKey.logged.ToString(), value);
+        }
         public static string userToken
         {
             get => AppSettings.GetValueOrDefault(DataKey.userToken.ToString(), string.Empty);
@@ -32,6 +38,10 @@ namespace ActivityApp.Helper
         public static void RemoveUserId()
         {
             AppSettings.Remove(DataKey.userId.ToString());
+        }
+        public static void RemoveLogged()
+        {
+            AppSettings.Remove(DataKey.logged.ToString());
         }
     }
 

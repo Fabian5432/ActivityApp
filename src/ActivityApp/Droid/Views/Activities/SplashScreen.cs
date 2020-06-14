@@ -1,7 +1,7 @@
-﻿using System.Threading;
-using Android.App;
+﻿using Android.App;
 using Android.OS;
 using ActivityApp.Views.Activities;
+using ActivityApp.Helper;
 
 namespace ActivityApp.Activities
 {
@@ -11,8 +11,20 @@ namespace ActivityApp.Activities
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
-            Thread.Sleep(500);
-            StartActivity(typeof(OnboardingActivity));
+            Check();
+        }
+
+        public void Check()
+        {
+            if(UserLocalData.logged.Equals("true"))
+            {
+                StartActivity(typeof(MainActivity));
+              
+            }
+            else
+            {
+                StartActivity(typeof(OnboardingActivity));
+            }
             Finish();
         }
        }

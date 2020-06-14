@@ -47,14 +47,14 @@ namespace ActivityApp.Views.CustomViews
         protected override void OnStart()
         {
             base.OnStart();
-            addButton.Click += AddButtonClickAsync;
+            addButton.Click += AddButtonClick;
             cancelButton.Click += CancelButtonClick;
 
         }
         protected override void OnStop()
         {
             base.OnStop();
-            addButton.Click -= AddButtonClickAsync;
+            addButton.Click -= AddButtonClick;
             cancelButton.Click -= CancelButtonClick;
         }
 
@@ -63,7 +63,7 @@ namespace ActivityApp.Views.CustomViews
             ViewModel.ActivityName = activityNameEditText.Text;
         }
 
-        public async void AddButtonClickAsync(object sender, EventArgs e)
+        public void AddButtonClick(object sender, EventArgs e)
         {
             if (!ViewModel.CanAddItem)
                 return;
@@ -71,14 +71,14 @@ namespace ActivityApp.Views.CustomViews
             {
                 ViewModel.ActivityName = activityNameEditText.Text;
                 var activity = new ActivityModel() { ActivityName = ViewModel.ActivityName };
-                await ViewModel.AddActivity(activity);
+                ViewModel.AddItemCommand.Execute(activity);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 throw new Exception("Error adding item", ex);
             }
             Dismiss();
-        
+
         }
 
         private void CancelButtonClick(object sender, EventArgs e)

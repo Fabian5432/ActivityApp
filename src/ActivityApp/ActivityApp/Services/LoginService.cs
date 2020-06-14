@@ -10,7 +10,7 @@ namespace ActivityApp.Services
 {
     public class LoginService : ILoginService
     {
-        #region Fields
+        #region Properties and Dependencies 
 
         private readonly IFirebaseDatabaseHelper _firebaseDatabaseHelper;
         private readonly IFirebaseAuthProvider _firebaseAuthProvider;
@@ -20,7 +20,8 @@ namespace ActivityApp.Services
 
         #region Constructor
 
-        public LoginService(IFirebaseDatabaseHelper firebaseDatabaseHelper, IFirebaseAuthProvider firebaseAuthProvider)
+        public LoginService(IFirebaseDatabaseHelper firebaseDatabaseHelper,
+                            IFirebaseAuthProvider firebaseAuthProvider)
         {
             _firebaseAuthProvider = firebaseAuthProvider;
             _firebaseDatabaseHelper = firebaseDatabaseHelper;
@@ -40,6 +41,7 @@ namespace ActivityApp.Services
                     UserLocalData.userToken = auth.FirebaseToken;
                     UserLocalData.RemoveUserId();
                     UserLocalData.userId = auth.User.LocalId;
+                    UserLocalData.logged = "true";
                 }
                 else
                 {
@@ -53,18 +55,20 @@ namespace ActivityApp.Services
                     throw new Exception("Your email or password are not valid", e);
                 }
                 else
-                {
+                {   
                     throw new Exception(e.Message, e);
                 }
             }
+  
         }
 
-        public async Task Logout()
+        public void Logout()
         {
-            await _firebaseDatabaseHelper.UpdateUserLoginStatus(false);
+            UserLocalData.logged = "false";
+            UserLocalData.RemoveUserId();
             LoggedOut?.Invoke(this, EventArgs.Empty);
         }
-                                                                                                                                                                                           
+
         public async Task Register(string email, string password)
         {
             try
@@ -90,6 +94,11 @@ namespace ActivityApp.Services
                     throw new Exception("Email is already registerd");
                 }
             }
+        }
+
+        public string GetCurrenUserEmail()
+        {
+            return _firebaseDatabaseHelper.CurrentUser.Object.UserCredentials.Email;
         }
 
         #endregion

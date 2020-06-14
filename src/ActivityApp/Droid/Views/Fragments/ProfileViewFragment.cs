@@ -1,21 +1,23 @@
 ﻿using System;
-using Android.Content;
 using Android.OS;
-using Android.Support.V7.App;
 using Android.Views;
 using Android.Widget;
-using ActivityApp.Views.Activities;
-using Fragment = Android.Support.V4.App.Fragment;
+using Android.Support.V4.App;
+using Android.Support.V7.App;
+using ActivityApp.Views.Fragments;
+using ActivityApp.ViewModel;
+using ActivityApp.Views.Fragments.Base;
 
 namespace ActivityApp.Fragments
 {
-    public class ProfileViewFragment : Fragment
+    public class ProfileViewFragment : LoginBaseFragment<LoginViewModel>
     {
         #region Components
 
         View _view;
         Button _account_settings;
         Button _device_admin;
+        TextView _userAccountText;
 
         #endregion
 
@@ -39,7 +41,9 @@ namespace ActivityApp.Fragments
             _view = inflater.Inflate(Resource.Layout.profile_page_layout, null);
             _account_settings = (Button)_view.FindViewById(Resource.Id.account_settings);
             _device_admin =(Button)_view.FindViewById(Resource.Id.device_admin);
+            _userAccountText = (TextView)_view.FindViewById(Resource.Id.profile_account_textView);
 
+            _userAccountText.Text = ViewModel.GetEmail();
             return _view;
             
         }
@@ -49,7 +53,7 @@ namespace ActivityApp.Fragments
             base.OnResume();
             _account_settings.Click += goSettings;
             _device_admin.Visibility = ViewStates.Gone;
-
+          
         }
 
         public override void OnPause()
@@ -61,8 +65,12 @@ namespace ActivityApp.Fragments
 
         private void goSettings(object sender, EventArgs e)
         {
-            var intent = new Intent(Activity, typeof(AccountSettingsActivity));
-            StartActivity(intent);
+            FragmentTransaction ft = FragmentManager.BeginTransaction();
+            AccountSettingsFragment f4 = new AccountSettingsFragment();
+            // The fragment  that will have the ID of Resource.Id.fragment_container.  
+            ft.Replace(Resource.Id.content_frame,f4, "f4");
+            ft.AddToBackStack(null);
+            ft.Commit();
         }
 
         #endregion

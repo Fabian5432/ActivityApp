@@ -5,7 +5,6 @@ using Android.Support.Design.Widget;
 using Fragment = Android.Support.V4.App.Fragment;
 using ActivityApp.Views.Fragments;
 using ActivityApp.Fragments;
-using Plugin.Connectivity;
 
 namespace ActivityApp.Activities
 {
@@ -41,6 +40,7 @@ namespace ActivityApp.Activities
         {
             base.OnResume();
             _bottomNavigationView.NavigationItemSelected += BottomNavigation_NavigationItemSelected;
+            
         }
 
         protected override void OnPause()
@@ -55,8 +55,7 @@ namespace ActivityApp.Activities
 
         private void BottomNavigation_NavigationItemSelected(object sender, BottomNavigationView.NavigationItemSelectedEventArgs e)
         {
-            
-            LoadFragment(e.Item.ItemId);
+            LoadFragment(e.Item.ItemId); 
         }
 
         void LoadFragment(int id)
@@ -76,10 +75,6 @@ namespace ActivityApp.Activities
             }
             if (fragment == null)
                 return;
-            if(CrossConnectivity.Current.IsConnected==false)
-            {
-                fragment = AccountSettingsFragment.NewInstance();
-            }
 
             ReplaceFragment(fragment);
         }
@@ -91,7 +86,6 @@ namespace ActivityApp.Activities
                                   .Commit();
         }
 
-        
         #endregion
     }
 }

@@ -1,10 +1,7 @@
 ﻿using ActivityApp.Helper;
 using ActivityApp.Services.Interfaces;
-using Firebase.Auth;
 using Firebase.Database;
-using Newtonsoft.Json.Linq;
 using System.Threading.Tasks;
-using ZXing.Aztec.Internal;
 
 namespace ActivityApp.Services
 {

@@ -7,6 +7,7 @@ using Android.Views;
 using Android.Widget;
 using ActivityApp.Views.Activities;
 using ActivityApp.Views.Fragments.Base;
+using Android.Support.V4.App;
 
 namespace ActivityApp.Views.Fragments
 {
@@ -39,6 +40,7 @@ namespace ActivityApp.Views.Fragments
             _view = inflater.Inflate(Resource.Layout.account_settings_fragment_layout, null);
             _changePasswordButton = (Button)_view.FindViewById(Resource.Id.change_password_button);
             _logoutButton = (Button)_view.FindViewById(Resource.Id.logout_button);
+
             return _view;
         }
 
@@ -63,8 +65,11 @@ namespace ActivityApp.Views.Fragments
 
         private void GoChangePassword(object sender, EventArgs e)
         {
-            var intent = new Intent(Activity, typeof(ChangePasswordActivity));
-            StartActivity(intent);
+            FragmentTransaction ft = FragmentManager.BeginTransaction();
+            ChangePasswordFragment changePasswordFragment = new ChangePasswordFragment();
+            ft.Replace(Resource.Id.content_frame, changePasswordFragment, "f4");
+            ft.AddToBackStack(null);
+            ft.Commit();
         }
 
         private void Logout(object sender, EventArgs e)
@@ -75,6 +80,7 @@ namespace ActivityApp.Views.Fragments
             StartActivity(intent);
             Activity.Finish();
         }
+
         #endregion
 
 

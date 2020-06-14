@@ -14,10 +14,10 @@
         android:paddingTop="58dp"
         />
     <TextView
+        android:id="@+id/profile_account_textView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
-        android:text="Username"
         android:textColor="@color/white"
         android:textAppearance="?android:attr/textAppearanceMedium"/>
    <TextView

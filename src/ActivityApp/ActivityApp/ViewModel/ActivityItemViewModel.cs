@@ -8,13 +8,9 @@ namespace ActivityApp.ViewModel
 {
     public class ActivityItemViewModel: BaseViewModel
     {
-        #region Fields
+        #region Properties and Dependencies
 
         private IFirebaseDatabaseHelper _firebaseDatabaseHelper;
-
-        #endregion
-
-        #region Properties
 
         private string _activityName;
         public string ActivityName
@@ -32,6 +28,9 @@ namespace ActivityApp.ViewModel
 
         public ObservableCollection<ActivityModel> Items { get; set; }
 
+        public Command LoadItemsCommand { get; set; }
+        public Command AddItemCommand { get; set; }
+
         public bool CanAddItem => !string.IsNullOrWhiteSpace(ActivityName);
 
         #endregion
@@ -42,7 +41,8 @@ namespace ActivityApp.ViewModel
         {
             _firebaseDatabaseHelper = firebaseDatabaseHelper;
             Items = new ObservableCollection<ActivityModel>();
-
+            LoadItemsCommand = new Command(async () => await GetallActivity());
+            AddItemCommand = new Command<ActivityModel>(async (ActivityModel item) => await AddActivity(item));
         }
 
         #endregion

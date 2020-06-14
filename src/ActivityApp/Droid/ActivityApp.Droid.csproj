@@ -122,12 +122,12 @@
     <Compile Include="Views\Fragments\RegisterFragment.cs" />
     <Compile Include="Views\ViewHolders\HistoryListAdapterViewHolder.cs" />
     <Compile Include="Views\ViewHolders\ActivityListAdapterViewHolder.cs" />
-    <Compile Include="Views\Activities\AccountSettingsActivity.cs" />
     <Compile Include="Views\Fragments\AccountSettingsFragment.cs" />
     <Compile Include="Views\Activities\ChangePasswordActivity.cs" />
     <Compile Include="Views\Fragments\ChangePasswordFragment.cs" />
     <Compile Include="Views\CustomViews\CustomAddDialog.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
+    <Compile Include="Views\Fragments\ErrorFragment.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -191,12 +191,6 @@
       <Generator>
       </Generator>
     </AndroidResource>
-    <AndroidResource Include="Resources\layout\account_settings_page_layout.xml">
-      <SubType>
-      </SubType>
-      <Generator>
-      </Generator>
-    </AndroidResource>
     <AndroidResource Include="Resources\layout\account_settings_fragment_layout.xml">
       <SubType>
       </SubType>
@@ -226,6 +220,10 @@
       </SubType>
       <Generator>
       </Generator>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\error_fragment_page_layout.axml">
+      <SubType></SubType>
+      <Generator></Generator>
     </AndroidResource>
   </ItemGroup>
   <ItemGroup>

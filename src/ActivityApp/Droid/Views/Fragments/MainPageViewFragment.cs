@@ -11,6 +11,9 @@ using ActivityApp.Views.Adapter;
 using ActivityApp.Views.CustomViews;
 using ActivityApp.ViewModel;
 using ActivityApp.Services;
+using Android.Support.Design.Widget;
+using Plugin.Connectivity.Abstractions;
+using Plugin.Connectivity;
 
 namespace ActivityApp.Views.Fragments
 {
@@ -55,22 +58,18 @@ namespace ActivityApp.Views.Fragments
             _adapter = new ActivityListAdapter(Activity, ViewModel);
             _addDialog = new CustomAddDialog(Activity);
             _listview.Adapter = _adapter;
-   
+
             return _view;
         }
 
         public override void OnStart()
         {
             base.OnStart();
-            Handler h = new Handler();
-            async void myAction()
+            CrossConnectivity.Current.ConnectivityChanged += CheckInternetConnection;
+            if(ViewModel.Items.Count == 0)
             {
-                if(ViewModel.Items.Count == 0)
-                {
-                    await ViewModel.GetallActivity();
-                }
+                ViewModel.LoadItemsCommand.Execute(null);
             }
-            h.PostDelayed(myAction, 10);
         }
         public override void OnResume()
         {
@@ -114,13 +113,22 @@ namespace ActivityApp.Views.Fragments
             _addDialog.Show();
         }
 
-        private void OpenScanPage(int playId)
+        private void OpenScanPage(int id)
         {
             var intent = new Intent(Activity, typeof(QrCodeActivity));
-            intent.PutExtra("current_play_id", playId);
+            intent.PutExtra("id", id);
             StartActivity(intent);
         }
 
+        public void CheckInternetConnection(object sender, ConnectivityChangedEventArgs e)
+        {
+            if (e.IsConnected == false)
+            {
+                Snackbar snackBar = Snackbar.Make(_view, "No internet connection", Snackbar.LengthIndefinite);
+                snackBar.Show();
+            }
+            return;
+        }
         #endregion
     }
 }
