@@ -118,9 +118,9 @@ namespace ActivityApp.ViewModel
             }
         }
 
-        public async void Logout()
+        public void Logout()
         {
-            await _loginService.Logout();
+            _loginService.Logout();
         }
         #region Helper Methods 
 

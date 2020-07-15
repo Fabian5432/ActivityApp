@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Threading.Tasks;
 using ActivityApp.Models;
 using ActivityApp.Services.Interfaces;
 
 namespace ActivityApp.ViewModel
 {
-    public class ActivityItemViewModel: BaseViewModel
+    public class ActivityItemsViewModel: BaseViewModel
     {
         #region Properties and Dependencies
 
@@ -26,7 +27,7 @@ namespace ActivityApp.ViewModel
             }
         }
 
-        public ObservableCollection<ActivityModel> Items { get; set; }
+        public ObservableCollection<ActivityModel> Items { get; }
 
         public Command LoadItemsCommand { get; set; }
         public Command AddItemCommand { get; set; }
@@ -37,7 +38,7 @@ namespace ActivityApp.ViewModel
 
         #region Constructor
 
-        public ActivityItemViewModel(IFirebaseDatabaseHelper firebaseDatabaseHelper)
+        public ActivityItemsViewModel(IFirebaseDatabaseHelper firebaseDatabaseHelper)
         {
             _firebaseDatabaseHelper = firebaseDatabaseHelper;
             Items = new ObservableCollection<ActivityModel>();
@@ -57,11 +58,29 @@ namespace ActivityApp.ViewModel
 
         public async Task GetallActivity()
         {
-            Items.Clear();
-            var items = await _firebaseDatabaseHelper.GetAllUserActivities(true);
-            foreach(var item in items)
+            
+            if (IsBusy)
+                return;
+
+            IsBusy = true;
+
+            try
             {
-                Items.Add(item);
+                Items.Clear();
+                var items = await _firebaseDatabaseHelper.GetAllUserActivities(true);
+                foreach (var item in items)
+                {
+                    Items.Add(item);
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex);
+            }
+            finally
+            {
+                IsBusy = false;
             }
         }
 

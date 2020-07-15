@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using Firebase.Auth;
 
 namespace ActivityApp.Services.Interfaces
 {
@@ -7,6 +8,7 @@ namespace ActivityApp.Services.Interfaces
         Task Login(string email, string password);
         Task Register(string email, string password);
         string GetCurrenUserEmail();
-        Task Logout();
+        void Logout();
+        FirebaseAuthLink Auth { get; set; }
     }
 }

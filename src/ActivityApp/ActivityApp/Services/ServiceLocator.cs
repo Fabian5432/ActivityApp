@@ -5,7 +5,6 @@ namespace ActivityApp.Services
 {
     public class ServiceLocator
     {
-        private static IRepositoryService _repositoryService;
         private static IQrScanService _qrScanService;
         private static ILoginService _loginService;
         private static IFirebaseDatabaseConnection _firebaseDatabaseConnection;
@@ -39,16 +38,6 @@ namespace ActivityApp.Services
                 if (_firebaseDatabaseHelper == null)
                     _firebaseDatabaseHelper = new FirebaseDatabaseHelper(GetFirebaseDatabaseConnection);
                 return _firebaseDatabaseHelper;
-            }
-        }
-
-        public IRepositoryService GetRepositoryService
-        {
-            get
-            {
-                if (_repositoryService == null)
-                    _repositoryService = new RepositoryService(GetDatabaseHelper);
-                return _repositoryService;
             }
         }
 

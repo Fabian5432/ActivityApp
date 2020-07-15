@@ -56,7 +56,7 @@ namespace ActivityApp.Services
             if (CrossConnectivity.Current.IsConnected)
             {
               CurrentUser = (await _firebaseClient.Child(UserChild).OnceAsync<UserModel>()).
-              Where(user => user.Object.UserId == UserLocalData.userId).FirstOrDefault();
+              Where(user => user.Object.UserId ==  LocalData.userId).FirstOrDefault();
             }
 
             return CurrentUser; 
@@ -90,15 +90,24 @@ namespace ActivityApp.Services
             }
         }
 
+        public async Task DeleteActivity(string activityName)
+        {
+
+            if (CrossConnectivity.Current.IsConnected)
+            {
+                var activity = (await _firebaseClient.Child(UserChild).Child(CurrentUser.Key).Child(ActivityChild).OnceAsync<ActivityModel>()).Where(a => a.Object.ActivityName == activityName).FirstOrDefault();
+                await _firebaseClient.Child(UserChild).Child(CurrentUser.Key).Child(ActivityChild).Child(activity.Key).DeleteAsync();
+            }
+
+        }
+
         public async Task<List<ActivityModel>> GetAllUserActivities(bool forceRefresh = false)
         {
             var user = await GetCurrentUser();
             if (forceRefresh && CrossConnectivity.Current.IsConnected)
             {
-                Items = (await _firebaseClient.Child(UserChild).Child(user.Key).Child(ActivityChild).OnceAsync<ActivityModel>()).Select(a => new ActivityModel()
-                {
-                    ActivityName = a.Object.ActivityName
-                }).ToList();
+                Items = (await _firebaseClient.Child(UserChild).Child(user.Key).Child(ActivityChild)
+                    .OnceAsync<ActivityModel>()).Select(a => new ActivityModel(a.Object.ActivityName)).ToList();
             }
 
             return Items;

@@ -5,7 +5,13 @@ using System.Runtime.CompilerServices;
 namespace ActivityApp.ViewModel
 {
     public abstract class BaseViewModel : IBaseViewModel
-    {   
+    {
+        bool isBusy = false;
+        public bool IsBusy
+        {
+            get { return isBusy; }
+            set { SetProperty(ref isBusy, value); }
+        }
 
         public event PropertyChangedEventHandler PropertyChanged;
 

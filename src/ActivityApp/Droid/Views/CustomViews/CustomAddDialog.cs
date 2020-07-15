@@ -17,7 +17,7 @@ namespace ActivityApp.Views.CustomViews
         private Button cancelButton;
         private Button addButton;
         private EditText activityNameEditText;
-        private ActivityItemViewModel ViewModel;
+        private ActivityItemsViewModel ViewModel;
 
         #endregion
 
@@ -70,7 +70,7 @@ namespace ActivityApp.Views.CustomViews
             try
             {
                 ViewModel.ActivityName = activityNameEditText.Text;
-                var activity = new ActivityModel() { ActivityName = ViewModel.ActivityName };
+                var activity = new ActivityModel(ViewModel.ActivityName);
                 ViewModel.AddItemCommand.Execute(activity);
             }
             catch (Exception ex)

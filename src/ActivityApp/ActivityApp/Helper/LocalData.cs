@@ -3,7 +3,7 @@ using Plugin.Settings.Abstractions;
 
 namespace ActivityApp.Helper
 {
-    public class UserLocalData
+    public class LocalData
     {
         private static ISettings AppSettings => CrossSettings.Current;
 
@@ -11,14 +11,10 @@ namespace ActivityApp.Helper
         {
             userToken,
             userId,
-            logged
+            email,
+            password
         }
 
-        public static string logged
-        {
-            get => AppSettings.GetValueOrDefault(DataKey.logged.ToString(), string.Empty);
-            set => AppSettings.AddOrUpdateValue(DataKey.logged.ToString(), value);
-        }
         public static string userToken
         {
             get => AppSettings.GetValueOrDefault(DataKey.userToken.ToString(), string.Empty);
@@ -35,13 +31,10 @@ namespace ActivityApp.Helper
         {
             AppSettings.Remove(DataKey.userToken.ToString());
         }
+
         public static void RemoveUserId()
         {
             AppSettings.Remove(DataKey.userId.ToString());
-        }
-        public static void RemoveLogged()
-        {
-            AppSettings.Remove(DataKey.logged.ToString());
         }
     }
 

@@ -6,14 +6,6 @@
     android:layout_height="match_parent"
     android:background="@color/viewColor">
 
-    <!--SearchView layout-->
-    <SearchView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin = "16dp"
-        android:background="@drawable/rounded_search_bar"
-        android:id="@+id/history_searchView_id"/>
-
 <RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
@@ -28,7 +20,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="This month"
+        android:text="This month activities"
         android:textColor="@color/white"
         android:paddingTop="26dp"
         android:layout_marginLeft="15dp"/>
@@ -42,9 +34,10 @@
         android:layout_width="fill_parent"
         android:layout_height="1dp"
         android:background="@android:color/darker_gray"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"/>
+
     <!--Listview layout-->
 <android.support.design.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
@@ -64,9 +57,9 @@
         android:dividerHeight="1dp"/>
 <ProgressBar
         android:id="@+id/loading_bar"
+        android:paddingVertical="200dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:indeterminate="true"
         android:background="@android:color/transparent"
         android:indeterminateTint="@android:color/holo_orange_light"/>
 

@@ -11,15 +11,15 @@ namespace ActivityApp.Services
 
         public FirebaseDatabaseConnection()
         {
-            _firebaseClient = new FirebaseClient("https://proiectdiploma-ea2e5.firebaseio.com/", 
+            _firebaseClient = new FirebaseClient("https://proiectdiploma-ea2e5.firebaseio.com/",
             new FirebaseOptions
             {
-                AuthTokenAsyncFactory = async () => await Task.FromResult(UserLocalData.userToken)
+                AuthTokenAsyncFactory = async () => await Task.FromResult(LocalData.userToken)
             });
         }
 
         public FirebaseClient GetFirebaseClient()
-        {
+        {  
            return _firebaseClient;
         }
     }

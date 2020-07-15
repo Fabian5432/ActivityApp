@@ -16,6 +16,8 @@ namespace ActivityApp.Services
         private readonly IFirebaseAuthProvider _firebaseAuthProvider;
         public event EventHandler LoggedOut;
 
+        public FirebaseAuthLink Auth { get; set; }
+      
         #endregion
 
         #region Constructor
@@ -36,12 +38,11 @@ namespace ActivityApp.Services
             try
             {   if(CrossConnectivity.Current.IsConnected.Equals(true))
                 {
-                    var auth = await _firebaseAuthProvider.SignInWithEmailAndPasswordAsync(email, password);
-                    UserLocalData.RemoveToken();
-                    UserLocalData.userToken = auth.FirebaseToken;
-                    UserLocalData.RemoveUserId();
-                    UserLocalData.userId = auth.User.LocalId;
-                    UserLocalData.logged = "true";
+                    Auth = await _firebaseAuthProvider.SignInWithEmailAndPasswordAsync(email, password);
+                    LocalData.RemoveToken();
+                    LocalData.userToken = Auth.FirebaseToken;
+                    LocalData.RemoveUserId();
+                    LocalData.userId = Auth.User.LocalId;
                 }
                 else
                 {
@@ -64,8 +65,7 @@ namespace ActivityApp.Services
 
         public void Logout()
         {
-            UserLocalData.logged = "false";
-            UserLocalData.RemoveUserId();
+            LocalData.RemoveUserId();
             LoggedOut?.Invoke(this, EventArgs.Empty);
         }
 
@@ -74,7 +74,7 @@ namespace ActivityApp.Services
             try
             {
                 var auth = await _firebaseAuthProvider.CreateUserWithEmailAndPasswordAsync(email, password);
-                UserLocalData.userToken = auth.FirebaseToken;
+                LocalData.userToken = auth.FirebaseToken;
                 var userCredentials = new UserCredentials() { Email = email};
                 await _firebaseDatabaseHelper.AddUser(new UserModel()
                        {
@@ -85,7 +85,7 @@ namespace ActivityApp.Services
                             },
                             UserCredentials = userCredentials
                         });
-                UserLocalData.RemoveToken();
+                LocalData.RemoveToken();
             }
             catch (Exception e)
             {

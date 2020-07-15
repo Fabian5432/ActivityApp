@@ -9,13 +9,13 @@
     <Import_RootNamespace>ActivityApp</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="$(MSBuildThisFileDirectory)Helper\UserLocalData.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Helper\LocalData.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\ActivityModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\HistoryModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\UserCredentials.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\UserModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\UserStatus.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModel\ActivityItemViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModel\ActivityItemsViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\BaseViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\HistoryItemViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\Interfaces\IBaseViewModel.cs" />
@@ -28,12 +28,11 @@
     <Compile Include="$(MSBuildThisFileDirectory)Services\Interfaces\IFirebaseDatabaseHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\Interfaces\ILoginService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\Interfaces\IQrScanService.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Services\Interfaces\IRepositoryService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\LoginService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\QrCodeService.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Services\RepositoryService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\ServiceLocator.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helper\Command.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModel\ActivityItemDetailsViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Models\" />

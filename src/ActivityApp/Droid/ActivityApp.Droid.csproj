@@ -128,6 +128,7 @@
     <Compile Include="Views\CustomViews\CustomAddDialog.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Views\Fragments\ErrorFragment.cs" />
+    <Compile Include="Views\Activities\ActivityDetail.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -222,6 +223,10 @@
       </Generator>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\error_fragment_page_layout.axml">
+      <SubType></SubType>
+      <Generator></Generator>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\activity_item_details.xml">
       <SubType></SubType>
       <Generator></Generator>
     </AndroidResource>

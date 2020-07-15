@@ -65,12 +65,12 @@ namespace ActivityApp.Fragments
 
         private void goSettings(object sender, EventArgs e)
         {
-            FragmentTransaction ft = FragmentManager.BeginTransaction();
-            AccountSettingsFragment f4 = new AccountSettingsFragment();
-            // The fragment  that will have the ID of Resource.Id.fragment_container.  
-            ft.Replace(Resource.Id.content_frame,f4, "f4");
-            ft.AddToBackStack(null);
-            ft.Commit();
+            FragmentTransaction fragmentTransaction = FragmentManager.BeginTransaction();
+            AccountSettingsFragment accountSettingsFragment = new AccountSettingsFragment();
+
+            fragmentTransaction.Replace(Resource.Id.content_frame, accountSettingsFragment, "accountSettingsFragment");
+            fragmentTransaction.AddToBackStack(null);
+            fragmentTransaction.Commit();
         }
 
         #endregion

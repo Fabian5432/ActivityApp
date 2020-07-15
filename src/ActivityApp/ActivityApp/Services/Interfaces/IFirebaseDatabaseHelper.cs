@@ -15,5 +15,6 @@ namespace ActivityApp.Services.Interfaces
         Task<List<ActivityModel>> GetAllUserActivities(bool forceRefresh);
         Task AddUser(UserModel person);
         Task DeleteUser();
+        Task DeleteActivity(string activityName);
     }
 }

@@ -6,14 +6,11 @@ using Android.Support.V4.Widget;
 using System;
 using Android.Support.V7.App;
 using Android.Content;
-using ActivityApp.Activities;
 using ActivityApp.Views.Adapter;
 using ActivityApp.Views.CustomViews;
 using ActivityApp.ViewModel;
 using ActivityApp.Services;
-using Android.Support.Design.Widget;
-using Plugin.Connectivity.Abstractions;
-using Plugin.Connectivity;
+using ActivityApp.Droid;
 
 namespace ActivityApp.Views.Fragments
 {
@@ -27,7 +24,7 @@ namespace ActivityApp.Views.Fragments
         private ActivityListAdapter _adapter;
         private Button _addButton;
         private CustomAddDialog _addDialog;
-        public static ActivityItemViewModel ViewModel { get; set; }
+        public static ActivityItemsViewModel ViewModel { get; set; }
 
         #endregion
 
@@ -49,7 +46,7 @@ namespace ActivityApp.Views.Fragments
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             // Use this to return your custom view for this Fragment
-            ViewModel = new ActivityItemViewModel(new ServiceLocator().GetDatabaseHelper);
+            ViewModel = new ActivityItemsViewModel(new ServiceLocator().GetDatabaseHelper);
 
             _view = inflater.Inflate(Resource.Layout.main_page_layout, null);
             _listview = (ListView)_view.FindViewById(Resource.Id.list_view);
@@ -65,12 +62,10 @@ namespace ActivityApp.Views.Fragments
         public override void OnStart()
         {
             base.OnStart();
-            CrossConnectivity.Current.ConnectivityChanged += CheckInternetConnection;
-            if(ViewModel.Items.Count == 0)
-            {
-                ViewModel.LoadItemsCommand.Execute(null);
-            }
+            if (ViewModel.Items.Count == 0)
+                ViewModel.LoadItemsCommand.Execute(null);  
         }
+
         public override void OnResume()
         {
             base.OnResume();
@@ -95,17 +90,21 @@ namespace ActivityApp.Views.Fragments
         {
             _swipetoRefresh.Refreshing = true;
             Handler h = new Handler();
-            async void myAction()
+            async void RefreshAsync()
             {
-                await ViewModel.GetallActivity();
+                await ViewModel.LoadItemsAsync();
                 _swipetoRefresh.Refreshing = false;
             }
-            h.PostDelayed(myAction, 1000);
+            h.PostDelayed(RefreshAsync, 1000);
         }
 
         private void ItemClick(object sender, AdapterView.ItemClickEventArgs e)
         {
-            OpenScanPage(e.Position);
+            var item = ViewModel.Items[e.Position];
+            var intent = new Intent(Activity, typeof(ActivityDetail));
+
+            intent.PutExtra("data", Newtonsoft.Json.JsonConvert.SerializeObject(item));
+            Activity.StartActivity(intent);
         }
 
         private void AddButtonClick(object sender, EventArgs e)
@@ -113,22 +112,6 @@ namespace ActivityApp.Views.Fragments
             _addDialog.Show();
         }
 
-        private void OpenScanPage(int id)
-        {
-            var intent = new Intent(Activity, typeof(QrCodeActivity));
-            intent.PutExtra("id", id);
-            StartActivity(intent);
-        }
-
-        public void CheckInternetConnection(object sender, ConnectivityChangedEventArgs e)
-        {
-            if (e.IsConnected == false)
-            {
-                Snackbar snackBar = Snackbar.Make(_view, "No internet connection", Snackbar.LengthIndefinite);
-                snackBar.Show();
-            }
-            return;
-        }
         #endregion
     }
 }

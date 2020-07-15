@@ -10,10 +10,10 @@ namespace ActivityApp.Views.Adapter
     public class ActivityListAdapter : BaseAdapter<ActivityModel>
     {
 
-        ActivityItemViewModel activityViewModel;
+        ActivityItemsViewModel activityViewModel;
         Activity activity;
 
-        public ActivityListAdapter(Activity activity, ActivityItemViewModel activityViewModel)
+        public ActivityListAdapter(Activity activity, ActivityItemsViewModel activityViewModel)
         {
             this.activity = activity;
             this.activityViewModel = activityViewModel;
