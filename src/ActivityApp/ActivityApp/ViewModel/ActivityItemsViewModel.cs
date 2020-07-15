@@ -42,7 +42,7 @@ namespace ActivityApp.ViewModel
         {
             _firebaseDatabaseHelper = firebaseDatabaseHelper;
             Items = new ObservableCollection<ActivityModel>();
-            LoadItemsCommand = new Command(async () => await GetallActivity());
+            LoadItemsCommand = new Command(async () => await LoadItemsAsync());
             AddItemCommand = new Command<ActivityModel>(async (ActivityModel item) => await AddActivity(item));
         }
 
@@ -56,7 +56,7 @@ namespace ActivityApp.ViewModel
             await _firebaseDatabaseHelper.AddActivityToUser(activity);
         }
 
-        public async Task GetallActivity()
+        public async Task LoadItemsAsync()
         {
             
             if (IsBusy)
