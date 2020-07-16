@@ -1,33 +1,39 @@
-﻿using System.Collections.Generic;
-using ActivityApp.Models;
+﻿using ActivityApp.Models;
 using Android.Views;
 using Android.Widget;
 using ActivityApp.Views.ViewHolders;
+using ActivityApp.ViewModel;
+using Android.App;
 
 namespace ActivityApp.Views.Adapter
 {
-    public class HistoryListAdapter : BaseAdapter<HistoryModel>
+    public class HistoryListAdapter : BaseAdapter<ActivityModel>
     {
-        readonly List<HistoryModel> _activity;
+        HistoryItemViewModel historyItemViewModel;
+        Activity activity;
 
-        public HistoryListAdapter(List<HistoryModel> activities)
+        public HistoryListAdapter(Activity activity, HistoryItemViewModel historyItemViewModel)
         {
-            _activity = activities;
+            this.activity = activity;
+            this.historyItemViewModel = historyItemViewModel;
+
+            this.historyItemViewModel.Items.CollectionChanged += (sender, args) =>
+            {
+                this.activity.RunOnUiThread(NotifyDataSetChanged);
+            };
+
         }
 
-        public override HistoryModel this[int position]
+        public override ActivityModel this[int position]
         {
-            get { return _activity[position]; }
+            get { return historyItemViewModel.Items[position]; }
         }
+
+        public override int Count { get { return historyItemViewModel.Items.Count; } }
 
         public override long GetItemId(int position)
         {
             return position;
-        }
-
-        public override int Count
-        {
-            get{ return _activity.Count;}
         }
 
         public override View GetView(int position, View convertView, ViewGroup parent)
@@ -39,14 +45,19 @@ namespace ActivityApp.Views.Adapter
                 var activity_type = view.FindViewById<TextView>(Resource.Id.activity_type_id);
                 var activity_date = view.FindViewById<TextView>(Resource.Id.date_id);
                 var activity_time = view.FindViewById<TextView>(Resource.Id.clock_id);
-                view.Tag = new HistoryListAdapterViewHolder() {
-                    ActivityType=activity_type, ActivityDate = activity_date, ActivityTime = activity_time };
+                view.Tag = new HistoryListAdapterViewHolder()
+                {
+                    ActivityType = activity_type,
+                    ActivityDate = activity_date,
+                    ActivityTime = activity_time
+                };
             }
             var holder = (HistoryListAdapterViewHolder)view.Tag;
-            holder.ActivityDate.Text = _activity[position].Date;
-            holder.ActivityTime.Text = _activity[position].Time;
+            holder.ActivityType.Text = historyItemViewModel.Items[position].ActivityName;
+            holder.ActivityDate.Text = historyItemViewModel.Items[position].Date;
+            holder.ActivityTime.Text = historyItemViewModel.Items[position].Time;
 
             return view;
         }
     }
-}
+ }

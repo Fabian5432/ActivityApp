@@ -5,9 +5,15 @@ namespace ActivityApp.Models
     {
         public string ActivityName { get; }
 
-        public ActivityModel(string ActivityName)
+        public string Date { get; }
+
+        public string Time { get; }
+
+        public ActivityModel(string ActivityName, string Date, string Time)
         {
             this.ActivityName = ActivityName;
+            this.Date = Date;
+            this.Time = Time;
         }
     }
 }

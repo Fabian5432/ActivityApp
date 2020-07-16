@@ -4,6 +4,8 @@ using Android.Views;
 using Android.Widget;
 using ActivityApp.Views.Adapter;
 using Fragment = Android.Support.V4.App.Fragment;
+using ActivityApp.ViewModel;
+using ActivityApp.Services;
 
 namespace ActivityApp.Fragments
 {
@@ -15,6 +17,7 @@ namespace ActivityApp.Fragments
         private ListView _listview;
         private HistoryListAdapter _adapter;
         private ProgressBar _progressBar;
+        public static HistoryItemViewModel ViewModel { get; set; }
 
         #endregion
 
@@ -37,11 +40,21 @@ namespace ActivityApp.Fragments
         {
             // Use this to return your custom view for this Fragment
             // return inflater.Inflate(Resource.Layout.YourFragment, container, false);
+            ViewModel = new HistoryItemViewModel(new ServiceLocator().GetDatabaseHelper);
+
             _view = inflater.Inflate(Resource.Layout.history_page_layout, null);
             _listview = (ListView)_view.FindViewById(Resource.Id.history_list_view);
             _progressBar = (ProgressBar)_view.FindViewById(Resource.Id.loading_bar);
-
+            _adapter = new HistoryListAdapter(Activity, ViewModel);
+            _listview.Adapter = _adapter;
             return _view;
+        }
+
+        public override void OnStart()
+        {
+            base.OnStart();
+            if (ViewModel.Items.Count == 0)
+                ViewModel.LoadItemsCommand.Execute(null);
         }
 
         public override void OnResume()
@@ -51,8 +64,6 @@ namespace ActivityApp.Fragments
             Handler h = new Handler();
             void myAction()
             {
-
-                _listview.Adapter = _adapter;
                 _progressBar.Visibility = ViewStates.Invisible;
             }
             h.PostDelayed(myAction, 100);

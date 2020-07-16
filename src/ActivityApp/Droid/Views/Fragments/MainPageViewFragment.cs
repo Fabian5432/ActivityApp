@@ -54,6 +54,7 @@ namespace ActivityApp.Views.Fragments
             _addButton = (Button)_view.FindViewById(Resource.Id.main_page_add_button_id);
             _adapter = new ActivityListAdapter(Activity, ViewModel);
             _addDialog = new CustomAddDialog(Activity);
+            
             _listview.Adapter = _adapter;
 
             return _view;

@@ -31,7 +31,6 @@ namespace ActivityApp.Views.CustomViews
 
             ViewModel = MainPageViewFragment.ViewModel;
 
-            //RequestWindowFeature((int)WindowFeatures.NoTitle);
             SetContentView(Resource.Layout.custom_entry_dialog_layout);
 
             Window.SetLayout(ViewGroup.LayoutParams.MatchParent, ViewGroup.LayoutParams.WrapContent);
@@ -70,8 +69,9 @@ namespace ActivityApp.Views.CustomViews
             try
             {
                 ViewModel.ActivityName = activityNameEditText.Text;
-                var activity = new ActivityModel(ViewModel.ActivityName);
-                ViewModel.AddItemCommand.Execute(activity);
+                var activity = new ActivityModel(ViewModel.ActivityName,
+                    DateTime.Now.ToString("dd MMM yyyy"), DateTime.Now.ToString("hh: mm tt"));
+                ViewModel.AddCountItemsCommand.Execute(activity);
             }
             catch (Exception ex)
             {
