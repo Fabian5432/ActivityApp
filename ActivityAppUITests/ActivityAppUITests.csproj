@@ -35,8 +35,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Tests.cs" />
+    <Compile Include="BaseTextFixture.cs" />
     <Compile Include="AppInitializer.cs" />
+    <Compile Include="Pages\OnboardingPageObject.cs" />
+    <Compile Include="Pages\BasePageObject.cs" />
+    <Compile Include="Tests\OnboardingTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -48,6 +51,10 @@
       <ReferenceOutputAssembly>False</ReferenceOutputAssembly>
       <Private>False</Private>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Pages\" />
+    <Folder Include="Tests\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>
