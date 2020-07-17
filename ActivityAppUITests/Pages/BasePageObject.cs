@@ -1,22 +1,35 @@
-﻿using Xamarin.UITest;
+﻿using System;
+using System.IO;
+using Xamarin.UITest;
 
 namespace ActivityAppUITests.Pages
 {
     public abstract class BasePageObject
     {
-        protected IApp App { get; }
+        protected IApp app => AppInitializer.App;
+        protected bool OnAndroid => AppInitializer.Platform == Platform.Android;
+        protected bool OniOS => AppInitializer.Platform == Platform.iOS;
 
-        protected BasePageObject(IApp app)
+        protected BasePageObject()
         {
-            App = app;
-            App.Screenshot($"On {this.GetType().Name}");
+            app.Screenshot($"On {this.GetType().Name}");
         }
 
-        public void Repl() => App.Repl();
+        public void SaveScreenshot(string title)
+        {
+            var fileInfo = app.Screenshot(title);
+            var basePath = AppDomain.CurrentDomain.BaseDirectory;
+            var screenshotPath = Path.Combine(basePath, $"../../Reports/{title}");     
+            if (File.Exists(screenshotPath))
+            {
+                File.Delete(screenshotPath);
+            }
+            fileInfo.MoveTo(screenshotPath);
+        }
 
         public BasePageObject TapOnHardwareBackbutton()
         {
-            App.Back();
+            app.Back();
             return this;
         }
 

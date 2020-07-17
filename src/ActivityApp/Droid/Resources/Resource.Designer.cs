@@ -4187,10 +4187,13 @@ namespace ActivityApp
 			public const int visible = 2131230978;
 			
 			// aapt resource value: 0x7F080103
-			public const int withText = 2131230979;
+			public const int welcome_text_title = 2131230979;
 			
 			// aapt resource value: 0x7F080104
-			public const int wrap_content = 2131230980;
+			public const int withText = 2131230980;
+			
+			// aapt resource value: 0x7F080105
+			public const int wrap_content = 2131230981;
 			
 			static Id()
 			{

@@ -1,35 +1,57 @@
 ﻿using System;
-using System.IO;
-using System.Linq;
 using Xamarin.UITest;
-using Xamarin.UITest.Queries;
 
 namespace ActivityAppUITests
 {
     public class AppInitializer
     {
-        public static IApp StartApp(Platform platform)
+        static IApp? app;
+        public static IApp App
         {
-            switch (platform)
+            get
             {
-                case Platform.Android:
-                    {
-
-                        return ConfigureApp.Android
-                            .InstalledApp("app.app")
-                            .EnableLocalScreenshots()
-                            .StartApp();
-                    }
-                case Platform.iOS:
-                    {
-
-                        return ConfigureApp.iOS.EnableLocalScreenshots()
-                            .AppBundle("")
-                            .StartApp();
-                    }
-                default:
-                    throw new Exception("Unknown platform");
+                if (app == null)
+                    throw new NullReferenceException("'AppInitializer.App' not set");
+                return app;
             }
+        }
+
+        static Platform? platform;
+        public static Platform Platform
+        {
+            get
+            {
+                if (platform == null)
+                    throw new NullReferenceException("'AppInitializer.Platform' not set.");
+                return platform.Value;
+            }
+
+            set
+            {
+                platform = value;
+            }
+        }
+
+        public static void StartApp()
+        {
+            app =
+            platform switch
+            {
+                Platform.Android =>
+                    ConfigureApp
+                    .Android
+                    .Debug()
+                    .EnableLocalScreenshots()
+                    .StartApp(),
+                Platform.iOS =>
+                    ConfigureApp
+                    .iOS
+                    .Debug()
+                    .EnableLocalScreenshots()
+                    .StartApp(),
+                _ => throw new Exception("Not supported platform")
+            };
+
         }
     }
 }
