@@ -52,7 +52,7 @@ namespace ActivityApp.Services
                                    UserStatus = person.Object.UserStatus
                                }).ToList();
             }
-               
+
             return Users;
         }
 
@@ -60,11 +60,11 @@ namespace ActivityApp.Services
         {
             if (CrossConnectivity.Current.IsConnected)
             {
-              CurrentUser = (await _firebaseClient.Child(UserChild).OnceAsync<UserModel>()).
-              Where(user => user.Object.UserId ==  LocalData.userId).FirstOrDefault();
+                CurrentUser = (await _firebaseClient.Child(UserChild).OnceAsync<UserModel>()).Where(user => user.Object.UserId == LocalData.userId)
+                    .FirstOrDefault();
             }
 
-            return CurrentUser; 
+            return CurrentUser;
         }
         public async Task<FirebaseObject<ActivityModel>> GetActivity(string name)
         {
@@ -82,7 +82,7 @@ namespace ActivityApp.Services
             {
                 await _firebaseClient.Child(UserChild).PostAsync(user);
             }
-                
+
         }
 
         public async Task DeleteUser()
@@ -90,9 +90,9 @@ namespace ActivityApp.Services
             var persontoDelete = await GetCurrentUser();
             if (CrossConnectivity.Current.IsConnected)
             {
-                
+
                 await _firebaseClient.Child(UserChild).Child(persontoDelete.Key).DeleteAsync();
-            }    
+            }
         }
 
         public async Task AddActivityToUser(ActivityModel activity)
@@ -107,7 +107,7 @@ namespace ActivityApp.Services
         public async Task AddActivityCountToUser(ActivityModel activity)
         {
             var user = await GetCurrentUser();
-            if(CrossConnectivity.Current.IsConnected)
+            if (CrossConnectivity.Current.IsConnected)
             {
                 await _firebaseClient.Child(UserChild).Child(user.Key).Child("Coffee consumption").PostAsync(activity);
             }
@@ -118,7 +118,10 @@ namespace ActivityApp.Services
 
             if (CrossConnectivity.Current.IsConnected)
             {
-                var activity = (await _firebaseClient.Child(UserChild).Child(CurrentUser.Key).Child(ActivityChild).OnceAsync<ActivityModel>()).Where(a => a.Object.ActivityName == activityName).FirstOrDefault();
+                var activity = (await _firebaseClient.Child(UserChild)
+                    .Child(CurrentUser.Key)
+                    .Child(ActivityChild)
+                    .OnceAsync<ActivityModel>()).Where(a => a.Object.ActivityName == activityName).FirstOrDefault();
                 await _firebaseClient.Child(UserChild).Child(CurrentUser.Key).Child(ActivityChild).Child(activity.Key).DeleteAsync();
             }
 
@@ -129,8 +132,12 @@ namespace ActivityApp.Services
             var user = await GetCurrentUser();
             if (forceRefresh && CrossConnectivity.Current.IsConnected)
             {
-                ActivityItems = (await _firebaseClient.Child(UserChild).Child(user.Key).Child(ActivityChild)
-                    .OnceAsync<ActivityModel>()).Select(a => new ActivityModel(a.Object.ActivityName, a.Object.Date, a.Object.Time)).ToList();
+                ActivityItems = (await _firebaseClient.Child(UserChild)
+                    .Child(user.Key)
+                    .Child(ActivityChild)
+                    .OnceAsync<ActivityModel>()).Select(a => new ActivityModel(a.Object.ActivityName,
+                                                                               a.Object.Date,
+                                                                               a.Object.Time)).ToList();
             }
 
             return ActivityItems;
@@ -142,8 +149,10 @@ namespace ActivityApp.Services
 
             if (forceRefresh && CrossConnectivity.Current.IsConnected)
             {
-                CountItems = (await _firebaseClient.Child(UserChild).Child(user.Key).Child("Coffee consumption")
-                    .OnceAsync<ActivityModel>()).Select(a => new ActivityModel(a.Object.ActivityName, a.Object.Date, a.Object.Time)).ToList();
+                CountItems = (await _firebaseClient.Child(UserChild)
+                                                   .Child(user.Key)
+                                                   .Child("Coffee consumption")
+                                                   .OnceAsync<ActivityModel>()).Select(a => new ActivityModel(a.Object.ActivityName, a.Object.Date, a.Object.Time)).ToList();
             }
 
             return CountItems;
