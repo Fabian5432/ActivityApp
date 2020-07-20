@@ -45,9 +45,11 @@
     <Compile Include="Pages\OnboardingPageObject.cs" />
     <Compile Include="Pages\BasePageObject.cs" />
     <Compile Include="Tests\OnboardingTests.cs" />
-    <Compile Include="Pages\NavigationPageObject.cs" />
     <Compile Include="Tests\LoginTests.cs" />
     <Compile Include="Pages\LoginPageObject.cs" />
+    <Compile Include="Pages\Helper\PageObjectIndex.cs" />
+    <Compile Include="Pages\Helper\Navigation.cs" />
+    <Compile Include="Pages\DashboardPageObject.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -64,6 +66,10 @@
     <Folder Include="Pages\" />
     <Folder Include="Tests\" />
     <Folder Include="Reports\" />
+    <Folder Include="Pages\Helper\" />
   </ItemGroup>
+<PropertyGroup>
+    <Nullable>enable</Nullable>
+</PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

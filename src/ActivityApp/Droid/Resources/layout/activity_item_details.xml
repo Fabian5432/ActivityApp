@@ -4,8 +4,22 @@
  android:layout_width="match_parent"
  android:layout_height="match_parent"
  android:background="@color/viewColor">
+
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/coordinator_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/viewColor">
+
 <ListView
     android:id="@+id/item_list"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"/>
+    android:layout_height="wrap_content"
+    android:divider="@android:color/darker_gray"
+    android:layout_marginLeft="8dp"
+    android:layout_marginRight="8dp"
+    android:dividerHeight="1dp"/>
+    </android.support.design.widget.CoordinatorLayout>
 </LinearLayout>

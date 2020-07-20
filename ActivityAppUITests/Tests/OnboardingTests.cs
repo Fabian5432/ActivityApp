@@ -1,6 +1,5 @@
 ﻿using Xamarin.UITest;
 using NUnit.Framework;
-using ActivityAppUITests.Pages;
 
 namespace ActivityAppUITests.Tests
 {
@@ -12,24 +11,21 @@ namespace ActivityAppUITests.Tests
 
         [Test]
         public void Onboarding_WaitForAllElements()
-        {   // Arrange 
-            var onboardingPageObject = new OnboardingPageObject();
-
-            // Act & Assert
-            onboardingPageObject.WaitForAllElements();
+        {
+            // Arrange & Act & Assert
+            Po_index.OnboardingPageObject.WaitForAllElements();
         }
 
         [Test]
         public void Onboarding_VerifyLoginButtonText()
         {
             // Arrange 
-            var onboardingPageObject = new OnboardingPageObject();
-            onboardingPageObject.WaitForAllElements();
+            Po_index.OnboardingPageObject.WaitForAllElements();
 
             var expected_login_button_text = "Login";
 
             // Act
-            var actual_result = onboardingPageObject.GetLoginButtonText();
+            var actual_result = Po_index.OnboardingPageObject.GetLoginButtonText();
 
             // Assert
             Assert.AreEqual(expected_login_button_text, actual_result);
@@ -39,20 +35,19 @@ namespace ActivityAppUITests.Tests
         public void Onboarding_VerifyRegisterButtonText()
         {
             // Arrange 
-            var onboardingPageObject = new OnboardingPageObject();
-            onboardingPageObject.WaitForAllElements();
+            Po_index.OnboardingPageObject.WaitForAllElements();
 
             var expected_register_button_text = "Register";
 
             // Act
-            var actual_result = onboardingPageObject.GetRegisterButtonText();
+            var actual_result = Po_index.OnboardingPageObject.GetRegisterButtonText();
 
             // Assert
             Assert.AreEqual(expected_register_button_text, actual_result);
         }
 
         [Test]
-        [Ignore("Ignore a test")]
+        //[Ignore("Ignore a test")]
         public void StartRepl()
         {
             App.Repl();

@@ -5,7 +5,7 @@ namespace ActivityAppUITests
 {
     public class AppInitializer
     {
-        static IApp? app;
+        private static IApp? app;
         public static IApp App
         {
             get
@@ -16,7 +16,7 @@ namespace ActivityAppUITests
             }
         }
 
-        static Platform? platform;
+        private static Platform? platform;
         public static Platform Platform
         {
             get
@@ -26,10 +26,7 @@ namespace ActivityAppUITests
                 return platform.Value;
             }
 
-            set
-            {
-                platform = value;
-            }
+            set => platform = value;
         }
 
         public static void StartApp()

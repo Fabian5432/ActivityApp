@@ -34,30 +34,30 @@ namespace ActivityAppUITests.Pages
 
         public void WaitForAllElementsOnboardingage()
         {
-            app.WaitForElement(Content);
+            App.WaitForElement(Content);
 
-            app.WaitForElement(LoginButton);
-            app.WaitForElement(RegisterButton);
-            app.WaitForElement(WelcomeTextId);
+            App.WaitForElement(LoginButton);
+            App.WaitForElement(RegisterButton);
+            App.WaitForElement(WelcomeTextId);
         }
 
         public OnboardingPageObject TapLoginButton()
         {
-            app.Tap(x => x.Marked(LoginButtonId));
+            App.Tap(x => x.Marked(LoginButtonId));
             SaveScreenshot(nameof(TapLoginButton));
             return this;
         }
 
         public OnboardingPageObject TapRegisterButton()
         {
-            app.Tap(x => x.Marked(RegisterButtonId));
+            App.Tap(x => x.Marked(RegisterButtonId));
             SaveScreenshot(nameof(TapRegisterButton));
             return this;
         }
 
         public string GetLoginButtonText()
         {
-            var result = app.Query(LoginButton).FirstOrDefault().Text;
+            var result = App.Query(LoginButton).FirstOrDefault().Text;
             SaveScreenshot(nameof(GetLoginButtonText));
 
             return result;
@@ -65,7 +65,7 @@ namespace ActivityAppUITests.Pages
 
         public string GetRegisterButtonText()
         {
-            var result = app.Query(RegisterButton).FirstOrDefault().Text;
+            var result = App.Query(RegisterButton).FirstOrDefault().Text;
             SaveScreenshot(nameof(GetRegisterButtonText));
 
             return result;

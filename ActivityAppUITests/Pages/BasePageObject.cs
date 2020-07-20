@@ -6,18 +6,15 @@ namespace ActivityAppUITests.Pages
 {
     public abstract class BasePageObject
     {
-        protected IApp app => AppInitializer.App;
+        protected IApp App => AppInitializer.App;
         protected bool OnAndroid => AppInitializer.Platform == Platform.Android;
         protected bool OniOS => AppInitializer.Platform == Platform.iOS;
 
-        protected BasePageObject()
-        {
-            app.Screenshot($"On {this.GetType().Name}");
-        }
+        protected BasePageObject() { }
 
         public void SaveScreenshot(string title)
         {
-            var fileInfo = app.Screenshot(title);
+            var fileInfo = App.Screenshot(title);
             var basePath = AppDomain.CurrentDomain.BaseDirectory;
             var screenshotPath = Path.Combine(basePath, $"../../Reports/{title}");     
             if (File.Exists(screenshotPath))
@@ -29,13 +26,11 @@ namespace ActivityAppUITests.Pages
 
         public BasePageObject TapOnHardwareBackbutton()
         {
-            app.Back();
+            App.Back();
             return this;
         }
 
-        /// <summary>
         /// Wait function that will repeatly query the app until all matching elements are found.
-        /// </summary>
         public abstract void WaitForAllElements();
     }
 }

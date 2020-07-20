@@ -34,6 +34,7 @@
     <AndroidLinkMode>None</AndroidLinkMode>
     <EmbedAssembliesIntoApk>False</EmbedAssembliesIntoApk>
     <AndroidKeyStore>false</AndroidKeyStore>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugSymbols>True</DebugSymbols>
@@ -73,7 +74,7 @@
     </NoWarn>
     <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
     <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
-    <LangVersion>Default</LangVersion>
+    <LangVersion>latest</LangVersion>
     <NoStdLib>false</NoStdLib>
     <PlatformTarget>anycpu</PlatformTarget>
     <JavaMaximumHeapSize>1G</JavaMaximumHeapSize>

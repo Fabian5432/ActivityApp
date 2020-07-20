@@ -9,7 +9,7 @@ namespace ActivityApp.Views.Fragments
     {
         #region Components
 
-        View _view;
+        private View _view;
 
         #endregion
 
