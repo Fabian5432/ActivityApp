@@ -5,8 +5,8 @@ namespace ActivityAppUITests.Helper
     public class Navigation
     {
         private readonly PageObjectIndex Po_index;
-        private const string email = "vlasceanufabian96@gmail.com";
-        private const string password = "Parola12345";
+        private const string email = "vlasceanufabian96@gmail.com"; // TODO 
+        private const string password = "Parola12345"; // TODO 
 
         public Navigation(PageObjectIndex po_index)
         {

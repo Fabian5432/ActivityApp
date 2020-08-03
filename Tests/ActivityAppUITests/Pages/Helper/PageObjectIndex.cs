@@ -6,28 +6,8 @@ namespace ActivityAppUITests.Pages.Helper
     {
         #region Properties
 
-        private OnboardingPageObject? onboardingPageObject;
-        public OnboardingPageObject OnboardingPageObject
-        {
-            get
-            {
-                if (onboardingPageObject == null)
-                    throw new NullReferenceException(message: "'OnboardingPageObject' not set");
-                return onboardingPageObject;
-            }
-            set => onboardingPageObject = value;
-
-        }
-        private LoginPageObject? loginPageObject;
-        public LoginPageObject LoginPageObject {
-            get
-            {
-                if (loginPageObject == null)
-                    throw new NullReferenceException(message: "'LoginPageObject' not set");
-                return loginPageObject;
-            }
-            set => loginPageObject = value;
-        }
+        public OnboardingPageObject OnboardingPageObject {  get; set; }
+        public LoginPageObject LoginPageObject { get; set; }
 
         #endregion
 
@@ -37,7 +17,6 @@ namespace ActivityAppUITests.Pages.Helper
         {
             LoginPageObject = new LoginPageObject();
             OnboardingPageObject = new OnboardingPageObject();
-
         }
 
         #endregion
