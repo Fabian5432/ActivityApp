@@ -2,7 +2,7 @@
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
-namespace ActivityApp.ViewModel
+namespace ActivityApp.ViewModel.Base
 {
     public abstract class BaseViewModel : IBaseViewModel
     {

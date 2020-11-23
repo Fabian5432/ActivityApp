@@ -1,19 +1,39 @@
 ﻿using Android.App;
 using Android.OS;
 using ActivityApp.Views.Activities;
-using ActivityApp.Helper;
+using Xamarin.Essentials;
+using Android.Content;
+using System.Threading.Tasks;
+using ActivityApp.Services.Interfaces;
 
 namespace ActivityApp.Activities
 {
-    [Activity(Label= "@string/app_name", NoHistory =true, Theme = "@style/MyTheme.Splash", MainLauncher =true)]
+    [Activity(Label = "@string/app_name", NoHistory = true, Theme = "@style/MyTheme.Splash", MainLauncher = true)]
     public class SplashScreen : Activity
     {
-        protected override void OnCreate(Bundle savedInstanceState)
+        private readonly ILoginService _loginService; 
+
+        protected override async void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
-            StartActivity(typeof(OnboardingActivity));
+            await CheckAsync();
+
             Finish();
         }
-        
-       }
+
+        public async Task CheckAsync()
+        {
+            if(await SecureStorage.GetAsync("token")!=null)
+            {
+                var intent = new Intent(this, typeof(MainActivity));
+                StartActivity(intent);
+            }
+            else
+            {
+                var intent = new Intent(this, typeof(OnboardingActivity));
+                StartActivity(intent);
+            }
+        }
+
     }
+}

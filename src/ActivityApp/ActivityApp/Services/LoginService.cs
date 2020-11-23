@@ -1,10 +1,10 @@
-﻿using ActivityApp.Helper;
-using ActivityApp.Models;
+﻿using ActivityApp.Models;
 using ActivityApp.Services.Interfaces;
 using Firebase.Auth;
 using Plugin.Connectivity;
 using System;
 using System.Threading.Tasks;
+using Xamarin.Essentials;
 
 namespace ActivityApp.Services
 {
@@ -14,10 +14,9 @@ namespace ActivityApp.Services
 
         private readonly IFirebaseDatabaseHelper _firebaseDatabaseHelper;
         private readonly IFirebaseAuthProvider _firebaseAuthProvider;
+
         public event EventHandler LoggedOut;
 
-        public FirebaseAuthLink Auth { get; set; }
-      
         #endregion
 
         #region Constructor
@@ -25,71 +24,69 @@ namespace ActivityApp.Services
         public LoginService(IFirebaseDatabaseHelper firebaseDatabaseHelper,
                             IFirebaseAuthProvider firebaseAuthProvider)
         {
-            _firebaseAuthProvider = firebaseAuthProvider;
-            _firebaseDatabaseHelper = firebaseDatabaseHelper;
+            _firebaseAuthProvider = firebaseAuthProvider ?? throw new ArgumentNullException(nameof(firebaseAuthProvider));
+            _firebaseDatabaseHelper = firebaseDatabaseHelper ?? throw new ArgumentNullException(nameof(firebaseDatabaseHelper));
         }
 
         #endregion
 
         #region Methods 
 
-        public async Task Login(string email, string password)
+        public async Task LoginAsync(string email, string password)
         {
             try
-            {   if(CrossConnectivity.Current.IsConnected.Equals(true))
+            {
+                if (CrossConnectivity.Current.IsConnected == true)
                 {
-                    Auth = await _firebaseAuthProvider.SignInWithEmailAndPasswordAsync(email, password);
-                    LocalData.RemoveToken();
-                    LocalData.userToken = Auth.FirebaseToken;
-                    LocalData.RemoveUserId();
-                    LocalData.userId = Auth.User.LocalId;
+                    var auth = await _firebaseAuthProvider.SignInWithEmailAndPasswordAsync(email, password);
+                    await SecureStorage.SetAsync("token", auth.RefreshToken);
+                    await SecureStorage.SetAsync("userId", auth.User.LocalId);
                 }
                 else
                 {
                     throw new Exception("Server is unavailable right now, try again later");
                 }
             }
-            catch(Exception e)
+            catch (Exception e)
             {
-                if(e.Message.Contains("INVALID_PASSWORD") || e.Message.Contains("EMAIL_NOT_FOUND"))
+                if (e.Message.Contains("INVALID_PASSWORD") || e.Message.Contains("EMAIL_NOT_FOUND"))
                 {
                     throw new Exception("Your email or password are not valid", e);
                 }
                 else
-                {   
+                {
                     throw new Exception(e.Message, e);
                 }
             }
-  
+
         }
 
         public void Logout()
         {
-            LocalData.RemoveUserId();
+            SecureStorage.Remove("userId");
+            SecureStorage.Remove("token");
             LoggedOut?.Invoke(this, EventArgs.Empty);
         }
 
-        public async Task Register(string email, string password)
+        public async Task RegisterAsync(string email, string password)
         {
             try
             {
                 var auth = await _firebaseAuthProvider.CreateUserWithEmailAndPasswordAsync(email, password);
-                LocalData.userToken = auth.FirebaseToken;
-                var userCredentials = new UserCredentials() { Email = email};
+                var userCredentials = new UserCredentials() { Email = email };
                 await _firebaseDatabaseHelper.AddUser(new UserModel()
-                       {
-                            UserId = auth.User.LocalId,
-                            UserStatus = new UserStatus()
-                            {
-                                IsAdmin = false
-                            },
-                            UserCredentials = userCredentials
-                        });
-                LocalData.RemoveToken();
+                {
+                    UserId = auth.User.LocalId,
+                    UserStatus = new UserStatus()
+                    {
+                        IsAdmin = false
+                    },
+                    UserCredentials = userCredentials
+                });
             }
             catch (Exception e)
             {
-                if(e.Message.Contains("EMAIL_EXISTS"))
+                if (e.Message.Contains("EMAIL_EXISTS"))
                 {
                     throw new Exception("Email is already registerd");
                 }

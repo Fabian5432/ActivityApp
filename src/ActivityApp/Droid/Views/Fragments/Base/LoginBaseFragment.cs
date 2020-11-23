@@ -1,4 +1,5 @@
 ﻿using ActivityApp.ViewModel;
+using ActivityApp.ViewModel.Base;
 
 namespace ActivityApp.Views.Fragments.Base
 {

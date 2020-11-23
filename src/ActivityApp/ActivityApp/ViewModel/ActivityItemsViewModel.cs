@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Threading.Tasks;
 using ActivityApp.Models;
 using ActivityApp.Services.Interfaces;
+using ActivityApp.ViewModel.Base;
 
 namespace ActivityApp.ViewModel
 {

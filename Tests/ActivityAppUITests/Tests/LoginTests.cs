@@ -1,9 +1,14 @@
 ﻿using Xamarin.UITest;
-using NUnit.Framework;
 using ActivityAppUITests.Helper;
+using TestStack.BDDfy;
+using NUnit.Framework;
 
 namespace ActivityAppUITests.Tests
 {
+   [Story(
+        AsA = "As a user ",
+        IWant = "I want to navigate to login page",
+        SoThat = "So that I can login with my credentials")]
     public class LoginTests: BaseTextFixture
     {
         public LoginTests(Platform platform): base(platform)
@@ -11,25 +16,20 @@ namespace ActivityAppUITests.Tests
 
         }
 
-        [SetUp]
-        public void NavigateToLoginBeforeEachTest() =>
-            new Navigation(Po_index).NavigateToLoginPage();
-
-        [Test]
+        [Given("Given I'm on login page")]
         public void WaitForAllElementsLoginPage()
         {
             // Arrange & Act & Assert
+            new Navigation(Po_index).NavigateToLoginPage();
             Po_index.LoginPageObject.WaitForAllElements();
+
+            Assert.That(2, Is.EqualTo(2));
         }
 
         [Test]
-        public void EnterEmail()
-        {   // Arrange
-            var email_text = "vlasceanufabian96@gmail.com";
-
-            //Act & Assert
-            Po_index.LoginPageObject.WaitForAllElements();
-            Po_index.LoginPageObject.EnterEmail(email_text);
+        public void Execute()
+        {
+            this.BDDfy();
         }
     }
 }

@@ -2,14 +2,17 @@
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using ActivityApp.Models;
 using ActivityApp.Services.Interfaces;
+using ActivityApp.ViewModel.Base;
 
 namespace ActivityApp.ViewModel
 {
     public class HistoryItemViewModel : BaseViewModel
     {
         #region Properties and Dependencies
+
         private IFirebaseDatabaseHelper _firebaseDatabaseHelper;
 
         private string _activityName;
@@ -28,7 +31,12 @@ namespace ActivityApp.ViewModel
 
         public ObservableCollection<ActivityModel> Items { get; }
 
-        public Command LoadItemsCommand { get; set; }
+        private Command _loadItemsCommand;
+        public ICommand LoadItemsCommand
+        {
+            get => _loadItemsCommand ??= new Command(async () => await LoadHistoryItemsAsync());
+        }
+
 
         public bool CanAddItem => !string.IsNullOrWhiteSpace(ActivityName);
 
@@ -40,7 +48,7 @@ namespace ActivityApp.ViewModel
         {
             _firebaseDatabaseHelper = firebaseDatabaseHelper;
             Items = new ObservableCollection<ActivityModel>();
-            LoadItemsCommand = new Command(async () => await LoadHistoryItemsAsync());
+            LoadItemsCommand.Execute(null);
         }
 
         #endregion

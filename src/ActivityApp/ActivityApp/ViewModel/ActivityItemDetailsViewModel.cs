@@ -1,5 +1,6 @@
 ﻿using System;
 using ActivityApp.Models;
+using ActivityApp.ViewModel.Base;
 
 namespace ActivityApp.ViewModel
 {

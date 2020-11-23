@@ -9,14 +9,12 @@
     <Import_RootNamespace>ActivityApp</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="$(MSBuildThisFileDirectory)Helper\LocalData.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\ActivityModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\HistoryModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\UserCredentials.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\UserModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\UserStatus.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\ActivityItemsViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModel\BaseViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\HistoryItemViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\Interfaces\IBaseViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\Interfaces\IViewModelLocatorService.cs" />
@@ -33,10 +31,12 @@
     <Compile Include="$(MSBuildThisFileDirectory)Services\ServiceLocator.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helper\Command.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\ActivityItemDetailsViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModel\Base\BaseViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Models\" />
     <Folder Include="$(MSBuildThisFileDirectory)ViewModel\" />
     <Folder Include="$(MSBuildThisFileDirectory)Services\" />
+    <Folder Include="$(MSBuildThisFileDirectory)ViewModel\Base\" />
   </ItemGroup>
 </Project>

@@ -12,7 +12,7 @@ namespace ActivityAppUITests.Tests
         [Test]
         public void Onboarding_WaitForAllElements()
         {
-            // Arrange & Act & Assert
+            // Arrange / Act & Assert
             Po_index.OnboardingPageObject.WaitForAllElements();
         }
 

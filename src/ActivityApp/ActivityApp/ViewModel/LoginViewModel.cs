@@ -1,4 +1,5 @@
 ﻿using ActivityApp.Services.Interfaces;
+using ActivityApp.ViewModel.Base;
 using System;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -80,7 +81,7 @@ namespace ActivityApp.ViewModel
 
             try
             {
-                await _loginService.Login(Email, Password);
+                await _loginService.LoginAsync(Email, Password);
             }
             catch (Exception e)
             {
@@ -104,7 +105,7 @@ namespace ActivityApp.ViewModel
             try
             {   if (IsValidEmail(Email) && ConfirmedPassword.Equals(Password) && IsPasswordValid(Password))
                 {
-                    await _loginService.Register(Email, Password);
+                    await _loginService.RegisterAsync(Email, Password);
                 }
                 else
                 {

@@ -1,7 +1,7 @@
-﻿using ActivityApp.Helper;
-using ActivityApp.Services.Interfaces;
+﻿using ActivityApp.Services.Interfaces;
 using Firebase.Database;
 using System.Threading.Tasks;
+using Xamarin.Essentials;
 
 namespace ActivityApp.Services
 {
@@ -14,7 +14,7 @@ namespace ActivityApp.Services
             _firebaseClient = new FirebaseClient("https://proiectdiploma-ea2e5.firebaseio.com/",
             new FirebaseOptions
             {
-                AuthTokenAsyncFactory = async () => await Task.FromResult(LocalData.userToken)
+                AuthTokenAsyncFactory = async () => await await Task.FromResult(SecureStorage.GetAsync("token"))
             });
         }
 

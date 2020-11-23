@@ -1,5 +1,4 @@
-﻿using ActivityApp.Helper;
-using ActivityApp.Models;
+﻿using ActivityApp.Models;
 using ActivityApp.Services.Interfaces;
 using Firebase.Database;
 using Firebase.Database.Query;
@@ -7,6 +6,7 @@ using Plugin.Connectivity;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Xamarin.Essentials;
 
 namespace ActivityApp.Services
 {
@@ -58,9 +58,10 @@ namespace ActivityApp.Services
 
         public async Task<FirebaseObject<UserModel>> GetCurrentUser()
         {
+            var token = await SecureStorage.GetAsync("userId");
             if (CrossConnectivity.Current.IsConnected)
             {
-                CurrentUser = (await _firebaseClient.Child(UserChild).OnceAsync<UserModel>()).Where(user => user.Object.UserId == LocalData.userId)
+                CurrentUser = (await _firebaseClient.Child(UserChild).OnceAsync<UserModel>()).Where(user => user.Object.UserId == token)
                     .FirstOrDefault();
             }
 
